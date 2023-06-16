@@ -1,0 +1,74 @@
+---
+title: "Webhooks & Callbacks"
+description: "🪝Don't call us, we'll get back to you"
+---
+
+To make you integration easier, we have enabled ways to alert you when something
+happens or to define validation services before executing transactions.
+
+### Webhooks
+
+You can setup a URL to recibe requests every time an event is triggered for a
+transaction. possible events are:
+
+- `payment_received`: payment is confirmed
+
+- `payment_rejected`: payment was cancelled or rejected
+
+- `payment_expired`: the transaction expired before receiving payment
+  confirmation
+
+- `crypto_tx_sent`: transaction was sent to the blockchain (only on-ramps)
+
+- `crypto_delivered`: transaction confirmed by the blockchain (only on-ramps)
+
+- `crypto_tx_failed`: transaction failed on the blockchain
+
+Additionally, you weill be able to defined a `secret` to validate our requests.
+Using this secret, we encrypt the request parameters and add the hash for you to
+verify:
+
+```js
+const signature = crypto
+  .createHmac("sha256", secret)
+  .update(JSON.stringify(payload))
+  .digest("hex");
+```
+
+Example of a request:
+
+```json
+{
+  "eventName": "crypto_delivered", // event, from the list above
+  "orderId": "5a3288ea-0bd4-44d2-af11-aae1f88bbd61", // order id
+  "timeStamp": "2022-10-26T22:36:41.658Z",
+  "signature": "ed40d34ab7a587cf1a16338a16cc7765ae4420936677482bb33f5f738e4f7189" // hash
+}
+```
+
+### Authentication Callback
+
+You can setup a URL to your API for us to confirm a user is allowed to operate
+in your specific context. Every time a user wants to buy, sell, or check private
+information associated to your environment, we will send a request to this URL
+before proceeding.
+
+Our platform assumes your API will respond _something_ that looks like a boolean
+and supports many authentication methods.
+
+An example using pseudo code:
+
+```js
+// user buys crypto
+const createOrder (payload) {
+    if (!validUser(payload.email)) throw new Error('user not allowed');
+    else continue
+}
+// we check with your API before proceeding
+const validUser(email) {
+    const payload = { email }
+    const headers = { 'Authorization': 'Bearer superJWT' }
+    const { data } = await axios.post(urlExternalAPI, payload, { headers })
+    reurn data
+}
+```

@@ -1,0 +1,157 @@
+---
+title: "SDK Documentation"
+description: "🖥 The easiest way to integrate Koywe"
+---
+
+**See it in action:** You can see how we integrate our own widget at
+[https://widget.koywe.com](https://widget.koywe.com) and clone the
+[Github](https://github.com/koyweforest/koywe-widget-template/)[ repo](https://github.com/koyweforest/koywe-widget-template/)
+to start building your own project
+
+### SDK Widget
+
+Our SDK is an NPM package, installed in your project. You can configure some
+parameters to make it easier for your users and even skip some steps if you
+include a [Client ID](/english/documentation/credentials).
+
+Activating the widget will display an overlay where your users will go through
+the [Buy Process](/english/about-koywe/what-is-koywe/purchasing-process) and,
+coming soon, the [Sales](/english/about-koywe/what-is-koywe/selling-process) on,
+without leaving your website or app.
+
+![](/images/sdk-documentation.png)
+
+### Installation
+
+Run `npm i @koyweforest/koywe-ramp-sdk` inside your project's folder. You can
+also use `yarn`
+
+![](/images/sdk-documentation-2.png)
+
+### Configuration and Use
+
+Using the widget is very simple. For example, showing the ramp at the click of a
+button:
+
+```js
+import { KoyweRampSDK } from "@koyweforest/koywe-ramp-sdk";
+const koywe = new KoyweRampSDK({});
+function App() {
+  return (
+    <Button onClick={() => koywe.show()}>Fund your wallet with Koywe</Button>
+  );
+}
+```
+
+You can add some parameters to make it easier for your users:
+
+#### currencies
+
+A list of currencies that will be offered to the user. By default, all
+currencies are shown.
+
+You must pass an array of strings, each value containing the symbol of the
+currencies. You can obtain a full list of available fiat currencies at
+[https://koywe.com](https://koywe.com)
+
+```js
+new KoyweRampSDK({ currencies: ["CLP", "MXN", "COP", "PEN"] });
+```
+
+In this example, the user will only be allowed to select CLP, MXN, COP, and PEN.
+
+If you pass an empty array, it will be ignored and default values will be shown.
+You can add any string, invalid values will be ignored.
+
+#### tokens
+
+The list of tokens allowed to purchase or sell. By default, all available tokens
+for the given currency are shown.
+
+You must pass an array of strings, each value containing the symbol of the
+tokens. Multi-chain tokens, such as USDC, should be listed individually
+according to the default list. For example, USDC on Polygon should be passed as
+"USDC Polygon". You can obtain a full list of available crypto tokens at
+[https://koywe.com](https://koywe.com)
+
+```js
+new KoyweRampSDK({tokens: \["ETH"\]})
+```
+
+In this example, only ETH will be available to transact.
+
+If you pasa an empty array, it will be ignored and default values will be shown.
+You can add any string, invalid values will be ignored.
+
+<Warning>
+  Non-existent pairs will be ignored. For example, if there are no prices in PEN
+  for the BNB token, when the user selects PEN, the token will not be displayed,
+  even if there are prices in other currencies.
+</Warning>
+
+#### address
+
+Optional string parameter to setup a wallet address, skipping the step for the
+user.
+
+```js
+new KoyweRampSDK({ address: "0x402...12" });
+```
+
+An invalid or malformed address will be ignored and the user will have to input
+a valid one manually.
+
+#### email
+
+String parameter to link a user to the transaction. If it's a valid email, the
+widget will trigger an email with an OTP code and ask for it to the user.
+
+```js
+new KoyweRampSDK({ email: "test@koywe.com" });
+```
+
+<Warning>
+  Providing an email will prevent the user from modifying it and WILL have to
+  use the address to buy or sell crypto.
+</Warning>
+
+#### callbackUrl
+
+String param containing a valid URL to redirect after paying or navigating
+outside the widget.
+
+```js
+new KoyweRampSDK({ callbackUrl: "https://koywe.com......" });
+```
+
+<Warning>
+  If you don't specify a valid URL, the user will be redirected to Koywe's
+  website after finishing the transaction.
+</Warning>
+
+#### clientId
+
+Optional parameter containing the
+[Client ID](/english/documentation/credentials) to use on the widget. Depending
+on the agreement with Koywe, this ID allows access to different payment methods
+and conditions.
+
+```js
+new KoyweRampSDK({ clientId: "2781......" });
+```
+
+If no id is passed, the widget will replicate functionality at https://koywe.com
+
+Checkout our [Credentials](/english/documentation/credentials) sections to learn
+more and find out how to get your own ID.
+
+#### testing
+
+Optional boolean parameter to activate testing mode (fake transactions).
+
+```js
+new KoyweRampSDK({ testing: true });
+```
+
+If parameter is not passed or is passed as false, the widget will point to
+production (real money).

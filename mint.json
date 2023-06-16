@@ -1,59 +1,119 @@
 {
-  "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Koywe",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
   },
+  "versions": ["English", "Español"],
   "favicon": "/favicon.png",
   "colors": {
-    "primary": "#12A7D3",
-    "light": "#81D7F7",
-    "dark": "#004E7A"
+    "primary": "#006252",
+    "light": "#C9FF1F",
+    "dark": "#003C2A"
+  },
+  "topbarCtaButton": {
+    "name": "Comprar Crypto",
+    "url": "https://koywe.com/buy-crypto"
+  },
+  "topAnchor": {
+    "name": "Docs"
   },
   "topbarLinks": [
     {
-      "name": "Documentation",
-      "url": "https://mintlify.com/docs"
+      "name": "Empresas",
+      "url": "https://koywe.com/empresas"
     }
   ],
-  "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
-  },
-  "tabs": [
+  "anchors": [
     {
-      "name": "API Reference",
-      "url": "api-reference"
+      "name": "Blog",
+      "url": "https://koywe.com/blog",
+      "icon": "newspaper"
+    },
+    {
+      "name": "Contáctanos",
+      "url": "mailto:contacto@koywe.com",
+      "icon": "envelope"
     }
   ],
   "navigation": [
     {
-      "group": "Get Started",
-      "pages": ["introduction", "quickstart", "development"]
+      "group": "Introduction",
+      "version": "English",
+      "pages": ["english/introduction"]
     },
     {
-      "group": "Essentials",
-      "pages": ["essentials/markdown", "essentials/code", "essentials/images", "essentials/settings", "essentials/navigation"]
-    },
-    {
-      "group": "API Documentation",
-      "pages": ["api-reference/authentication"]
-    },
-    {
-      "group": "Endpoint Examples",
+      "group": "About Koywe",
+      "version": "English",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/update",
-        "api-reference/endpoint/delete"
+        {
+          "group": "What is Koywe",
+          "pages": [
+            "english/about-koywe/overview",
+            "english/about-koywe/what-is-koywe/purchasing-process",
+            "english/about-koywe/what-is-koywe/selling-process"
+          ]
+        },
+        "english/about-koywe/use-cases"
+      ]
+    },
+    {
+      "group": "Documentation",
+      "version": "English",
+      "pages": [
+        "english/documentation/credentials",
+        "english/documentation/sdk-documentation",
+        {
+          "group": "API Documentation",
+          "pages": [
+            "english/documentation/api-documentation",
+            "english/documentation/api-documentation/graphql-api",
+            "english/documentation/api-documentation/api-rest"
+          ]
+        },
+        "english/documentation/webhooks-and-callbacks"
+      ]
+    },
+    {
+      "group": "Introducción",
+      "version": "Español",
+      "pages": ["bienvenido-a-koywe"]
+    },
+    {
+      "group": "Sobre Koywe",
+      "version": "Español",
+      "pages": [
+        {
+          "group": "🌳¿Qué es Koywe?",
+          "pages": [
+            "sobre-koywe/que-es-koywe",
+            "sobre-koywe/que-es-koywe/proceso-de-compra",
+            "sobre-koywe/que-es-koywe/proceso-de-venta"
+          ]
+        },
+        "sobre-koywe/casos-de-uso"
+      ]
+    },
+    {
+      "group": "Documentación",
+      "version": "Español",
+      "pages": [
+        "documentacion/credenciales",
+        "documentacion/documentacion-sdk",
+        {
+          "group": "🛠Documentación API",
+          "pages": [
+            "documentacion/documentacion-api",
+            "documentacion/documentacion-api/api-graphql",
+            "documentacion/documentacion-api/api-rest"
+          ]
+        },
+        "documentacion/webhooks-y-callbacks"
       ]
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
-  },
-  "backgroundImage": "/background.png"
+    "twitter": "https://twitter.com/koywe_latam",
+    "linkedin": "https://www.linkedin.com/company/koywe/"
+  }
 }
