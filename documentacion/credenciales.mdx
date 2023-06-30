@@ -4,7 +4,7 @@ description: "👩💻¿Cómo sabemos quién eres?"
 ---
 
 Queremos que integrar Koywe sea fácil, por lo que si solo quieres una rampa
-cripto, puedes integrar nuestro widget sin ninguna credencial.
+cripto, puedes integrar nuestro widget o embeber un iFrame en tu aplicación sin ninguna credencial.
 
 Si quieres hacer modificaciones más profundas o conectarte por API, contáctanos
 a [hola@koywe.com](mailto:hola@koywe.com)
@@ -19,6 +19,18 @@ Una vez que estés creado como partner, tendrás 2 parámetros para la integraci
 
 Con estos 2 parámetros podrás autenticarte en la API y hacer llamados a los
 endpoints privados.
+
+Cuando te autenticas exitosamente, nuestra API te responderá un JWT que deberás incluir en los headers de todos los llamados que hagas a la API. Este JWT durará 24 horas antes de expirar.
+
+<Card >
+  Hay 2 formas de autenticarse, que puedes revisar en los API docs: con email o sin email. Al autenticarte con un email, todos los llamados a la API tendrán ese email de usario asociado.
+  Algunos endpoints exigen forzozamente un email en el JWT, por lo que recomendamos autenticarse de esta forma.
+</Note>
+
+<Card title="Nota" icon="lightbulb" iconType="duotone" color="#ca8b04">
+  Hay 2 formas de autenticarse, que puedes revisar en los API docs: con email o sin email. Al autenticarte con un email, todos los llamados a la API tendrán ese email de usario asociado.
+  Algunos endpoints exigen forzozamente un email en el JWT, por lo que recomendamos autenticarse de esta forma.
+</Card>
 
 <Info>
   **SDK**: La integración por SDK permite el ingreso de un Client ID, de manera
