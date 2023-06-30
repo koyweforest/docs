@@ -1,0 +1,38 @@
+---
+title: Basic API flow
+---
+
+<Tip>
+  In this section you'll be able to see a basic flow of Koywe's API calls for
+  purchase and selling (applies for both actions).
+</Tip>
+
+### `/Auth`
+
+First, you have to authenticate. We suggest adding the user's email to use the JWT token for later calls.
+
+### `GetCurrencyTokens (on ramp) GetTokenCurrency (off ramp)`
+
+Returns the list of pairs to check available currencies and tokens and display them to the user.
+
+### `/payment-providers`
+
+Returns the list of available payment methods. With this endpoint you can find the wire transfer details for each country, and displaying them would be helpful to the user should they choose that payment method.
+
+### `Post /quotes`
+
+Having the inputs for both fiat and crypto, the user must input the amount he desires to pay or receive in order to obtain a `quote`. Once the call's response is retrieved, the user will be able to know exactly how much they'll pay in fees and how much they'll receive. Optionally, we can ask the API to keep the quote valid for a few of seconds. If that is the case, `quoteId` can be kept to use in the next step.
+
+### `Post /orders`
+
+Confirming the order is enough. If the `quoteId` is still valid, the only additional parameters are the wallet address or bank account details, the user's `documentNumber`, and, optionally, a metadata field to identify the order on your system.
+
+<Tip>
+  If the quote has expired, a new one can be generated or make a call to
+  `createOrder` with the same parameters to obtain a quote and a order at the
+  same time.
+</Tip>
+
+Once the `orderId` is received you can save it, associating it to the user.
+
+The only thing left to do is to wait for the calls to your from our API or check every now and then with `Get /order` providing the `orderId`.

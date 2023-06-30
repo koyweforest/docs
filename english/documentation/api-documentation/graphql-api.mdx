@@ -1,6 +1,5 @@
 ---
-title: "GraphQL API"
-description: "🛸"
+title: 'GraphQL API'
 ---
 
 Testing URL:
@@ -13,9 +12,11 @@ Contact us at [hola@koywe.com](mailto:hola@koywe.com) to get your
 [Credentials](/english/documentation/credentials) or to schedule a personalized
 tour around the platoform.
 
-**Testing:** Our testing API works on the different testnets of major
-blockchains. We have a limited token stock, so we ask your help in not using
-them all or returning the tokens once the testing is done.
+<Tip>
+  **Testing:** Our testing API works on the different testnets of major
+  blockchains. We have a limited token stock, so we ask your help in not using
+  them all or returning the tokens once the testing is done.
+</Tip>
 
 ### Queries and Mutations
 
@@ -32,52 +33,110 @@ curl --request POST \
     --data '{"query":"mutation authenticate($input: AuthInput!) {\n  authenticate(input: $input) {\n    token\n  }\n}","variables":{"input":{"clientId":"63631a561f41f8fd18f8c3e0","secret":"supersecretstringFTW"}}}'
 ```
 
-En the following examples, we will only write down the JSON object.
+In the following examples, we will only write down the JSON object.
 
-#### Authentication
+<Accordion title="Authentication">
 
-```json
-"query":
-"mutation authenticate($input: AuthInput!) {
+Returns a Bearer Token that lasts for 24 hours.
+
+Require: `clientId`, `secret`
+
+Optional: `email`. This field associates the transactions and requests to a specific user account.
+
+```graphql
+mutation Authenticate($input: AuthInput!) {
   authenticate(input: $input) {
     token
   }
-}",
+}
 "variables" :
 {
   "input": {
     "clientId": "63631a561f41f8fd18f8c3e0",
-    "secret": "secretpassword"
-    "email": "email@domain.com" –-> optional
+    "secret": "secretpassword",
+    "email": "email@domain.com" # optional
   }
 }
 ```
 
-#### Pairs
+</Accordion>
 
-Get the supported currency and token pairs.
+The next two services allows in a directly way the validation of a final user. The first service sends a code to an email specified by the user's input. This code must be provided as an input to the second service, where the user will be validated and session data will be returned.
 
-Optional: `symbol:` Currency symbol to filter pairs. `clientId`
+<Accordion title="Validation of session">
+Sends a 6-digit code to the email specified.
 
-```json
-"query":
-"query GetCurrencyTokens($input: GetCurrenciesInput!) {
-  GetCurrencyTokens(input: $input) {
+```graphql
+mutation validateAccount($input: ValidateAccountInput!) {
+  validateAccount(input: $input) {
+    _id
+  }
+}
+"variables" :
+{
+  "input": {
+    "email": "email@domain.com",
+    "clientId": "f87aad3as90fe5489bb5099f"
+  }
+}
+```
+
+</Accordion>
+
+<Accordion title="Code's validation">
+Value of code must be retrieved from the email sent by the previous service.
+
+```graphql
+mutation validateCode($input: ValidateCodeInput!) {
+  validateCode(input: $input) {
+    token
+    isIdentify
+    needVerificate
+    identity
+    firstOp
+  }
+}
+"variables" :
+{
+  "input": {
+    "clientId": "40401a5615d9d8fd18f8a0b4",
+    "code": "940577",
+    "email": "example@domain.com"
+  }
+}
+```
+
+</Accordion>
+
+<Accordion title="Pairs">
+
+Returns supported currency-tokens pairs.
+
+Optional: `symbol:` Currency symbol to filter pairs. `clientId`.
+
+```graphql
+query GetCurrencyTokensV2($input: GetCurrenciesInput!) {
+  GetCurrencyTokensV2(input: $input) {
     _id
     name
     symbol
     decimals
+    clientId
+    logo
+    locate
+    limits {
+      min
+      max
+    }
     tokens {
       _id
       name
       symbol
-      lastPrice
       decimals
-      internalMarket
-      chainId
+      logo
     }
   }
-}",
+}
 "variables":
 {
   "input": {
@@ -87,216 +146,405 @@ Optional: `symbol:` Currency symbol to filter pairs. `clientId`
 }
 ```
 
-#### Payment Methods
+Returns supported token-currencies pairs.
 
-List of available payment methods with each method's fees and details for a
-specific currency.
+Optional: `symbol`. El símbolo del cripto a elección. `clientId`
 
-Require: `symbol`
+```graphql
+query GetTokenCurrencies($input: GetCurrenciesInput!) {
+  GetTokenCurrencies(input: $input) {
+    _id
+    name
+    symbol
+    decimals
+    logo
+    currencies {
+      _id
+      name
+      symbol
+      decimals
+      locale
+      logo
+      limits {
+        min
+        max
+      }
+    }
+  }
+}
+"variables":
+{
+  "input": {
+    "symbol": null,
+    "clientId": null
+  }
+}
+```
 
-Opcional: `clientId.` Payment method list could vary according to this
-parameter.
+</Accordion>
 
-```json
-"query":
-"query GetPaymentProviderList($input: GetPaymentProviderListInput!) {
+<Accordion title="Payment Methods">
+
+Returns a list of available payment methods with each method's fees and details for a specific currency.
+
+Require: `symbol`. `currencyId`.
+
+Optional: `clientId`. Payment method list could vary according to this parameter.
+
+```graphql
+query GetPaymentProviderList($input: GetPaymentProviderListInput!) {
   getPaymentProviderList(input: $input) {
     _id
     name
-    description
     fee
     image
+    description
     details
   }
-}",
+}
 "variables":
 {
   "input": {
     "symbol": "COP"
-    "clientId": "63631a561f41f8fd18f8c3e0"
+    "clientId": "f87aad3as90fe5489bb5099f"
+    "currencyId": "489bb507aad3as90fe0f"
   }
 }
 ```
 
-#### Quote
+</Accordion>
 
-Returns a quote for the give parameters. When the payment method ID is null, it
-returns the cheapest method available.
+<Accordion title="Quote services">
 
-Requires: `crypto` o `currency`. Amounts in currency or token, one or the other.
-`cryptoSymbol`, `currencySymbol`
+#### Get Quote
 
-Optional: `paymentProviderId, clientId`
+Returns a quote associated with a quoteId.
 
-```json
-"query":
-"query getPaymentProviderFee($input: GetPaymentProviderInput!) {
-  getPaymentProviderFee(input: $input) {
-    gasCost
-    fee
-    cryptoToReceive
-    currencyToPay
-    Co2
-    price
+```graphql
+query getQuote($quoteId: String!) {
+  getQuote(quoteId: $quoteId) {
+    amountIn
+    amountOut
+    co2
+    exchangeRate
+    symbolIn
+    symbolOut
+    paymentMethodId
+    koyweFee
+    networkFee
+    validFor
+    validUntil
   }
-}",
+}
+"variables":
+{
+  "quoteId": "63c59396a38c6506a620162f" #Created when calling mutation quote
+}
+```
+
+#### Create Quote
+
+Requires: `amountIn` o `amountOut`, one or the other. `symbolIn`, `symbolOut`
+Optional: `paymentMethodId`, `clientId`
+
+```graphql
+mutation quote($input: QuoteInput!) {
+  quote(input: $input) {
+    quoteId
+    amountIn
+    amountOut
+    co2
+    exchangeRate
+    symbolIn
+    symbolOut
+    paymentMethodId
+    koyweFee
+    networkFee
+    validFor
+    validUntil
+  }
+}
 "variables":
 {
   "input": {
-    //"currency": 100000.00,
-    "crypto": 1000,
-    "cryptoSymbol":"USDC",
-    "currencySymbol":"CLP",
-    "paymentProviderId": null
+    "amountIn": 3716338,
+    "amountOut": 3.3,
+    "clientId": "cse7fj283rkn2x6v7rr",
+    "symbolIn": "CLP",
+    "symbolOut": "ETH",
+    "paymentMethodId": null, # This value corresponds to the _id value returned after calling GetPaymentProviderList
+    "executable": false #set false by default. If value is set true, we store it and return a UUID.
   }
 }
 ```
 
-In all the previous queries, the `clientItd` parameter will be ignored if
-there's a JWT Bearer Token in the headers.
+In all the previous queries, the `clientId` parameter will be ignored if there's a JWT Bearer Token in the headers.
 
-### Authenticated Queries
+</Accordion>
+
+## Authenticated Queries
 
 All the following queries require a Bearer Token in the headers:
 
-`Authorization: Bearer [token]`
-
-#### Get Transaction
-
-Transaction details. `transactionId` is the UUID obtained when a transaction is
-created or from the transaction list.
-
-Require: `transactionId`
-
-```json
-"query":
-"query TrackTransaction($input: TransactionTrackingInput!) {
-  trackTransaction(input: $input) {
-    _id
-    from
-    txHash
-    status
-    dates {
-      orderedDate
-      payedDate
-      transactionDate
-      deliveredDate
-    }
-    paymentOrderId {
-      _id
-      orderId
-      address
-      tokenId {
-        symbol
-        name
-        chainId
-      }
-      currencyAmount
-      amountCrypto
-      freezeAmount
-      koyweFee
-      netFee
-      status
-      currencyId {
-        name
-        symbol
-      }
-    }
-    retries
-  }
-}",
-"variables":
-{
-  "input": {
-    "transactionId": "a0eba85f-3428-4d1f-9055-043ddd5a3211"
-  }
-}
+```
+Authorization: Bearer [token]
 ```
 
-#### Transaction List
-
-Returns a list of of all the transactions associated to the `clientId` or
-specified `email`.
-
-```json
-"query":
-"query getTransactions {
-  myTransactions {
-    _id
-    from
-    txHash
-    status
-    paymentOrderId {
-      address
-      tokenId {
-        symbol
-        chainId
-      }
-      currencyAmount
-      currencyAmountWOFee
-      amountCrypto
-      freezeAmount
-      koyweFee
-      netFee
-      status
-      paymentProviderId {
-        name
-      }
-      orderId
-      currencyId {
-        symbol
-      }
-    }
-    dates {
-      orderedDate
-      payedDate
-      transactionDate
-      deliveredDate
-    }
-  }
-}"
-```
+<Accordion title="Order services">
 
 #### Create Order
 
-It creates a buy or sell order, returning a UUID to identify it (`orderId`) and,
-depending on the payment method, a URL (`providerData`) to proceed to payment.
-It accepts amounts for crypto o currency, not both.
+It creates a buy or sell order, returning a UUID to identify it (`orderId`) and, depending on the payment method, a URL (`providedData`) to proceed to payment. It accepts amounts for crypto o currency, not both.
 
-For authenticated calls without an `email`, this parameter must be included to
-associate the transaction to a specific account.
+For authenticated calls without an email, this parameter must be included to associate the transaction to a specific account.
 
-If `currencyId` and `currencySymbol` are provided, the latter will be ignored.
-The same goes for token.
+`amountIn` or `amountOut` must be provided as an input, but not both.
 
-Require:
-`address, tokenId o tokenSymbol, currencyId o currencySymbol, currencyAmount o amountCrypto, paymentProviderId, terms`
+#### On ramp
 
-Optional: `email` (mandatory if not authenticated with an email),
-`documentNumber` (associated to the account)
+Requires: `destinationAddress`, `quoteId o symbolIn, symbolOut, amountIn, amountOut, y paymentMethodId`.
 
-```json
-"query":
-"mutation CreatePaymentOrder($input: CreatePaymentOrderInput!) {
-  createPaymentOrder(input: $input) {
-    orderID
-    providerData //usually, a url to redirect the user to finalize payment
+#### Off ramp
+
+Requires: `destinationAddress`, `quoteId o symbolIn, symbolOut, amountIn, amountOut`.
+
+Optional: `email` (required if user is not suthenticated with email), documentNumber (to facilitate bank reconciliation)
+
+```graphql
+mutation createOrder($input: OrderInput!) {
+  createOrder(input: $input) {
+    orderId
+    amountIn
+    amountOut
+    documentNumber
+    email
+    metadata
+    orderId
+    paymentMethodId
+    providedAction
+    providedAddress
+    quoteId
+    symbolIn
+    symbolOut
   }
-}"
+}
 "variables":
 {
   "input": {
-    "address": "0x40f9bf922c23c43acdad71Ab4425280C0ffBD697", // Will return error if address is invalid
-    "tokenId": "630cab7fff27aaac82fd841b", // optional if tokenSymbol is sent (id will take priority if both are sent)
-    "currencyId": "6294cd18d2b5f912da43e678", // optional if currencySymbol is sent (id will take priority if both are sent)
-    "tokenSymbol": "CLP", // optional if tokenId is sent (id will take priority if both are sent)
-    "currencySymbol": "USDC", // optional if currencyId is sent (id will take priority if both are sent)
-    "currencyAmount": null,
-    "paymentProviderId": "632d7fe6237ded3a748112cf", // mandatory, from the list detailed above
-    "terms": true, // always true
-    "amountCrypto": 10,
-    "email": "email@domain.com", // optional if authentication includes one, mandatory if not
-    "documentNumber": "11.222.333-5 || CUAS525jGSD || 4235246346", // optional, to make wire transfers easier to approve
+    "callbackUrl": "example@domain.com",
+    "quoteId": null, #nullable. if provided and quote is still valid,
+                    #symbolIn, symbolOut, amountIn, amountOut,
+                    #and paymentMethodId are nullable
+    "amountIn": 1.100.000,
+    "amountOut": 1,
+    "email": "example@domain.com", #for API calls
+    "documentNumber": null,
+    "paymentMethodId": "632d7fe6237ded3a748112cf",  # This value corresponds to the _id value returned after calling GetPaymentProviderList
+    "destinationAddress": "0x40f9bf922c23c43acdad71Ab4425280C0ffBD697", # Will return error if address is invalid
+    "symbolIn": "CLP",
+    "symbolOut": "ETH",
+    "metadata": null
   }
 }
 ```
+
+#### Get Order
+
+Returns order information. Receives a `quoteId`.
+
+```graphql
+query getOrder($input: GetOrderInput!) {
+  getOrder(input: $input){
+    orderId
+    quoteId
+    symbolIn
+    symbolOut
+    amountIn
+    amountOut
+    email
+    exchangeRate
+    koyweFee
+    status
+    outReceipt
+    orderType
+    dates {
+      confirmationDate
+      paymentDate
+      executionDate
+      deliveryDate
+    }
+    destinationAddress
+    networkFee
+    paymentMethodId
+    logoIn
+    logoOut
+  }
+}
+"variables":
+{
+  "input": {
+    "orderId": "02a5f0c7-b9bf-48e0-8b5d-190d2e2f7fc1" #Created when calling mutation Order
+  }
+}
+```
+
+#### List of past orders
+
+Returns a list of all orders associated to the `clientId` or `email` specified when completing the user's authentication.
+
+`pagesize`: This value has a limit of 50, represents the number of responses per page.
+
+`pageNumber`: Number of pages shown.
+
+```graphql
+query orders($input: PaginationInput!) {
+  orders(input: $input) {
+    pagination {
+      totalCount
+      pageSize
+      pageNumber
+    }
+    data {
+      orderId
+      quoteId
+      orderType
+      symbolIn
+      symbolOut
+      logoIn
+      logoOut
+      amountIn
+      amountOut
+      paymentMethodId
+      destinationAddress
+      email
+      exchangeRate
+      koyweFee
+      networkFee
+      status
+      outReceipt
+      dates {
+        confirmationDate
+        paymentDate
+        executionDate
+        deliveryDate
+      }
+    }
+  }
+}
+"variables":
+{
+  "input": {
+    "pageNumber": null,
+    "pageSize": null
+  }
+}
+```
+
+</Accordion>
+
+<Accordion title="Banking services">
+
+#### Get Bank Account
+
+Returns a list of bank accounts the users has associated, filtered using `countryCode` and `currencySymbol`.
+
+```graphql
+query getBankAccount($filters: FiltersBankAccount!) {
+  getBankAccount(filters: $filters) {
+    _id
+    name
+    bankCode
+    countryCode
+    currencySymbol
+    accountNumber
+    account
+  }
+}
+"variables":
+{
+  "filters": {
+    "countryCode": "CHL",
+    "currencySymbol": "CLP"
+  }
+}
+```
+
+#### Get Bank Info by Country
+
+Returns a list of available banks for a given `countryCode`.
+
+```graphql
+query getBankInfoByCountry($countryCode: String!) {
+  getBankInfoByCountry(countryCode: $countryCode) {
+    bankCode
+    name
+    institutionName
+    transferCode
+  }
+}
+"variables":
+{
+  "countryCode": "CHL"
+}
+```
+
+#### Create Bank Account
+
+Creates a new bank account and saves it for future operations.
+
+optional: `bankCode`, `documentNumber`
+
+`documentNumber` is required when the user has not been KYC'd.
+
+```graphql
+mutation createBankAccount($input: BankAccountInput!) {
+  createBankAccount(input: $input) {
+    _id
+    name
+    bankCode
+    countryCode
+    currencySymbol
+    accountNumber
+    account
+  }
+}
+"variables":
+{
+  "input": {
+    "bankCode": "SANTANDER",
+    "accountNumber": "0123123123",
+    "countryCode": "CHL",
+    "currencySymbol": "CLP",
+    "documentNumber": "12345678",
+    "email": "example@domain.com"
+  }
+}
+```
+
+#### Delete Bank Account
+
+Deletes a Bank Account from the lists of the client's bank accounts.
+
+```graphql
+mutation deleteBankAccount($input: DeleteBankAccountInput!) {
+  deleteBankAccount(input: $input) {
+    _id
+    name
+    bankCode
+    countryCode
+    currencySymbol
+    accountNumber
+    account
+  }
+}
+"variables":
+{
+  "input": {
+    "_id": "63bd75901ea16ea6e23109b5", #Bank account identifier
+    "countryCode": "CHL",
+    "currencySymbol": "CLP"
+  }
+}
+```
+
+</Accordion>
