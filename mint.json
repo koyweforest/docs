@@ -15,9 +15,6 @@
     "name": "Comprar Crypto",
     "url": "https://koywe.com/buy-crypto"
   },
-  "topAnchor": {
-    "name": "Docs"
-  },
   "topbarLinks": [
     {
       "name": "Empresas",
@@ -47,9 +44,10 @@
       "version": "English",
       "pages": [
         {
-          "group": "What is Koywe",
+          "group": "🌳 What is Koywe",
           "pages": [
-            "english/about-koywe/overview",
+            "english/about-koywe/what-is-koywe/overview",
+            "english/about-koywe/what-is-koywe/user-validation",
             "english/about-koywe/what-is-koywe/purchasing-process",
             "english/about-koywe/what-is-koywe/selling-process"
           ]
@@ -63,15 +61,74 @@
       "pages": [
         "english/documentation/credentials",
         "english/documentation/sdk-documentation",
-        {
-          "group": "API Documentation",
-          "pages": [
-            "english/documentation/api-documentation",
-            "english/documentation/api-documentation/graphql-api",
-            "english/documentation/api-documentation/api-rest"
-          ]
-        },
         "english/documentation/webhooks-and-callbacks"
+      ]
+    },
+    {
+      "group": "API Documentation",
+      "version": "English",
+      "pages": [
+        "english/documentation/api-documentation",
+        "english/documentation/api-documentation/basic-api-flow",
+        "english/documentation/api-documentation/graphql-api",
+        {
+          "group": "RESTful API",
+          "pages": [
+            "english/documentation/api-documentation/restful-api/restful-api",
+            {
+              "group": "Currency",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Currency/Returns-all-supported-Currency-Token-pairs",
+                "english/documentation/api-documentation/restful-api/Currency/Returns-supported-Currency-Token-pairs-for-a-given-currency"
+              ]
+            },
+            {
+              "group": "Token",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Token/Returns-all-supported-Coin-Token-pairs",
+                "english/documentation/api-documentation/restful-api/Token/Returns-supported-Coin-Token-pairs"
+              ]
+            },
+            {
+              "group": "Payment Provider",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Payment-provider/Returns-a-list-of-available-means-of-payment-for-a-given-currency"
+              ]
+            },
+            {
+              "group": "Authentication",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Auth/Returns-an-Authorization-Token",
+                "english/documentation/api-documentation/restful-api/Auth/Returns-an-id-and-sends-a-validation-email",
+                "english/documentation/api-documentation/restful-api/Auth/Returns-session-data"
+              ]
+            },
+            {
+              "group": "Orders",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Orders/Creates-a-new-order",
+                "english/documentation/api-documentation/restful-api/Orders/Returns-a-lists-of-orders",
+                "english/documentation/api-documentation/restful-api/Orders/Returns-order-information"
+              ]
+            },
+            {
+              "group": "Bank Queries",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Bank Queries/Adds-a-bank-account-to-proceed-with-the-operation",
+                "english/documentation/api-documentation/restful-api/Bank Queries/Returns-bank-account-info",
+                "english/documentation/api-documentation/restful-api/Bank Queries/Deletes-bank-account-info",
+                "english/documentation/api-documentation/restful-api/Bank Queries/Adds-a-bank-account-to-proceed-with-the-operation.-1"
+              ]
+            },
+            {
+              "group": "Quote Queries",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Quote Queries/Creates-a-purchase-or-sell-quote",
+                "english/documentation/api-documentation/restful-api/Quote Queries/Returns-quote-details"
+              ]
+            }
+          ]
+        }
       ]
     },
     {
@@ -84,9 +141,10 @@
       "version": "Español",
       "pages": [
         {
-          "group": "🌳¿Qué es Koywe?",
+          "group": "🌳 ¿Qué es Koywe?",
           "pages": [
             "sobre-koywe/que-es-koywe",
+            "sobre-koywe/que-es-koywe/validacion-de-usario",
             "sobre-koywe/que-es-koywe/proceso-de-compra",
             "sobre-koywe/que-es-koywe/proceso-de-venta"
           ]
@@ -100,15 +158,74 @@
       "pages": [
         "documentacion/credenciales",
         "documentacion/documentacion-sdk",
-        {
-          "group": "🛠Documentación API",
-          "pages": [
-            "documentacion/documentacion-api",
-            "documentacion/documentacion-api/api-graphql",
-            "documentacion/documentacion-api/api-rest"
-          ]
-        },
         "documentacion/webhooks-y-callbacks"
+      ]
+    },
+    {
+      "group": "Documentación API",
+      "version": "Español",
+      "pages": [
+        "documentacion/documentacion-api",
+        "documentacion/documentacion-api/flujo-basico-api",
+        "documentacion/documentacion-api/api-graphql",
+        {
+          "group": "API REST",
+          "pages": [
+            "documentacion/documentacion-api/api-rest",
+            {
+              "group": "Currency",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Currency/Returns-all-supported-Currency-Token-pairs",
+                "english/documentation/api-documentation/restful-api/Currency/Returns-supported-Currency-Token-pairs-for-a-given-currency"
+              ]
+            },
+            {
+              "group": "Token",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Token/Returns-all-supported-Coin-Token-pairs",
+                "english/documentation/api-documentation/restful-api/Token/Returns-supported-Coin-Token-pairs"
+              ]
+            },
+            {
+              "group": "Payment Provider",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Payment-provider/Returns-a-list-of-available-means-of-payment-for-a-given-currency"
+              ]
+            },
+            {
+              "group": "Authentication",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Auth/Returns-an-Authorization-Token",
+                "english/documentation/api-documentation/restful-api/Auth/Returns-an-id-and-sends-a-validation-email",
+                "english/documentation/api-documentation/restful-api/Auth/Returns-session-data"
+              ]
+            },
+            {
+              "group": "Orders",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Orders/Creates-a-new-order",
+                "english/documentation/api-documentation/restful-api/Orders/Returns-a-lists-of-orders",
+                "english/documentation/api-documentation/restful-api/Orders/Returns-order-information"
+              ]
+            },
+            {
+              "group": "Bank Queries",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Bank Queries/Adds-a-bank-account-to-proceed-with-the-operation",
+                "english/documentation/api-documentation/restful-api/Bank Queries/Returns-bank-account-info",
+                "english/documentation/api-documentation/restful-api/Bank Queries/Deletes-bank-account-info",
+                "english/documentation/api-documentation/restful-api/Bank Queries/Adds-a-bank-account-to-proceed-with-the-operation.-1"
+              ]
+            },
+            {
+              "group": "Quote Queries",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Quote Queries/Creates-a-purchase-or-sell-quote",
+                "english/documentation/api-documentation/restful-api/Quote Queries/Returns-quote-details"
+              ]
+            }
+          ]
+        }
       ]
     }
   ],

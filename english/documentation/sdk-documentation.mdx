@@ -1,14 +1,17 @@
 ---
-title: "SDK Documentation"
-description: "🖥 The easiest way to integrate Koywe"
+title: '🖥 SDK Documentation'
+description: 'The easiest way to integrate Koywe'
 ---
 
-**See it in action:** You can see how we integrate our own widget at
-[https://widget.koywe.com](https://widget.koywe.com) and clone the
-[Github](https://github.com/koyweforest/koywe-widget-template/)[ repo](https://github.com/koyweforest/koywe-widget-template/)
-to start building your own project
+<Tip>
+  **See it in action:** You can see how we integrate our own widget at
+  [https://widget.koywe.com](https://widget.koywe.com) and clone the
+  [Github](https://github.com/koyweforest/koywe-widget-template/)[
+  repo](https://github.com/koyweforest/koywe-widget-template/) to start building
+  your own project
+</Tip>
 
-### SDK Widget
+## SDK Widget
 
 Our SDK is an NPM package, installed in your project. You can configure some
 parameters to make it easier for your users and even skip some steps if you
@@ -21,20 +24,20 @@ without leaving your website or app.
 
 ![](/images/sdk-documentation.png)
 
-### Installation
+## Installation
 
 Run `npm i @koyweforest/koywe-ramp-sdk` inside your project's folder. You can
 also use `yarn`
 
 ![](/images/sdk-documentation-2.png)
 
-### Configuration and Use
+## Configuration and Use
 
 Using the widget is very simple. For example, showing the ramp at the click of a
 button:
 
 ```js
-import { KoyweRampSDK } from "@koyweforest/koywe-ramp-sdk";
+import { KoyweRampSDK } from '@koyweforest/koywe-ramp-sdk';
 const koywe = new KoyweRampSDK({});
 function App() {
   return (
@@ -55,7 +58,7 @@ currencies. You can obtain a full list of available fiat currencies at
 [https://koywe.com](https://koywe.com)
 
 ```js
-new KoyweRampSDK({ currencies: ["CLP", "MXN", "COP", "PEN"] });
+new KoyweRampSDK({ currencies: ['CLP', 'MXN', 'COP', 'PEN'] });
 ```
 
 In this example, the user will only be allowed to select CLP, MXN, COP, and PEN.
@@ -84,9 +87,9 @@ If you pasa an empty array, it will be ignored and default values will be shown.
 You can add any string, invalid values will be ignored.
 
 <Warning>
-  Non-existent pairs will be ignored. For example, if there are no prices in PEN
-  for the BNB token, when the user selects PEN, the token will not be displayed,
-  even if there are prices in other currencies.
+  **Important:** Non-existent pairs will be ignored. For example, if there are
+  no prices in PEN for the BNB token, when the user selects PEN, the token will
+  not be displayed, even if there are prices in other currencies.
 </Warning>
 
 #### address
@@ -95,7 +98,7 @@ Optional string parameter to setup a wallet address, skipping the step for the
 user.
 
 ```js
-new KoyweRampSDK({ address: "0x402...12" });
+new KoyweRampSDK({ address: '0x402...12' });
 ```
 
 An invalid or malformed address will be ignored and the user will have to input
@@ -107,7 +110,7 @@ String parameter to link a user to the transaction. If it's a valid email, the
 widget will trigger an email with an OTP code and ask for it to the user.
 
 ```js
-new KoyweRampSDK({ email: "test@koywe.com" });
+new KoyweRampSDK({ email: 'test@koywe.com' });
 ```
 
 <Warning>
@@ -121,7 +124,7 @@ String param containing a valid URL to redirect after paying or navigating
 outside the widget.
 
 ```js
-new KoyweRampSDK({ callbackUrl: "https://koywe.com......" });
+new KoyweRampSDK({ callbackUrl: 'https://koywe.com......' });
 ```
 
 <Warning>
@@ -137,7 +140,7 @@ on the agreement with Koywe, this ID allows access to different payment methods
 and conditions.
 
 ```js
-new KoyweRampSDK({ clientId: "2781......" });
+new KoyweRampSDK({ clientId: '2781......' });
 ```
 
 If no id is passed, the widget will replicate functionality at https://koywe.com

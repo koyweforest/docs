@@ -1,6 +1,6 @@
 ---
-title: "Webhooks & Callbacks"
-description: "🪝Don't call us, we'll get back to you"
+title: '🪝 Webhooks & Callbacks'
+description: "Don't call us, we'll get back to you"
 ---
 
 To make you integration easier, we have enabled ways to alert you when something
@@ -30,9 +30,9 @@ verify:
 
 ```js
 const signature = crypto
-  .createHmac("sha256", secret)
+  .createHmac('sha256', secret)
   .update(JSON.stringify(payload))
-  .digest("hex");
+  .digest('hex');
 ```
 
 Example of a request:
