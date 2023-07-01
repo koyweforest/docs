@@ -12,13 +12,13 @@
     "dark": "#003C2A"
   },
   "topbarCtaButton": {
-    "name": "Comprar Crypto",
-    "url": "https://koywe.com/buy-crypto"
+    "name": "Home",
+    "url": "https://koywe.com"
   },
   "topbarLinks": [
     {
-      "name": "Empresas",
-      "url": "https://koywe.com/empresas"
+      "name": "Demo",
+      "url": "https://koywe.com/buy-crypto"
     }
   ],
   "anchors": [
@@ -231,6 +231,7 @@
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/koywe_latam",
-    "linkedin": "https://www.linkedin.com/company/koywe/"
+    "linkedin": "https://www.linkedin.com/company/koywe/",
+    "github": "https://www.github.com/koyweforest"
   }
 }
