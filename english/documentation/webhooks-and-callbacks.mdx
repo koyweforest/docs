@@ -11,20 +11,33 @@ happens or to define validation services before executing transactions.
 You can setup a URL to recibe requests every time an event is triggered for a
 transaction. possible events are:
 
-- `payment_created`: order is created
+- `payment_created`: order is created, Koywe awaits the payment in either fiat or crypto.
 
-- `payment_received`: payment is confirmed
+- `payment_received`: order is paid. Koywe confirms the payment successfully and will deliver the `amountOut`
 
-- `payment_rejected`: payment was cancelled or rejected
+- `payment_rejected`: order is rejected. Something happened and the order has been rejected. This event is
+NOT sent for wire transfers and it's usually due to an error on cancellation on the user's part.
 
-- `payment_expired`: the transaction expired before receiving payment
-  confirmation
+- `payment_expired`: order is expired. Only sent for wire transfers. The user took too long to transfer or Koywe
+couldn't detect the payment on time. Another order or quote should be created to secure a price.
 
-- `crypto_tx_sent`: transaction was sent to the blockchain (only on-ramps)
+Specific on ramp events:
+- `crypto_tx_sent`: crypto transaction is sent after fiat payment is confirmed.
 
-- `crypto_delivered`: transaction confirmed by the blockchain (only on-ramps)
+- `crypto_delivered`: crypto transaction nis confirmed by the blockchain.
 
-- `crypto_tx_failed`: transaction failed on the blockchain
+- `crypto_tx_failed`: crypto transaction failed. This <i>shouldn't</i> happen, but does in some minor cases
+(1 out of 10 thousand). If it were to happen,
+we would retry the transaction.
+
+Specific off ramp events:
+- `fiat_sent`: fiat transfer is sent from Koywe's account.
+
+- `fiat_delivered`: fiat is delivered, according to Koywe's bank.
+
+- `invalid_withdrawals_details`: the fiat transfer was attempted, but the bank rejected the transaction because
+the account or the owner of the account didn't match existing records. There's a special endpoint to correct these details.
+Check out the API docs for more information.
 
 Additionally, you weill be able to defined a `secret` to validate our requests.
 Using this secret, we encrypt the request parameters and add the hash for you to
@@ -57,6 +70,10 @@ before proceeding.
 
 Our platform assumes your API will respond _something_ that looks like a boolean
 and supports many authentication methods.
+
+<Warning>
+  We will default to use the POST method. If you want other methods, please let us know.
+</Warning>
 
 An example using pseudo code:
 

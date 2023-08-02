@@ -23,12 +23,26 @@
   ],
   "anchors": [
     {
-      "name": "Blog",
-      "url": "https://koywe.com/blog",
-      "icon": "newspaper"
+      "name": "Hablemos",
+      "version": "Español",
+      "url": "https://cal.com/koywe/15min",
+      "icon": "phone"
     },
     {
       "name": "Contáctanos",
+      "version": "Español",
+      "url": "mailto:contacto@koywe.com",
+      "icon": "envelope"
+    },
+    {
+      "name": "Let's Talk",
+      "version": "English",
+      "url": "https://cal.com/koywe/15min",
+      "icon": "phone"
+    },
+    {
+      "name": "Contact Us",
+      "version": "English",
       "url": "mailto:contacto@koywe.com",
       "icon": "envelope"
     }

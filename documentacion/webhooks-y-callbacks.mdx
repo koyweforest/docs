@@ -9,23 +9,38 @@ transacciones.
 
 ### Webhook de Eventos
 
-Podrás definir una URL para recibir llamados cada vez que se gatille un evento
-cuando suceda algo importante para una transacción específica. Los posibles
-eventos son:
+Puedes configurar una URL para recibir solicitudes cada vez que se activa un evento para una transacción. Los posibles eventos
+son:
 
-- `payment_created`: orden creada
+`payment_created`: se crea la orden, Koywe espera el pago en fiat o en cripto.
 
-- `payment_received`: pago confirmado por el medio de pago
+`payment_received`: se paga la orden. Koywe confirma el pago con éxito y entregará la cantidadOut
 
-- `payment_rejected`: pago cancelado o rechazado
+`payment_rejected`: se rechaza la orden. Algo sucedió y se rechazó la orden. Este evento NO se envía para las transferencias
+bancarias y normalmente se debe a un error o cancelación por parte del usuario.
 
-- `payment_expired`: la transacción expiró antes de recibir confirmación de pago
+`payment_expired`: la orden ha expirado. Solo se envía para las transferencias bancarias. El usuario tardó demasiado
+en transferir o Koywe no pudo detectar el pago a tiempo. Se debería crear otra orden o cotización para asegurar un precio.
 
-- `crypto_tx_sent`: transacción enviada a la blockchain
+Eventos específicos de onramp:
 
-- `crypto_delivered`: transacción confirmada por la blockchain
+`crypto_tx_sent`: se envía la transacción criptográfica después de que se confirma el pago en fiat.
 
-- `crypto_tx_failed`: transacción fallida en el blockchain
+`crypto_delivered`: la transacción criptográfica es confirmada por la cadena de bloques.
+
+`crypto_tx_failed`: la transacción criptográfica falló. Esto <i>no debería</i> suceder, pero ocurre en algunos casos
+mínimos (1 de cada 10 mil). Si llegara a suceder, intentaríamos la transacción nuevamente y volverías a recibir los
+eventos de más arriba.
+
+Eventos específicos de offramp:
+
+`fiat_sent`: se envía la transferencia en fiat desde la cuenta de Koywe.
+
+`fiat_delivered`: el fiat se entrega, según el banco de Koywe.
+
+`invalid_withdrawals_details`: se intentó la transferencia en fiat, pero el banco rechazó la transacción porque la cuenta
+o el dueño de la cuenta no coincidían con los registros existentes. Hay un endpoint especial para corregir los datos de la
+transacción, puedes revisarlo en los docs de la API.
 
 Adicionalmente, podrás definir un `secret` para validar que somos nosotros
 quienes estamos enviando esos requests. Usando ese secret, encriptamos los
@@ -56,6 +71,10 @@ actuar.
 
 Nuestra plataforma asume que devolverás _algo_ que se parezca a un booleano
 positivo y soporta varios métodos de autenticación.
+
+<Warning>
+  Por defecto, vamos a usar el método POST para llamar a tu API. Si necesitas algo distinto, háznoslo saber.
+</Warning>
 
 ```js
 // usuario compra cripto

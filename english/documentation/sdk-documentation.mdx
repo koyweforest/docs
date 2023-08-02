@@ -1,5 +1,5 @@
 ---
-title: '🖥 SDK Documentation'
+title: '🖥 SDK Documentation (BETA)'
 description: 'The easiest way to integrate Koywe'
 ---
 
@@ -11,7 +11,9 @@ description: 'The easiest way to integrate Koywe'
   your own project
 </Tip>
 
-## SDK Widget
+## BETA: SDK Widget
+
+<Warning>The SDK is currently in Beta. If you have any problems, write to us at [hola@koywe.com](mailto:hola@koywe.com)</Warning>
 
 Our SDK is an NPM package, installed in your project. You can configure some
 parameters to make it easier for your users and even skip some steps if you
@@ -23,6 +25,9 @@ coming soon, the [Sales](/english/about-koywe/what-is-koywe/selling-process) on,
 without leaving your website or app.
 
 ![](/images/sdk-documentation.png)
+
+<Warning><b>KYC</b>: If you want to do your own KYC and skip Koywe's process, please contact us. You will need to setup an API endpoint to make
+sure your user is identified and provide us with the information.</Warning>
 
 ## Installation
 
@@ -78,7 +83,7 @@ according to the default list. For example, USDC on Polygon should be passed as
 [https://koywe.com](https://koywe.com)
 
 ```js
-new KoyweRampSDK({tokens: \["ETH"\]})
+new KoyweRampSDK({tokens: ["ETH"]})
 ```
 
 In this example, only ETH will be available to transact.

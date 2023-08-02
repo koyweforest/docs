@@ -15,17 +15,67 @@ First, you have to authenticate. We suggest adding the user's email to use the J
 
 Returns the list of pairs to check available currencies and tokens and display them to the user.
 
-### `/payment-providers`
+### `/payment-providers` for on ramp or `/payout-providers` for off ramp
 
-Returns the list of available payment methods. With this endpoint you can find the wire transfer details for each country, and displaying them would be helpful to the user should they choose that payment method.
+<b>On ramp</b>: Returns the list of available payment methods. In this endpoint, you will find the transfer data for each country, so it might be a good time to show them to the user if they select that payment method.
+
+<b>Off ramp</b>: Returns the list of available payout providers. You will be able to find the prices and times for each one.
 
 ### `Post /quotes`
 
 Having the inputs for both fiat and crypto, the user must input the amount he desires to pay or receive in order to obtain a `quote`. Once the call's response is retrieved, the user will be able to know exactly how much they'll pay in fees and how much they'll receive. Optionally, we can ask the API to keep the quote valid for a few of seconds. If that is the case, `quoteId` can be kept to use in the next step.
 
+<b>Test it!</b>
+```bash Request
+  curl --location --request POST 'https://api.koywe.com/rest/quotes' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+      "amountIn": 1000,
+      "symbolIn": "USDC Polygon",
+      "symbolOut": "CLP",
+      "executable": false
+  }'
+```
+
+By adding an authentication JWT in the header and `executable: true` to the request, you will get a `quoteId` that can be used to create the order in the next step. This quote lasts for 5 minutes.
+
 ### `Post /orders`
 
 Confirming the order is enough. If the `quoteId` is still valid, the only additional parameters are the wallet address or bank account details, the user's `documentNumber`, and, optionally, a metadata field to identify the order on your system.
+
+<b>Test it!</b>
+```bash Request
+  curl --location --request POST 'https://api.koywe.com/rest/orders' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Bearer superJWT' \
+  --data-raw '{
+      "quoteId": "64c9a26af1fada33f2e9e5d7",
+      "destinationAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "metadata": "Sending some USDC to Vitalik",
+      "documentNumber": "111243235"
+  }'
+```
+
+The API will return an `orderId`, the payment details (a url to redirect your user to or the wire transfer details), and information for you to follow up the process. It should look something like this:
+
+```JSON
+{
+  "data": {
+    "createOrder": {
+      "amountIn": 822000,
+      "amountOut": 1000,
+      "documentNumber": "111243235",
+      "email": "email@domain.com",
+      "metadata": "Sending some USDC to Vitalik",
+      "orderId": "27d1a1c0-ff5e-4d5a-8893-a3ac2bb121e7",
+      "providedAction": "https://url.to/some-path", // This should be a URL to a payment method or the callback you provided
+      "providedAddress": "Koywe SpA\nCta Cte 6824645\n76.215.256-2\nBanco Santander\ntef@koywe.com", // where to transfer the money, in case of wire
+      "symbolIn": "CLP",
+      "symbolOut": "USDC"
+    }
+  }
+}
+```
 
 <Tip>
   If the quote has expired, a new one can be generated or make a call to

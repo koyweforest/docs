@@ -15,17 +15,67 @@ Primero, debes autenticarte. Sugerimos agregar el email del usuario, para usar e
 
 Carga la lista de pares para ver los currencies y tokens disponibles y mostrarlos al usuario.
 
-### `/payment-providers`
+### `/payment-providers` para on ramp o `/payout-providers` para off ramp
 
-Carga la lista de medios de pago disponibles. En este endpoint podrás encontrar los datos de transferencia para cada país, por lo que puede ser un buen momento para mostrarlos al usuario si es que selecciona ese medio de pago.
+<b>On ramp</b>: Carga la lista de medios de pago disponibles. En este endpoint podrás encontrar los datos de transferencia para cada país, por lo que puede ser un buen momento para mostrarlos al usuario si es que selecciona ese medio de pago.
+
+<b>Off ramp</b>: Carga la lista de medios de dispersión disponibles. Podrás encontrar los precios y tiempos de cada uno.
 
 ### `Post /quotes`
 
 Teniendo ambas monedas ingresadas, fiat y crypto, el usuario debe ingresar un monto a recibir o a pagar, para poder obtener una cotización. Con la respuesta de la cotización, el usuario podrá conocer exactamente cuánto pagará en comisiones y recibirá al concretarse la operación. Opcionalmente, podemos pedir a la API que guarde la cotización y la mantenga vigente por algunos segundos. En este caso, el quoteId lo podemos guardar para el siguiente paso.
 
+<b>¡Pruébalo!</b>
+```bash Request
+  curl --location --request POST 'https://api.koywe.com/rest/quotes' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+      "amountIn": 1000,
+      "symbolIn": "USDC Polygon",
+      "symbolOut": "CLP",
+      "executable": false
+  }'
+```
+
+Agregando un JWT de autenticación en el header y `executable: true` al request, obtendrás un `quoteId` que podrá ser usado para crear la orden en el siguiente paso. Este quote tiene una duración de 5 minutos.
+
 ### `Post /orders`
 
-Sólo basta con confirmar la orden. Si el quoteId sigue válido, sólo necesitamos incluir la billetera o cuenta de destino, el documentNumber del usuario, y opcionalmente un campo de metadata para que puedas identificar la orden en tu sistema.
+Sólo basta con confirmar la orden. Si el quoteId sigue válido, sólo necesitamos incluir la billetera o cuenta de destino, el documentNumber del usuario (si es que no lo tuviera aún), y opcionalmente un campo de metadata para que puedas identificar la orden en tu sistema.
+
+<b>¡Pruébalo!</b>
+```bash Request
+  curl --location --request POST 'https://api.koywe.com/rest/orders' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Bearer superJWT' \
+  --data-raw '{
+      "quoteId": "64c9a26af1fada33f2e9e5d7",
+      "destinationAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "metadata": "Sending some USDC to Vitalik",
+      "documentNumber": "111243235"
+  }'
+```
+
+a API devolverá un orderId, los detalles del pago (una url para redirigir a tu usuario o los detalles de la transferencia bancaria), e información para que sigas el proceso. Debería verse algo así:
+
+```JSON
+{
+  "data": {
+    "createOrder": {
+      "amountIn": 822000,
+      "amountOut": 1000,
+      "documentNumber": "111243235",
+      "email": "email@domain.com",
+      "metadata": "Sending some USDC to Vitalik",
+      "orderId": "27d1a1c0-ff5e-4d5a-8893-a3ac2bb121e7",
+      "providedAction": "https://url.to/some-path", // This should be a URL to a payment method or the callback you provided
+      "providedAddress": "Koywe SpA\nCta Cte 6824645\n76.215.256-2\nBanco Santander\ntef@koywe.com", // where to transfer the money, in case of wire
+      "symbolIn": "CLP",
+      "symbolOut": "USDC"
+    }
+  }
+}
+```
 
 <Tip>
   Si el quote ya había expirado, se puede generar un nuevo quote o llamar a
