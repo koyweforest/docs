@@ -74,6 +74,7 @@
       "version": "English",
       "pages": [
         "english/documentation/credentials",
+        "english/documentation/compliance",
         "english/documentation/sdk-documentation",
         "english/documentation/webhooks-and-callbacks"
       ]
@@ -171,6 +172,7 @@
       "version": "Español",
       "pages": [
         "documentacion/credenciales",
+        "documentacion/compliance",
         "documentacion/documentacion-sdk",
         "documentacion/webhooks-y-callbacks"
       ]

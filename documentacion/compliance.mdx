@@ -1,0 +1,61 @@
+---
+title: "👩‍⚖️ Compliance"
+description: "Cumplimiento regulatorio"
+---
+
+En Koywe estamos comprometidos a cumplir con todas las regulaciones aplicables en los países donde operemos. Y más allá,
+queremos tener el estándar más estricto aplicable en nuestras jurisdicciones.
+
+## ¿Qué significa eso para nuestros clientes?
+
+¡Son buenas noticias! Significa que puedes confiar que implementamos reglas y procedimientos para prevenir el lavado
+de dinero y el financiamiento del terrorismo, que hacemos un due dilligence de el dinero y las contrapartes con quienes
+transaccionamos, y que implementamos procedimientos de alta calidad y auditables.
+
+En la práctica, esto se traduce en 3 acciones importantes:
+1. <b>KYC o conocimiento del cliente</b>
+2. <b>Verificación de origen y destino de los recursos</b>
+3. <b>Monitoreo de transacciones por usuario</b>
+
+## KYC o conocimiento del cliente: ¿Quién eres y de dónde vienes?
+
+Lo primero que debemos hacer en compliance es identificar al usuario. Para eso tendremos 2 alternativas:
+1. <b>Proceso KYC Cliente</b>: Si eres cliente de Koywe y ya haces tu propio proceso de KYC, nuestro equipo de compliance revisará que cumpla con
+los requisitos básicos que pedimos y si está de acuerdo podrás comapartir la información del usuario via API, sin necesidad de que lo haga Koywe.
+2. <b>Proceso KYC Koywe</b>: Si no haces KYC o prefieres que Koywe lo haga, podrás obtener una URL para realizar el proceso a través de la API.
+
+De cualquier forma, estos son los datos mínimos que requeriremos para nuestro proceso:
+- Nombre completo
+- Número de identificación de acuerdo al país de operación.
+  - Chile: RUT
+  - México: CURP para personas físicas, RFC para personas morales
+  - Colombia: Cédula de ciudadanía o de extranjería para personas naturales, NIT para personas jurídicas.
+  - Perú: DNI para personas naturales, RUC para personas jurídicas.
+- Fecha de nacimiento
+- Dirección/Domicilio
+- Actividad o Profesión
+- Teléfono
+
+¿Por qué no aceptan pasaportes? Parte de nuestro proceso implica identificar el origen de los recursos, lo cual no es posible con el número de pasaporte. Estamos analizando alternativas para poder aceptarlos.
+
+Koywe se reserva el derecho de rechazar transacciones que vengan de personas no identificadas completamente o que no cumplan con los requisitos mínimos de edad o comportamiento, además de solicitar más información de la aquí listada.
+
+## Verificación de origen y destino
+
+<b>Moneda local</b>: Una vez identificado al usuario, debemos verificar que los recursos provengan o vayan a una cuenta a su nombre.
+Si recibimos un depósito en efectivo o de una cuenta que no esté a nombre del usuario identificado, el pago será
+rechazado y devueltos los recursos.
+
+<b>Transacciones Crypto</b>: Analizaremos que la billetera de origen o destino cumpla con los estándares mínimos ni esté asociada a listas de sanciones globlales.
+
+## Monitoreo transaccional
+
+En esta parte nos hacemos preguntas como ¿hace sentido el flujo mensual que tiene este usuario para su actividad declarada?
+¿Viene la transacción de los mismos lugares que normalmente vienen? ¿Hay un comportamiento anómalo por parte del usuario?
+
+Si detectamos algo raro, nos reservamos el derecho a rechazar la transacción.
+
+## Nuestro Compromiso
+
+En Koywe estamos commprometidos a resguardar la seguridad e integridad de nuestros clientes y sus usuarios.
+Nuestro compromiso es hacer lo posible para que este proceso sea lo más sencillo posible y con la menor cantidad de falsos positivos posible.
