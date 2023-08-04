@@ -37,6 +37,12 @@ Either way, these are the minimum data that we will require for our process:
 
 Why don't we accept passports? Part of our process involves identifying the origin of the resources, which is not possible with a passport number. We are analyzing alternatives to be able to accept them.
 
+Depending on how you integrate, you will have 2 endpoints to send this information or to check the KYC status of a user:
+- SetProfile: an endpoint that receives and stores all the relevant information for a user listed above.
+  - This endpoint will reject changes to the permanent information of a person. ie: if you try to update the document number of an existing person, the request will be rejected and you will have to contact us if needed.
+  - You will be able to use this endpoint to create new users too.
+- CheckProfile: an endpoint to check the status of a user. To protect the user's information, it will only return if each of the attributes are correctly registered, which country the user can operate, and if it can operate.
+
 Koywe reserves the right to reject transactions from people who are not fully identified or who do not meet the minimum requirements of age or behavior, in addition to requesting more information than listed here.
 
 ## Verification of source and destination
