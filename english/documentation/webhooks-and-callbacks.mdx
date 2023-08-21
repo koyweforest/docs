@@ -1,43 +1,62 @@
 ---
-title: '🪝 Webhooks & Callbacks'
-description: "Don't call us, we'll get back to you"
+title: '🪝 Webhooks, States, & Callbacks'
+description: "How you know what we know"
 ---
+
+### States
+
+Koywe Transactions follow a (mostly) linear path: they get created, they get paid, and they get delivered. All
+this is notified via webhooks (see below) or is returned when you call our APIs to follow up on an order.
+
+The possible states for an order are:
+- `WAITING`: The order has been created and is waiting to be paid.
+
+- `PENDING`: The order has been paid and it's queued for execution.
+
+- `EXECUTING`: The order is being executed. ie: The transaction is being sent to the blockchain or the bank.
+
+- `IN_PROGRESS`: Funds, either crypto or fiat, are on their way to their destination.
+
+- `INVALID_WITHDRAWALS_DETAILS`: Only valid for off ramps. The banking details were incorrect and the destination bank has rejected the transfer.
+
+- `REJECTED`: The order has been rejected by the user or the payment processor.
+
+- `DELIVERED`: The funds, either crypto or fiat, have been delivered successfully.
+
+### Webhooks
 
 To make you integration easier, we have enabled ways to alert you when something
 happens or to define validation services before executing transactions.
 
-### Webhooks
-
 You can setup a URL to recibe requests every time an event is triggered for a
 transaction. possible events are:
 
-- `payment_created`: order is created, Koywe awaits the payment in either fiat or crypto.
+- `payment_created`: order is created, Koywe awaits the payment in either fiat or crypto. The order shows a `WAITING` state.
 
-- `payment_received`: order is paid. Koywe confirms the payment successfully and will deliver the `amountOut`
+- `payment_received`: order is paid. Koywe confirms the payment successfully and will deliver the `amountOut`. Order state will be `PENDING`.
 
 - `payment_rejected`: order is rejected. Something happened and the order has been rejected. This event is
-NOT sent for wire transfers and it's usually due to an error on cancellation on the user's part.
+NOT sent for wire transfers and it's usually due to an error on cancellation on the user's part. Order state will be `REJECTED`.
 
 - `payment_expired`: order is expired. Only sent for wire transfers. The user took too long to transfer or Koywe
-couldn't detect the payment on time. Another order or quote should be created to secure a price.
+couldn't detect the payment on time. Another order or quote should be created to secure a price. Order state will be `REJECTED`.
 
 Specific on ramp events:
-- `crypto_tx_sent`: crypto transaction is sent after fiat payment is confirmed.
+- `crypto_tx_sent`: crypto transaction is sent after fiat payment is confirmed. Order state will be `IN_PROGRESS`.
 
-- `crypto_delivered`: crypto transaction nis confirmed by the blockchain.
+- `crypto_delivered`: crypto transaction nis confirmed by the blockchain. Order state will be `DELIVERED`.
 
 - `crypto_tx_failed`: crypto transaction failed. This <i>shouldn't</i> happen, but does in some minor cases
-(1 out of 10 thousand). If it were to happen,
-we would retry the transaction.
+(1 out of 10 thousand). If it were to happen, we would retry the transaction. Order state will be `REJECTED`.
 
 Specific off ramp events:
-- `fiat_sent`: fiat transfer is sent from Koywe's account.
+- `fiat_sent`: fiat transfer is sent from Koywe's account. Order state will be `IN_PROGRESS`.
 
-- `fiat_delivered`: fiat is delivered, according to Koywe's bank.
+- `fiat_delivered`: fiat is delivered, according to Koywe's bank. Order state will be `DELIVERED`.
 
 - `invalid_withdrawals_details`: the fiat transfer was attempted, but the bank rejected the transaction because
 the account or the owner of the account didn't match existing records. There's a special endpoint to correct these details.
-Check out the API docs for more information.
+Check out the API docs for more information. Order state will be `INVALID_WITHDRAWALS_DETAILS`.
 
 Additionally, you weill be able to defined a `secret` to validate our requests.
 Using this secret, we encrypt the request parameters and add the hash for you to

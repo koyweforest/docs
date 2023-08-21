@@ -1,46 +1,67 @@
 ---
-title: "🪝 Webhooks y Callbacks"
-description: "No nos busques, nosotros te llamaremos."
+title: "🪝 Webhooks, Estados y Callbacks"
+description: "Cómo sabes lo que nosotros sabemos."
 ---
+
+Las transacciones de Koywe siguen un camino (principalmente) lineal: se crean, se pagan y se entregan.
+Todo esto se notifica a través de webhooks (ver más abajo) o se devuelve cuando llamas a nuestras APIs
+para hacer seguimiento a una orden.
+
+Los posibles estados de una orden son:
+
+- `WAITING`: La orden ha sido creada y está esperando a ser pagada.
+
+- `PENDING`: La orden ha sido pagada y está en cola para su ejecución.
+
+- `EXECUTING`: La orden está siendo ejecutada. es decir: La transacción se está enviando a la blockchain o al banco.
+
+- `IN_PROGRESS`: Los fondos, ya sean criptos o fiat, están en camino a su destino.
+
+- `INVALID_WITHDRAWALS_DETAILS`: Solo válido para las rampas de salida. Los datos bancarios eran incorrectos y el banco de destino ha rechazado la transferencia.
+
+- `REJECTED`: La orden ha sido rechazada por el usuario o el procesador de pagos.
+
+- `DELIVERED`: Los fondos, ya sean criptos o fiat, han sido entregados con éxito.
+
+### Webhook de Eventos
 
 Para facilitar la integración, tenemos la posibilidad de alertarte cuando pasa
 algo o de definir formas de validar ciertas cosas contigo antes de ejecutar las
 transacciones.
 
-### Webhook de Eventos
-
 Puedes configurar una URL para recibir solicitudes cada vez que se activa un evento para una transacción. Los posibles eventos
 son:
 
-`payment_created`: se crea la orden, Koywe espera el pago en fiat o en cripto.
+`payment_created`: se crea la orden, Koywe espera el pago en fiat o en cripto. El estado de la orden será `WAITING`.
 
-`payment_received`: se paga la orden. Koywe confirma el pago con éxito y entregará la cantidadOut
+`payment_received`: se paga la orden. Koywe confirma el pago con éxito y entregará `amountOut`. El estado de la orden será `PENDING`.
 
 `payment_rejected`: se rechaza la orden. Algo sucedió y se rechazó la orden. Este evento NO se envía para las transferencias
-bancarias y normalmente se debe a un error o cancelación por parte del usuario.
+bancarias y normalmente se debe a un error o cancelación por parte del usuario. El estado de la orden será `REJECTED`.
 
 `payment_expired`: la orden ha expirado. Solo se envía para las transferencias bancarias. El usuario tardó demasiado
 en transferir o Koywe no pudo detectar el pago a tiempo. Se debería crear otra orden o cotización para asegurar un precio.
+El estado de la orden será `REJECTED`.
 
 Eventos específicos de onramp:
 
-`crypto_tx_sent`: se envía la transacción criptográfica después de que se confirma el pago en fiat.
+`crypto_tx_sent`: se envía la transacción criptográfica después de que se confirma el pago en fiat. El estado de la orden será `IN_PROGRESS`.
 
-`crypto_delivered`: la transacción criptográfica es confirmada por la cadena de bloques.
+`crypto_delivered`: la transacción criptográfica es confirmada por la cadena de bloques. El estado de la orden será `DELIVERED`.
 
 `crypto_tx_failed`: la transacción criptográfica falló. Esto <i>no debería</i> suceder, pero ocurre en algunos casos
 mínimos (1 de cada 10 mil). Si llegara a suceder, intentaríamos la transacción nuevamente y volverías a recibir los
-eventos de más arriba.
+eventos de más arriba. El estado de la orden será `REJECTED`.
 
 Eventos específicos de offramp:
 
-`fiat_sent`: se envía la transferencia en fiat desde la cuenta de Koywe.
+`fiat_sent`: se envía la transferencia en fiat desde la cuenta de Koywe. El estado de la orden será `IN_PROGRESS`.
 
-`fiat_delivered`: el fiat se entrega, según el banco de Koywe.
+`fiat_delivered`: el fiat se entrega, según el banco de Koywe. El estado de la orden será `DELIVERED`.
 
 `invalid_withdrawals_details`: se intentó la transferencia en fiat, pero el banco rechazó la transacción porque la cuenta
 o el dueño de la cuenta no coincidían con los registros existentes. Hay un endpoint especial para corregir los datos de la
-transacción, puedes revisarlo en los docs de la API.
+transacción, puedes revisarlo en los docs de la API. El estado de la orden será `INVALID_WITHDRAWALS_DETAILS`.
 
 Adicionalmente, podrás definir un `secret` para validar que somos nosotros
 quienes estamos enviando esos requests. Usando ese secret, encriptamos los
