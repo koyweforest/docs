@@ -43,6 +43,11 @@ By adding an authentication JWT in the header and `executable: true` to the requ
 
 Confirming the order is enough. If the `quoteId` is still valid, the only additional parameters are the wallet address or bank account details, the user's `documentNumber`, and, optionally, a metadata field to identify the order on your system.
 
+<Tip>
+  For off ramps, you will need to create a bank account for the user. Check the docs to see how to do this.
+  The `bankAccount` `id` should be added to the `destinationAddress` field.
+</Tip>
+
 <b>Test it!</b>
 ```bash Request
   curl --location --request POST 'https://api.koywe.com/rest/orders' \

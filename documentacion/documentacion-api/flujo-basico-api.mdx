@@ -43,6 +43,11 @@ Agregando un JWT de autenticación en el header y `executable: true` al request,
 
 Sólo basta con confirmar la orden. Si el quoteId sigue válido, sólo necesitamos incluir la billetera o cuenta de destino, el documentNumber del usuario (si es que no lo tuviera aún), y opcionalmente un campo de metadata para que puedas identificar la orden en tu sistema.
 
+<Tip>
+  Para off ramps necesitarás crear una cuenta bancaria para el usuario. Revisa los docs para ver cómo hacer esto.
+  El `id` del `bankAccount` debe ser ingresado en el campo `destinationAddress` del request.
+</Tip>
+
 <b>¡Pruébalo!</b>
 ```bash Request
   curl --location --request POST 'https://api.koywe.com/rest/orders' \
