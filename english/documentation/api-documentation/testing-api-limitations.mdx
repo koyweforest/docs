@@ -1,0 +1,41 @@
+---
+title: Testing API Limitations
+---
+
+### On ramp Payment Methods and limits
+
+Some payment methods restrict the amount of fiat you can use on testing environments.
+We recommend testing with less than 50 dollars or the equivalent amount in local currency to prevent errors.
+
+You will also notice the amount limits are different on the testing API. Whereas in production you will see a
+minimum amount of around 25 USD and a maximum of 8,000 USD, the testing API will allow lower and higher amounts.
+
+### Testnet tokens and prices
+
+Some tokens avaialable in production are NOT available on the some of the testnets. For example, USDT is not
+available on Polygon testnets, and thus will not be available on our testing API. However, it will available on production.
+
+Additionally, you might encounter prices that are off market or pairs that are not available.
+
+### How we use the Testing API
+
+When we do our testing, we usually start with an on ramp to get the test tokens we'll need to do an off ramp.
+
+1. We create users using `setProfile` for each of the countries we want to test.
+2. For each user and country, we create JWT session tokens using the authentication endpoint.
+3. We create executable quotes for the tokens we want to test. We always choose payment methods that have testing capabilities, like Khipu or Palomma.
+4. With the quote, we test if the duration is sufficient for users to confirm the order.
+5. If the quote is still valid, we create an order using it, making sure we pass the right wallet address on the `providedAddress` field.
+6. We follow the link returned by the API to pay the order.
+7. We follow through the payment steps of each payment method. Usually, the passwords or codes are either `1234` or `123456` or are stated on the screen.
+8. We wait for the webhooks and blockchain confirmations, occasionally querying the orders endpoint to check the status.
+
+After receiving test tokens, we can try out the off ramps:
+
+1. We create a bank account for each user.
+2. We get an executable quote for an off ramp. The only difference is switching the order of the symbols. For on ramps, `symbolOut` will be a crypto symbol; for off ramps it will be a fiat symbol.
+3. Passing the `bankAccount` id in the `providedAddress` field, we create an off ramp order.
+4. The API returns a wallet address to which we send the exact amount we ordered.
+5. We wait for the webhooks and blockchain confirmations, occasionally querying the orders endpoint to check the status.
+
+For off ramps, once we have confirmed the testnet crypto payment, we always simulate a successful bank transaction. To add more real world conditions, we're working on simulating failed transfers.

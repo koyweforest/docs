@@ -21,6 +21,9 @@
       "name": "Payment-provider"
     },
     {
+      "name": "Payout-provider"
+    },
+    {
       "name": "Auth"
     },
     {
@@ -103,7 +106,7 @@
           {
             "name": "currencySymbol",
             "in": "path",
-            "description": "Symbol assosiated with the currency of choice.",
+            "description": "Symbol associated with the currency of choice.",
             "required": true,
             "style": "simple",
             "explode": false,
@@ -236,7 +239,7 @@
           {
             "name": "tokenSymbol",
             "in": "path",
-            "description": "Symbol assosiated with the token of choice.",
+            "description": "Symbol associated with the token of choice.",
             "required": true,
             "style": "simple",
             "explode": false,
@@ -302,14 +305,90 @@
         "tags": [
           "Payment-provider"
         ],
-        "summary": "Returns a list of available means of payment for a given currency.",
+        "summary": "Returns a list of available payment methods for a given currency.",
         "description": "If you want to know how to receive your own clientId, please check the \"Credentials\" section. the domain for all images provided directly by Koywe have the form https://rampa.koywe.com/paymentProviders/exampleImage.svg (keep in mind that this is just an example, but the domain shown is the actual one Koywe uses)",
         "operationId": "PaymentOptionsList",
         "parameters": [
           {
             "name": "symbol",
             "in": "query",
-            "description": "Currency Symbol assosiated with the currency of choice.",
+            "description": "Currency Symbol associated with the currency of choice.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "Your company's unique Koywe identifier.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Payments"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                },
+                "examples": {
+                  "clientId invalid": {
+                    "value": {
+                      "message": "\"clientId\" must only contain alphanumeric characters"
+                    }
+                  },
+                  "clientId Length": {
+                    "value": {
+                      "message": "\"clientId\" length must be 24 characters long"
+                    }
+                  },
+                  "Symbol invalid": {
+                    "value": {
+                      "message": "\"symbol\" must be one of [CLP, COP, MXN, PEN]"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payout-providers": {
+      "get": {
+        "tags": [
+          "Payout-provider"
+        ],
+        "summary": "Returns a list of available payout providers for a given currency.",
+        "description": "If you want to know how to receive your own clientId, please check the \"Credentials\" section. the domain for all images provided directly by Koywe have the form https://rampa.koywe.com/paymentProviders/exampleImage.svg (keep in mind that this is just an example, but the domain shown is the actual one Koywe uses)",
+        "operationId": "PaymentOptionsList",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Currency Symbol associated with the currency of choice.",
             "required": true,
             "style": "form",
             "explode": true,

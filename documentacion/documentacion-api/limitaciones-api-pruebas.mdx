@@ -1,0 +1,38 @@
+---
+title: Limitaciones de la API de pruebas
+---
+
+### Medios de Pago On ramp y límites
+
+Algunos métodos de pago restringen la cantidad de dinero que puedes usar en entornos de prueba. Recomendamos la realización de pruebas con menos de 50 dólares o la cantidad equivalente en moneda local para evitar errores.
+
+También notarás que los límites de las cantidades son diferentes en la API de prueba. Mientras que en producción verás una cantidad mínima de alrededor de 25 USD y un máximo de 8,000 USD, la API de prueba permitirá cantidades más bajas y más altas.
+
+### Tokens de Testnet y precios
+
+Algunos tokens disponibles en producción NO están disponibles en algunas de las testnets. Por ejemplo, USDT no está disponible en las testnets de Polygon, y por lo tanto, no estará disponible en nuestra API de prueba. Sin embargo, estará disponible en producción.
+
+Además, podrías encontrar precios que están fuera del mercado o pares que no están disponibles.
+
+### Cómo nosotros usamos la API de pruebas
+
+Cuando realizamos nuestras pruebas, normalmente comenzamos con una operación on ramp para obtener los tokens de prueba que necesitaremos para hacer una transacción de off ramp.
+
+1. Creamos usuarios utilizando `setProfile` para cada uno de los países que queremos probar.
+2. Para cada usuario y país, creamos tokens de sesión JWT utilizando el endpoint de autenticación.
+3. Creamos cotizaciones ejecutables para los tokens que queremos probar. Siempre elegimos métodos de pago que tengan capacidades de prueba, como Khipu o Palomma.
+4. Con la cotización, probamos si la duración es suficiente para que los usuarios confirmen el pedido.
+5. Si la cotización sigue siendo válida, creamos un pedido utilizando la misma, asegurándonos de pasar la dirección de billetera correcta en el campo providedAddress.
+6. Seguimos el enlace devuelto por la API para pagar el pedido.
+7. Seguimos a través de los pasos de pago de cada método de pago. Usualmente, las contraseñas o códigos son `1234` o `123456` o se indican en la pantalla.
+8. Esperamos los webhooks y las confirmaciones de cadena de bloques, consultando ocasionalmente el punto final de pedidos para verificar el estado.
+
+Después de recibir los tokens de prueba, podemos probar las transacciones de off ramp:
+
+1. Creamos una cuenta bancaria para cada usuario.
+2. Obtenemos una cotización ejecutable para una rampa de salida. La única diferencia es cambiar el orden de los símbolos. Para las rampas de acceso, symbolOut será un símbolo cripto; para las rampas de salida será un símbolo fiduciario.
+3. Pasando la id de bankAccount en el campo providedAddress, creamos un pedido de rampa de salida.
+4. La API devuelve una dirección de billetera a la que enviamos la cantidad exacta que ordenamos.
+5. Esperamos los webhooks y las confirmaciones de cadena de bloques, consultando ocasionalmente el punto final de pedidos para verificar el estado.
+
+Para las off ramps, una vez que hemos confirmado el pago crypto de testnet, siempre simulamos una transacción bancaria exitosa. Para añadir condiciones más parecidas a la realidad, estamos trabajando en simular transferencias fallidas.

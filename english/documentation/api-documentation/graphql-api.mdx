@@ -214,6 +214,37 @@ query GetPaymentProviderList($input: GetPaymentProviderListInput!) {
 
 </Accordion>
 
+<Accordion title="Payout Providers">
+
+Returns a list of available payout providers with each method's fees and details for a specific currency.
+
+Require: `symbol`. `currencyId`.
+
+Optional: `clientId`. Payment method list could vary according to this parameter.
+
+```graphql
+query GetPayoutProviderList($input: GetPayoutProviderListInput!) {
+  getPayoutProviderList(input: $input) {
+    _id
+    name
+    fee
+    image
+    description
+    details
+  }
+}
+"variables":
+{
+  "input": {
+    "symbol": "COP"
+    "clientId": "f87aad3as90fe5489bb5099f"
+    "currencyId": "489bb507aad3as90fe0f"
+  }
+}
+```
+
+</Accordion>
+
 <Accordion title="Quote services">
 
 #### Get Quote
