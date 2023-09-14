@@ -92,6 +92,14 @@
           "pages": [
             "english/documentation/api-documentation/restful-api/restful-api",
             {
+              "group": "Accounts",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Accounts/Returns-if-can-operate",
+                "english/documentation/api-documentation/restful-api/Accounts/Creates-a-new-account",
+                "english/documentation/api-documentation/restful-api/Accounts/Updates-an-account"
+              ]
+            },
+            {
               "group": "Currency",
               "pages": [
                 "english/documentation/api-documentation/restful-api/Currency/Returns-all-supported-Currency-Token-pairs",
