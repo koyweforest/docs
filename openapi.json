@@ -84,7 +84,7 @@
           "Accounts"
         ],
         "summary": "Creates a new account",
-        "description": "TODO",
+        "description": "Create a new account.",
         "operationId": "account",
         "requestBody": {
           "content": {
@@ -125,7 +125,7 @@
           "Accounts"
         ],
         "summary": "Updates an account",
-        "description": "TODO",
+        "description": "Update data of an existing account.",
         "operationId": "account",
         "requestBody": {
           "content": {
