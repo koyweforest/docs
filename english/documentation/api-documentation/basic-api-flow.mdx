@@ -7,6 +7,12 @@ title: Basic API flow
   purchase and selling (applies for both actions).
 </Tip>
 
+
+### `/accounts`
+This service is only for customers who have delegated KYC. <br />
+The account to create or update will be based on the email provided in the request. This can be done from the body or through the token. If they are sent from both sides, they must be the same. <br />
+
+
 ### `/Auth`
 
 First, you have to authenticate. We suggest adding the user's email to use the JWT token for later calls.

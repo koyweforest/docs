@@ -34,6 +34,134 @@
     }
   ],
   "paths": {
+    "/accounts/{email}/check": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Check if can operate",
+        "description": "Check if an account meets all the minimum requirements needed to operate, returning the missing information.",
+        "operationId": "account",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "Email associated with the currency of choice.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/CheckAccount"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Creates a new account",
+        "description": "Create a new account.",
+        "operationId": "account",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewAccount"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ResultAccount"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Updates an account",
+        "description": "Update data of an existing account.",
+        "operationId": "account",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAccount"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ResultAccount"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/currency-tokens": {
       "get": {
         "tags": [
@@ -2127,6 +2255,261 @@
           },
           "deliveryDate": {
             "type": "string"
+          }
+        }
+      },
+      "CheckAccountDetails": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "example": "document.documentNumber"
+          },
+          "message": {
+            "type": "string",
+            "example": "document number is required"
+          }
+        }
+      },
+      "CheckAccount": {
+        "type": "object",
+        "properties": {
+          "canOperate": {
+            "type": "boolean",
+            "example": false
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CheckAccountDetails"
+            }
+          }
+        }
+      },
+      "SecondaryDocument": {
+        "required": [
+          "documentNumber",
+          "documentType",
+          "country"
+        ],
+        "type": "object",
+        "properties": {
+          "documentNumber": {
+            "type": "string"
+          },
+          "documentType": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          }
+        }
+      },
+      "MainDocument": {
+        "required": [
+          "isCompany",
+          "documentNumber",
+          "documentType",
+          "country"
+        ],
+        "type": "object",
+        "properties": {
+          "isCompany": {
+            "type": "boolean"
+          },
+          "documentNumber": {
+            "type": "string"
+          },
+          "documentType": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "others": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SecondaryDocument"
+            }
+          }
+        }
+      },
+      "UpdateMainDocument": {
+        "type": "object",
+        "properties": {
+          "others": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SecondaryDocument"
+            }
+          }
+        }
+      },
+      "Address": {
+        "required": [
+          "addressCity",
+          "addressStreet",
+          "addressZipCode",
+          "addressCountry",
+          "addressState"
+        ],
+        "type": "object",
+        "properties": {
+          "addressCity": {
+            "type": "string"
+          },
+          "addressStreet": {
+            "type": "string"
+          },
+          "addressZipCode": {
+            "type": "string"
+          },
+          "addressCountry": {
+            "type": "string"
+          },
+          "addressState": {
+            "type": "string"
+          },
+          "addressNeighborhood": {
+            "type": "string"
+          }
+        }
+      },
+      "PersonalInfo": {
+        "required": [
+          "names",
+          "activity",
+          "phoneNumber",
+          "dob"
+        ],
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "string"
+          },
+          "firstLastname": {
+            "type": "string"
+          },
+          "secondLastname": {
+            "type": "string"
+          },
+          "activity": {
+            "type": "string"
+          },
+          "dob": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "nationality": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdatePersonalInfo": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "string"
+          },
+          "firstLastname": {
+            "type": "string"
+          },
+          "secondLastname": {
+            "type": "string"
+          },
+          "activity": {
+            "type": "string"
+          },
+          "dob": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "nationality": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string"
+          }
+        }
+      },
+      "NewAccount": {
+        "required": [
+          "document",
+          "address",
+          "personalInfo"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "example@mail.com"
+          },
+          "document": {
+            "type": "object",
+            "$ref": "#/components/schemas/MainDocument"
+          },
+          "address": {
+            "type": "object",
+            "$ref": "#/components/schemas/Address"
+          },
+          "personalInfo": {
+            "type": "object",
+            "$ref": "#/components/schemas/PersonalInfo"
+          }
+        }
+      },
+      "ResultAccount": {
+        "required": [
+          "email",
+          "document",
+          "address",
+          "personalInfo"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "example@mail.com"
+          },
+          "document": {
+            "type": "object",
+            "$ref": "#/components/schemas/MainDocument"
+          },
+          "address": {
+            "type": "object",
+            "$ref": "#/components/schemas/Address"
+          },
+          "personalInfo": {
+            "type": "object",
+            "$ref": "#/components/schemas/PersonalInfo"
+          }
+        }
+      },
+      "UpdateAccount": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "example@mail.com"
+          },
+          "document": {
+            "type": "object",
+            "$ref": "#/components/schemas/UpdateMainDocument"
+          },
+          "address": {
+            "type": "object",
+            "$ref": "#/components/schemas/Address"
+          },
+          "personalInfo": {
+            "type": "object",
+            "$ref": "#/components/schemas/UpdatePersonalInfo"
           }
         }
       }
