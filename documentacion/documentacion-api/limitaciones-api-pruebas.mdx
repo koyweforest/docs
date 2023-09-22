@@ -25,7 +25,7 @@ Cuando realizamos nuestras pruebas, normalmente comenzamos con una operación on
 5. Si la cotización sigue siendo válida, creamos un pedido utilizando la misma, asegurándonos de pasar la dirección de billetera correcta en el campo providedAddress.
 6. Seguimos el enlace devuelto por la API para pagar el pedido.
 7. Seguimos a través de los pasos de pago de cada método de pago. Usualmente, las contraseñas o códigos son `1234` o `123456` o se indican en la pantalla.
-8. Esperamos los webhooks y las confirmaciones de cadena de bloques, consultando ocasionalmente el punto final de pedidos para verificar el estado.
+8. Esperamos los webhooks y las confirmaciones de cadena de bloques, consultando ocasionalmente el endpoint de pedidos para verificar el estado.
 
 Después de recibir los tokens de prueba, podemos probar las transacciones de off ramp:
 
@@ -33,6 +33,6 @@ Después de recibir los tokens de prueba, podemos probar las transacciones de of
 2. Obtenemos una cotización ejecutable para una rampa de salida. La única diferencia es cambiar el orden de los símbolos. Para las rampas de acceso, symbolOut será un símbolo cripto; para las rampas de salida será un símbolo fiduciario.
 3. Pasando la id de bankAccount en el campo providedAddress, creamos un pedido de rampa de salida.
 4. La API devuelve una dirección de billetera a la que enviamos la cantidad exacta que ordenamos.
-5. Esperamos los webhooks y las confirmaciones de cadena de bloques, consultando ocasionalmente el punto final de pedidos para verificar el estado.
+5. Esperamos los webhooks y las confirmaciones de cadena de bloques, consultando ocasionalmente el endpoint de pedidos para verificar el estado.
 
 Para las off ramps, una vez que hemos confirmado el pago crypto de testnet, siempre simulamos una transacción bancaria exitosa. Para añadir condiciones más parecidas a la realidad, estamos trabajando en simular transferencias fallidas.
