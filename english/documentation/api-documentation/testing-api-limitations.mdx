@@ -21,7 +21,7 @@ Additionally, you might encounter prices that are off market or pairs that are n
 
 When we do our testing, we usually start with an on ramp to get the test tokens we'll need to do an off ramp.
 
-1. We create users using `setProfile` for each of the countries we want to test.
+1. We create users using `accounts` for each of the countries we want to test.
 2. For each user and country, we create JWT session tokens using the authentication endpoint.
 3. We create executable quotes for the tokens we want to test. We always choose payment methods that have testing capabilities, like Khipu or Palomma.
 4. With the quote, we test if the duration is sufficient for users to confirm the order.
