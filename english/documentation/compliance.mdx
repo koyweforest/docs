@@ -40,7 +40,7 @@ Why don't we accept passports? Part of our process involves identifying the orig
 Depending on how you integrate, you will have 3 endpoints to send this information or to check the KYC status of a user:
 - <b>CreateAccount</b>: an endpoint to create a new account. You need to send all your basic data to be able to operate.
 - <b>UpdateAccount</b>: an endpoint that receives and stores all user information. You will be able to update your personal information.
-- <b>CheckAccount</b>: an endpoint to check the status of a user. To protect the user's information, it will only return if each of the attributes are correctly registered, which country the user can operate, and if it can operate.
+- <b>CheckAccount</b>: an endpoint to check the status of a user. To protect the user's information, it will only return information about attributes that are not correctly registered and whether it can operate.
 
 Koywe reserves the right to reject transactions from people who are not fully identified or who do not meet the minimum requirements of age or behavior, in addition to requesting more information than listed here.
 

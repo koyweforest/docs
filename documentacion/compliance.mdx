@@ -38,11 +38,10 @@ De cualquier forma, estos son los datos mínimos que requeriremos para nuestro p
 
 ¿Por qué no aceptan pasaportes? Parte de nuestro proceso implica identificar el origen de los recursos, lo cual no es posible con el número de pasaporte. Estamos analizando alternativas para poder aceptarlos.
 
-Dependiendo de cómo te integres, tendrás 2 endpoints para enviar esta información o para verificar el estado KYC de un usuario:
-- <b>SetProfile</b>: un punto final que recibe y almacena toda la información relevante para un usuario mencionado anteriormente.
-  - Este endpoint rechazará cambios en la información permanente de una persona. Es decir: si intentas actualizar el número de documento de una persona existente, la solicitud será rechazada y tendrás que contactarnos si es necesario.
-  - También podrás utilizar este punto final para crear nuevos usuarios.
-- <b>CheckProfile</b>: un endpoint para verificar el estado de un usuario. Para proteger la información del usuario, solo devolverá si cada uno de los atributos están correctamente registrados, en qué país puede operar el usuario y si puede operar.
+Dependiendo de cómo te integres, tendrás 3 endpoints para enviar esta información o para verificar el estado KYC de un usuario:
+- <b>CreateAccount</b>: un punto final para crear una nueva cuenta. Necesita enviar todos sus datos básicos para poder operar.
+- <b>UpdateAccount</b>: un punto final que recibe y almacena toda la información del usuario. Podrá actualizar su información personal.
+- <b>CheckProfile</b>: un endpoint para verificar el estado de un usuario. Para proteger la información del usuario, solo devolverá información de los atributos que no están correctamente registrados y si puede operar.
 
 Koywe se reserva el derecho de rechazar transacciones que vengan de personas no identificadas completamente o que no cumplan con los requisitos mínimos de edad o comportamiento, además de solicitar más información de la aquí listada.
 
