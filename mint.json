@@ -221,7 +221,7 @@
             {
               "group": "Payment Provider",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Payment-provider/Returns-a-list-of-available-payment-methods-for-a-given-currency"
+                "english/documentation/api-documentation/restful-api/Payment-provider/Returns-a-list-of-available-means-of-payment-for-a-given-currency"
               ]
             },
             {
