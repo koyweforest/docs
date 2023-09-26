@@ -2036,9 +2036,21 @@
             "type": "string",
             "example": "63dd19bcf23fcbec3bfee51b"
           },
+          "amountIn": {
+            "type": "number",
+            "example": 2000
+          },
+          "amountOut": {
+            "type": "number",
+            "example": 1
+          },
           "email": {
             "type": "string",
             "example": "example@domain.com"
+          },
+          "paymentMethodId": {
+            "type": "string",
+            "example": "62a0c6a4c7ab3a52fd683080"
           },
           "documentNumber": {
             "type": "string"
@@ -2046,6 +2058,14 @@
           "destinationAddress": {
             "type": "string",
             "example": "0x40f9bf922c23c43acdad71Ab4425280C0ffBD697"
+          },
+          "symbolIn": {
+            "type": "string",
+            "example": "CLP"
+          },
+          "symbolOut": {
+            "type": "string",
+            "example": "ETH"
           },
           "metadata": {
             "type": "string"
