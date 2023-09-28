@@ -6,6 +6,10 @@ title: Flujo Básico API
   En esta sección podrás ver un flujo básico de llamados a la API de Koywe para
   compra y venta (aplica para ambas acciones).
 </Tip>
+### `/accounts`
+
+Este servicio es sólo para clientes que han delegado KYC. <br />
+La cuenta a crear o actualizar se basará en el correo electrónico proporcionado en la solicitud. Esto se puede hacer desde el cuerpo o mediante el token. Si se envían desde ambos lados, deben ser iguales. <br />
 
 ### `/Auth`
 
@@ -17,9 +21,13 @@ Carga la lista de pares para ver los currencies y tokens disponibles y mostrarlo
 
 ### `/payment-providers` para on ramp o `/payout-providers` para off ramp
 
-<b>On ramp</b>: Carga la lista de medios de pago disponibles. En este endpoint podrás encontrar los datos de transferencia para cada país, por lo que puede ser un buen momento para mostrarlos al usuario si es que selecciona ese medio de pago.
+<b>On ramp</b>: Carga la lista de medios de pago disponibles. En este endpoint
+podrás encontrar los datos de transferencia para cada país, por lo que puede ser
+un buen momento para mostrarlos al usuario si es que selecciona ese medio de
+pago.
 
-<b>Off ramp</b>: Carga la lista de medios de dispersión disponibles. Podrás encontrar los precios y tiempos de cada uno.
+<b>Off ramp</b>: Carga la lista de medios de dispersión disponibles. Podrás
+encontrar los precios y tiempos de cada uno.
 
 ### `Post /quotes`
 
@@ -44,8 +52,9 @@ Agregando un JWT de autenticación en el header y `executable: true` al request,
 Sólo basta con confirmar la orden. Si el quoteId sigue válido, sólo necesitamos incluir la billetera o cuenta de destino, el documentNumber del usuario (si es que no lo tuviera aún), y opcionalmente un campo de metadata para que puedas identificar la orden en tu sistema.
 
 <Tip>
-  Para off ramps necesitarás crear una cuenta bancaria para el usuario. Revisa los docs para ver cómo hacer esto.
-  El `id` del `bankAccount` debe ser ingresado en el campo `destinationAddress` del request.
+  Para off ramps necesitarás crear una cuenta bancaria para el usuario. Revisa
+  los docs para ver cómo hacer esto. El `id` del `bankAccount` debe ser
+  ingresado en el campo `destinationAddress` del request.
 </Tip>
 
 <b>¡Pruébalo!</b>
@@ -83,9 +92,9 @@ a API devolverá un orderId, los detalles del pago (una url para redirigir a tu 
 ```
 
 <Tip>
-  Si el quote ya había expirado, se puede generar un nuevo quote o llamar a
-  createOrder con los mismos parámetros para tener un quote y orden al mismo
-  tiempo.
+  Si el quote ya había expirado, se puede generar un nuevo quote `(obligatorio a
+  partir de noviembre 1, 2023)` o llamar a createOrder con los mismos parámetros
+  para tener un quote y orden al mismo tiempo.
 </Tip>
 
 Una vez recibido el `orderId` podemos guardarlo, asociándolo al usuario.

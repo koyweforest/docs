@@ -7,11 +7,10 @@ title: Basic API flow
   purchase and selling (applies for both actions).
 </Tip>
 
-
 ### `/accounts`
+
 This service is only for customers who have delegated KYC. <br />
 The account to create or update will be based on the email provided in the request. This can be done from the body or through the token. If they are sent from both sides, they must be the same. <br />
-
 
 ### `/Auth`
 
@@ -23,9 +22,12 @@ Returns the list of pairs to check available currencies and tokens and display t
 
 ### `/payment-providers` for on ramp or `/payout-providers` for off ramp
 
-<b>On ramp</b>: Returns the list of available payment methods. In this endpoint, you will find the transfer data for each country, so it might be a good time to show them to the user if they select that payment method.
+<b>On ramp</b>: Returns the list of available payment methods. In this endpoint,
+you will find the transfer data for each country, so it might be a good time to
+show them to the user if they select that payment method.
 
-<b>Off ramp</b>: Returns the list of available payout providers. You will be able to find the prices and times for each one.
+<b>Off ramp</b>: Returns the list of available payout providers. You will be
+able to find the prices and times for each one.
 
 ### `Post /quotes`
 
@@ -50,8 +52,9 @@ By adding an authentication JWT in the header and `executable: true` to the requ
 Confirming the order is enough. If the `quoteId` is still valid, the only additional parameters are the wallet address or bank account details, the user's `documentNumber`, and, optionally, a metadata field to identify the order on your system.
 
 <Tip>
-  For off ramps, you will need to create a bank account for the user. Check the docs to see how to do this.
-  The `bankAccount` `id` should be added to the `destinationAddress` field.
+  For off ramps, you will need to create a bank account for the user. Check the
+  docs to see how to do this. The `bankAccount` `id` should be added to the
+  `destinationAddress` field.
 </Tip>
 
 <b>Test it!</b>
@@ -89,9 +92,9 @@ The API will return an `orderId`, the payment details (a url to redirect your us
 ```
 
 <Tip>
-  If the quote has expired, a new one can be generated or make a call to
-  `createOrder` with the same parameters to obtain a quote and a order at the
-  same time.
+  If the quote has expired, a new one can be generated `(required from November
+  1, 2023)` or make a call to `createOrder` with the same parameters to obtain a
+  quote and a order at the same time.
 </Tip>
 
 Once the `orderId` is received you can save it, associating it to the user.

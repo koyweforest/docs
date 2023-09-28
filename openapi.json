@@ -825,7 +825,7 @@
           "Orders"
         ],
         "summary": "Returns a lists of orders.",
-        "description": "To try these services, an Authorization token must be provided as a BearerToken header. The Autherization token can be obtained in the /auth service.",
+        "description": "To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service.",
         "operationId": "order",
         "parameters": [
           {
@@ -1033,12 +1033,12 @@
                   },
                   "Currency amount less than permited": {
                     "value": {
-                      "message": "Currency amount is less than the minimun available"
+                      "message": "Currency amount is less than the minimum available"
                     }
                   },
                   "Currency amount more than permited": {
                     "value": {
-                      "message": "Currency amount exceeds the maximun available"
+                      "message": "Currency amount exceeds the maximum available"
                     }
                   }
                 }
@@ -1069,7 +1069,7 @@
           "Orders"
         ],
         "summary": "Returns order information.",
-        "description": "To try these services, an Authorization token must be provided as a BearerToken header. The Autherization token can be obtained in the /auth service.",
+        "description": "To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service.",
         "operationId": "Getorder",
         "parameters": [
           {
@@ -1141,7 +1141,7 @@
           "Quote Queries"
         ],
         "summary": "Creates a purchase or sell quote",
-        "description": "Only one of the input parameters \"amountIn\" and \"amountOut\" must be provided. for on ramps receives adicionally clientId and paymentMethodId. Returns a quoteId that can be use to create an order (is not necessary, but if provided and still valid, fewer values will be necessary to create the order). If executable is true, we store it and return a UUID.",
+        "description": "Only one of the input parameters \"amountIn\" and \"amountOut\" must be provided. for on ramps receives additionally clientId and paymentMethodId. Returns a quoteId that can be use to create an order (is not necessary, but if provided and still valid, fewer values will be necessary to create the order). If executable is true, we store it and return a UUID.",
         "operationId": "CreateQuote",
         "requestBody": {
           "content": {
@@ -1225,7 +1225,7 @@
           "Quote Queries"
         ],
         "summary": "Returns quote details.",
-        "description": "Receives a quoteId value. One can be produced uing the previous quote service (post /quotes). Returns quote data.",
+        "description": "Receives a quoteId value. One can be produced using the previous quote service (post /quotes). Returns quote data.",
         "operationId": "GetQuote",
         "parameters": [
           {
@@ -2027,7 +2027,8 @@
       },
       "orders_body": {
         "required": [
-          "destinationAddress"
+          "destinationAddress",
+          "quoteId"
         ],
         "type": "object",
         "properties": {
@@ -2047,12 +2048,12 @@
             "type": "string",
             "example": "example@domain.com"
           },
-          "documentNumber": {
-            "type": "string"
-          },
           "paymentMethodId": {
             "type": "string",
             "example": "62a0c6a4c7ab3a52fd683080"
+          },
+          "documentNumber": {
+            "type": "string"
           },
           "destinationAddress": {
             "type": "string",
