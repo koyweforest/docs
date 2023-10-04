@@ -80,6 +80,31 @@ Example of a request:
 }
 ```
 
+### KYC Webhooks
+
+If you're using our KYC process, you will also receive webhook notifications when a user starts and completes a KYC verification. For now, these will be sent to the same url as the operational webhooks.
+
+- `verification_started`: The user clicks the button to start the ID verification. The KYC status of the user will go from `notVerified` to `processing`.
+
+- `verification_inputs_completed`: User has finished uploading the information and submitting the forms, so we start processing all the data. The KYC status of the user will remain in `processing`.
+
+- `verification_completed`: We have finished analysing the user's data and have a result. The KYC status of the user will go to either `verified` or `reviewNeeded`. For the latter, our compliance team has to complete a manual review to bring the user to `verified` or `rejected`.
+
+- `verification_expired`: The user hasn't finished within 30 minutes of starting the process. The KYC status will go back to `notVerified`.
+
+Example of a request:
+
+```json
+{
+  "eventName": "verification_started", // event, from the list above
+  "orderId": "KYC_EVENT",
+  "timeStamp": "2022-10-26T22:36:41.658Z",
+  "data": "guillermo@koywe.com",
+  "signature": "ed40d34ab7a587cf1a16338a16cc7765ae4420936677482bb33f5f738e4f7189" // hash
+}
+```
+
+
 ### Authentication Callback
 
 You can setup a URL to your API for us to confirm a user is allowed to operate
