@@ -83,6 +83,30 @@ Ejemplo de evento reportado:
 }
 ```
 
+### Webhooks KYC
+
+Si estás usando nuestro proceso de KYC, también podrás recibir notifications por webhook cuando un usuario comienza o completa una verificación. Por ahora, estos eventos llegarán a la misma url de los webhooks de operaciones.
+
+`verification_started`: El usuario hace clic en el botón para comenzar la verificación de identidad. El estado KYC del usuario cambiará de `notVerified` a `processing`.
+
+`verification_inputs_completed`: El usuario ha terminado de cargar la información y enviar los formularios, así que comenzamos a procesar todos los datos. El estado KYC del usuario permanecerá en `processing`.
+
+`verification_completed`: Hemos terminado de analizar los datos del usuario y tenemos un resultado. El estado KYC del usuario cambiará a `verified` o `reviewNeeded`. Para este último, nuestro equipo de cumplimiento debe completar una revisión manual para llevar al usuario a `verified` o `rejected`.
+
+`verification_expired`: El usuario no ha terminado dentro de los 30 minutos después de iniciar el proceso. El estado KYC volverá a `notVerified`.
+
+Example of a request:
+
+```json
+{
+  "eventName": "verification_started", // evento, de la lista más arriba
+  "orderId": "KYC_EVENT",
+  "timeStamp": "2022-10-26T22:36:41.658Z",
+  "data": "guillermo@koywe.com",
+  "signature": "ed40d34ab7a587cf1a16338a16cc7765ae4420936677482bb33f5f738e4f7189" // hash
+}
+```
+
 ### Callback de Autenticación
 
 Podrás definir una URL en tu API que nos confirme que un usuario puede operar en
