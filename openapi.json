@@ -1141,7 +1141,7 @@
         "tags": [
           "Orders"
         ],
-        "summary": "Returns order information by externalId.",
+        "summary": "Returns order information by ExternalId.",
         "description": "To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service.",
         "operationId": "GetorderbyExternalId",
         "parameters": [

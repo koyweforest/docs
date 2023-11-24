@@ -357,6 +357,7 @@ mutation createOrder($input: OrderInput!) {
     quoteId
     symbolIn
     symbolOut
+    externalId
   }
 }
 "variables":
@@ -374,7 +375,8 @@ mutation createOrder($input: OrderInput!) {
     "destinationAddress": "0x40f9bf922c23c43acdad71Ab4425280C0ffBD697", # Will return error if address is invalid
     "symbolIn": "CLP",
     "symbolOut": "ETH",
-    "metadata": null
+    "metadata": null,
+    "externalId":"12A2324A"
   }
 }
 ```
@@ -415,6 +417,46 @@ query getOrder($input: GetOrderInput!) {
 {
   "input": {
     "orderId": "02a5f0c7-b9bf-48e0-8b5d-190d2e2f7fc1" #Created when calling mutation Order
+  }
+}
+```
+
+### Get Order
+
+Returns order information. Receives a `externalId`.
+
+```graphql
+query getOrderByExternalId($input: GetExternalIdOrderInput!) {
+  getOrderByExternalId(input: $input){
+    orderId
+    quoteId
+    symbolIn
+    symbolOut
+    amountIn
+    amountOut
+    email
+    exchangeRate
+    koyweFee
+    status
+    outReceipt
+    orderType
+    dates {
+      confirmationDate
+      paymentDate
+      executionDate
+      deliveryDate
+    }
+    destinationAddress
+    networkFee
+    paymentMethodId
+    logoIn
+    logoOut
+  }
+}
+"variables":
+{
+  "input": {
+    "externalId": "12A2324A" #Defined when calling mutation Order
   }
 }
 ```

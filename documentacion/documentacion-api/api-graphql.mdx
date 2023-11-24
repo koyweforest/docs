@@ -345,6 +345,7 @@ mutation createOrder($input: OrderInput!) {
     quoteId
     symbolIn
     symbolOut
+    externalId
   }
 }
 "variables":
@@ -362,7 +363,8 @@ mutation createOrder($input: OrderInput!) {
     "destinationAddress": "0x40f9bf922c23c43acdad71Ab4425280C0ffBD697", # Will return error if address is invalid
     "symbolIn": "CLP",
     "symbolOut": "ETH",
-    "metadata": null
+    "metadata": null,
+    "externalId": "12A2324A"
   }
 }
 ```
@@ -406,7 +408,45 @@ query getOrder($input: GetOrderInput!) {
   }
 }
 ```
+#### Consultar Orden Por ExternalId
 
+Retorna información de una order. Recibe un `ExternalId`.
+
+```graphql
+query getOrderByExternalId($input: GetExternalIdOrderInput!) {
+  getOrderByExternalId(input: $input){
+    orderId
+    quoteId
+    symbolIn
+    symbolOut
+    amountIn
+    amountOut
+    email
+    exchangeRate
+    koyweFee
+    status
+    outReceipt
+    orderType
+    dates {
+      confirmationDate
+      paymentDate
+      executionDate
+      deliveryDate
+    }
+    destinationAddress
+    networkFee
+    paymentMethodId
+    logoIn
+    logoOut
+  }
+}
+"variables":
+{
+  "input": {
+    "externalId": "12A2324A" #Defined when calling mutation Order
+  }
+}
+```
 #### Lista de órdenes pasadas
 
 Retorna una lista de todas las órdenes asociadas al `clientId` o al `email` especificado al autenticarse.
