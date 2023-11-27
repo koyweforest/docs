@@ -1068,7 +1068,7 @@
         "tags": [
           "Orders"
         ],
-        "summary": "Returns order information.",
+        "summary": "Returns order information",
         "description": "To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service.",
         "operationId": "Getorder",
         "parameters": [
@@ -1135,6 +1135,60 @@
         ]
       }
     },
+
+    "/orders/external_id/{externalId}": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Returns order information by ExternalId.",
+        "description": "To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service.",
+        "operationId": "GetorderbyExternalId",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "description": "Extenal Order's identifier.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404_1"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
+      }
+    },
+
+
+
     "/quotes": {
       "post": {
         "tags": [
@@ -1748,7 +1802,9 @@
           },
           "documentNumber": {
             "type": "string"
-          }
+          },
+          "externalId": {
+            "type":"string"          }
         }
       },
       "Order": {
@@ -1822,6 +1878,10 @@
           "logoOut": {
             "type": "string",
             "example": "urlExmaple.com/currencies/MATIC.svg"
+          },
+          "externalId":{
+            "type":"string",
+            "example":"A1d2t3456"
           }
         }
       },
@@ -2069,6 +2129,9 @@
           },
           "metadata": {
             "type": "string"
+          },
+          "externalId":{
+            "type":"string"
           }
         }
       },

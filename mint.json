@@ -138,7 +138,8 @@
               "pages": [
                 "english/documentation/api-documentation/restful-api/Orders/Creates-a-new-order",
                 "english/documentation/api-documentation/restful-api/Orders/Returns-a-lists-of-orders",
-                "english/documentation/api-documentation/restful-api/Orders/Returns-order-information"
+                "english/documentation/api-documentation/restful-api/Orders/Returns-order-information",
+                "english/documentation/api-documentation/restful-api/Orders/Returns-order-information-by-externalId"
               ]
             },
             {
@@ -243,7 +244,8 @@
               "pages": [
                 "english/documentation/api-documentation/restful-api/Orders/Creates-a-new-order",
                 "english/documentation/api-documentation/restful-api/Orders/Returns-a-lists-of-orders",
-                "english/documentation/api-documentation/restful-api/Orders/Returns-order-information"
+                "english/documentation/api-documentation/restful-api/Orders/Returns-order-information",
+                "english/documentation/api-documentation/restful-api/Orders/Returns-order-information-by-externalId"
               ]
             },
             {
