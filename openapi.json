@@ -1090,7 +1090,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "$ref": "#/components/schemas/Order_wfees"
                 }
               }
             }
@@ -1885,6 +1885,92 @@
           }
         }
       },
+      "Order_wfees": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "example": "b88f4ed0-10a2-412f-be3e-b5e47abe9b50"
+          },
+          "quoteId": {
+            "type": "string"
+          },
+          "koyweFee": {
+            "type": "number",
+            "example": 1000
+          },
+          "networkFee": {
+            "type": "number",
+            "example": 1000
+          },
+          "symbolIn": {
+            "type": "string",
+            "example": "CLP"
+          },
+          "symbolOut": {
+            "type": "string",
+            "example": "MATIC"
+          },
+          "amountIn": {
+            "type": "number",
+            "example": 25000
+          },
+          "amountOut": {
+            "type": "number",
+            "example": 32.171150520770496
+          },
+          "paymentMethodId": {
+            "type": "string",
+            "example": "6294d815d2b5f912da43e699"
+          },
+          "destinationAddress": {
+            "type": "string",
+            "example": "0x40f9bf922c23c43acede50Ab4425280C0ffBD697"
+          },
+          "email": {
+            "type": "string",
+            "example": "example@gmail.com"
+          },
+          "exchangeRate": {
+            "type": "number",
+            "example": 746.01
+          },
+          "status": {
+            "type": "string",
+            "example": "REJECTED"
+          },
+          "date": {
+            "$ref": "#/components/schemas/Order_date"
+          },
+          "outReceipt": {
+            "type": "string",
+            "example": "98abd8a6dbdba6d4b"
+          },
+          "metadata": {
+            "type": "string"
+          },
+          "logoIn": {
+            "type": "string",
+            "example": "urlExample.com/currencies/CLP.svg"
+          },
+          "logoOut": {
+            "type": "string",
+            "example": "urlExmaple.com/currencies/MATIC.svg"
+          },
+          "externalId":{
+            "type":"string",
+            "example":"A1d2t3456"
+          },
+          "feesInFiat": {
+            "$ref": "#/components/schemas/Order_fees"
+          },
+          "feesInUSD": {
+            "date": {
+              "$ref": "#/components/schemas/Order_fees"
+            }
+          }
+        }
+      },
       "Pagination": {
         "type": "object",
         "properties": {
@@ -2319,6 +2405,23 @@
           },
           "deliveryDate": {
             "type": "string"
+          }
+        }
+      },
+      "Order_fees": {
+        "type": "object",
+        "properties": {
+          "koyweFee": {
+            "type": "number",
+            "example": 10
+          },
+          "netFee": {
+            "type": "number",
+            "example": 1
+          },
+          "partnerFee": {
+            "type": "number",
+            "example": 0.5
           }
         }
       },

@@ -383,7 +383,7 @@ mutation createOrder($input: OrderInput!) {
 
 #### Get Order
 
-Returns order information. Receives a `quoteId`.
+Returns order information. Receives a `orderId`.
 
 ```graphql
 query getOrder($input: GetOrderInput!) {
@@ -411,6 +411,16 @@ query getOrder($input: GetOrderInput!) {
     paymentMethodId
     logoIn
     logoOut
+    feesInFiat { #Only if the order has a partnerFee and is greather than 0
+      koyweFee
+      netFee
+      partnerFee
+    }
+    feesInUSD { #Only if the order has a partnerFee and is greather than 0
+      koyweFee #(koyweFee / exchangeRate) truncated to 4 digits after the comma
+      netFee #(netFee / exchangeRate) truncated to 4 digits after the comma
+      partnerFee #(partnerFee / exchangeRate) truncated to 4 digits after the comma
+    }
   }
 }
 "variables":
