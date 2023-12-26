@@ -12,6 +12,34 @@ title: Basic API flow
 This service is only for customers who have delegated KYC. <br />
 The account to create or update will be based on the email provided in the request. This can be done from the body or through the token. If they are sent from both sides, they must be the same. <br />
 
+## Glossary
+ - <b>email:</b> The email address that will be associated with the user.
+ - <b>document:</b>
+    - <b>documentNumber:</b> Document number belonging to the person who is going to register.
+    - <b>documentType:</b> Type of document related to the document number of the person who is going to register.
+    - <b>country:</b> Country of issuance of the document.
+    - <b>isCompany:</b> Type of person to register. If true, the account to be registered will be a legal entity. Otherwise, an individual.
+    - <b>others:</b> Array of secondary documents.
+        - <b>documentNumber:</b> Document number belonging to the person who is going to register.
+        - <b>documentType:</b> Type of document related to the document number of the person who is going to register.
+        - <b>country:</b> Country of issuance of the document.
+ - <b>address:</b>
+    - <b>addressCountry:</b> Place of residence of the person. It cannot be different from the one in the document.
+    - <b>addressZipCode:</b> Postal code of the residence.
+    - <b>addressState:</b> Name of the first subdivision of the country of residence. Could be a state, province, region, etc.
+    - <b>addressCity:</b> Name of the city of residence.
+    - <b>addressNeighborhood:</b> Name of the subdivision of the city. Could be a neighborhood, commune, etc.
+    - <b>addressStreet:</b> Street address with numbering, if it has one, where the person, legal or natural resides.
+ - <b>personalInfo:</b>
+    - <b>names:</b> Names of the individual or trade name of the legal entity.
+    - <b>firstLastname:</b> First surname of the individual. Not applicable for legal entity.
+    - <b>secondLastname:</b> Second surname of the individual. Not applicable for legal entity.
+    - <b>nationality:</b> Nationality of the individual. Not applicable for legal entity.
+    - <b>gender:</b> Gender of the individual. Could be M for male, F for female, or O for other. Not applicable for legal entity.
+    - <b>dob:</b> Date of birth of the person or date of commencement of activities for a legal entity. It is in the format YYYY-MM-DD.
+    - <b>phoneNumber:</b> Contact number associated with the person related to the country of registration.
+    - <b>activity:</b> Profession of the individual or activity carried out by the legal entity.
+
 ### `/Auth`
 
 First, you have to authenticate. We suggest adding the user's email to use the JWT token for later calls.
