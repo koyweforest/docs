@@ -321,11 +321,13 @@ All the following queries require a Bearer Token in the headers:
 Authorization: Bearer [token]
 ```
 
-
 <Accordion title="Accounts">
+These user account services allow managing user information in order to operate later.
+See [Considerations](/english/documentation/api-documentation/basic-api-flow#accounts)
+
 #### Check account
 
-TODO: some description about
+Checks user account data and determines whether they can perform any operation or not.
 
 ```graphql
 query CheckAccount($input: InputEmailAccountDto!) {
@@ -349,7 +351,7 @@ query CheckAccount($input: InputEmailAccountDto!) {
 
 #### Get account
 
-TODO: some description about
+Returns the registered information of the user.
 
 ```graphql
 query GetAccountProfile($input: InputEmailAccountDto!) {
@@ -396,7 +398,7 @@ query GetAccountProfile($input: InputEmailAccountDto!) {
 
 #### Create account
 
-TODO: some description about
+Creates a new user account.
 
 ```graphql
 mutation CreateAccount($input: InputCreateAccountDto!) {
@@ -473,7 +475,7 @@ mutation CreateAccount($input: InputCreateAccountDto!) {
 
 #### Update account
 
-TODO: some description about
+Updates user data.
 
 ```graphql
 mutation UpdateAccount($input: InputUpdateAccountDto!) {

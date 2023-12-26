@@ -310,6 +310,9 @@ Authorization: Bearer [token]
 ```
 
 <Accordion title="Servicio de cuentas de usuarios">
+Estos servicios de cuentas de usuarios permiten manejar manejar la información los mismos para asi luego poder operar. <br />
+Ver [Consideraciones](/documentacion/documentacion-api/flujo-basico-api#accounts)
+
 #### Check account
 
 Checkea datos de las cuentas de usuarios y determina si puede realizar alguna operacion o no. 
@@ -555,7 +558,7 @@ Requiere: `destinationAddress`, `quoteId o symbolIn, symbolOut, amountIn, amount
 
 Requiere: `destinationAddress`, `quoteId o symbolIn, symbolOut, amountIn, amountOut`.
 
-Opcional: `email` ((obligatorio si no se está autenticado con email), `documentNumber` (para facilitar la conciliación bancaria).
+Opcional: `email` (obligatorio si no se está autenticado con email), `documentNumber` (para facilitar la conciliación bancaria).
 
 ```graphql
 mutation createOrder($input: OrderInput!) {
