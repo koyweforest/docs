@@ -574,6 +574,7 @@ query getBankInfoByCountry($countryCode: String!) {
 #### Create Bank Account
 
 Creates a new bank account and saves it for future operations.
+In the case of Chile, all non-numeric characters will be removed, leaving only the numeric ones. The account number must have at least 3 digits.
 
 optional: `bankCode`, `documentNumber`
 

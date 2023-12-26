@@ -550,6 +550,7 @@ query getBankInfoByCountry($countryCode: String!) {
 #### Create Bank Account
 
 Crea una nueva cuenta bancaria y la guarda para futuras operaciones.
+En caso de Chile, se eliminarán todos los caracteres no numéricos, dejando los numéricos. El número de cuenta deberá tener al menos 3 dígitos.
 
 opcional: `bankCode`, `documentNumber`
 
