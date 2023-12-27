@@ -1965,9 +1965,7 @@
             "$ref": "#/components/schemas/Order_fees"
           },
           "feesInUSD": {
-            "date": {
-              "$ref": "#/components/schemas/Order_fees"
-            }
+            "$ref": "#/components/schemas/Order_fees"
           }
         }
       },
