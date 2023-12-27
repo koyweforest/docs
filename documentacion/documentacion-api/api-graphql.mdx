@@ -309,6 +309,239 @@ Todas las queries a continuación requieren un Bearer Token en los headers:
 Authorization: Bearer [token]
 ```
 
+<Accordion title="Servicio de cuentas de usuarios">
+Estos servicios de usuario incluye: la creación de nuevos perfiles de usuario, la capacidad de actualizar información de usuarios, 
+la posibilidad de consultar detalles de usuario, y una función de validación que verifica si el usuario brindo datos suficientes de su persona para poder operar. <br />
+Ver [Consideraciones](/documentacion/documentacion-api/flujo-basico-api#accounts)
+
+#### Check account
+
+Verifica la información de la cuenta del usuario y determina si es posible realizar alguna operación. 
+Si llegase a faltar algún dato del usuario, podría agregarlo mediante el servicio de actualización de usuario detallado mas abajo. 
+
+```graphql
+query CheckAccount($input: InputEmailAccountDto!) {
+  checkAccount(input: $input) {
+    canOperate
+    errors {
+      field
+      message
+    }
+    accountStatus
+    nextVerificationDate
+  }
+}
+"variables" :
+{
+  "input": {
+    "email": "email@domain.com"
+  }
+}
+```
+
+#### Get account
+
+Devuelve la información registrada del usuario.
+
+```graphql
+query GetAccountProfile($input: InputEmailAccountDto!) {
+  getAccountProfile(input: $input) {
+    document {
+      documentNumber
+      documentType
+      country
+      isCompany
+      others {
+        documentNumber
+        documentType
+        country
+      }
+    }
+    address {
+      addressStreet
+      addressCountry
+      addressZipCode
+      addressNeighborhood
+      addressCity
+      addressState
+    }
+    personalInfo {
+      names
+      firstLastname
+      secondLastname
+      nationality
+      gender
+      dob
+      phoneNumber
+      activity
+    }
+    email
+  }
+}
+"variables" :
+{
+  "input": {
+    "email": "email@domain.com"
+  }
+}
+```
+
+#### Create account
+
+Crea una cuenta nueva de usuario.
+
+```graphql
+mutation CreateAccount($input: InputCreateAccountDto!) {
+  createAccount(input: $input) {
+    document {
+      documentNumber
+      documentType
+      country
+      isCompany
+      others {
+        documentNumber
+        documentType
+        country
+      }
+    }
+    address {
+      addressStreet
+      addressCountry
+      addressNeighborhood
+      addressCity
+      addressState
+      addressZipCode
+    }
+    personalInfo {
+      names
+      firstLastname
+      secondLastname
+      nationality
+      gender
+      dob
+      phoneNumber
+      activity
+    }
+    email
+  }
+}
+"variables" :
+{
+  "input": {
+    "email": "email@domain.com",
+    "document": {
+        "documentNumber": "",
+        "documentType": "",
+        "country": "",
+        "isCompany": false,
+        "others": [
+            {
+                "documentNumber": "",
+                "documentType": "",
+                "country": ""
+            }
+        ]
+    },
+    "address": {
+        "addressStreet": "",
+        "addressCountry": "",
+        "addressZipCode": "",
+        "addressCity": "",
+        "addressState": ""
+    },
+    "personalInfo": {
+        "names": "",
+        "firstLastname": "",
+        "secondLastname": "",
+        "nationality": "",
+        "dob": "",
+        "gender": "",
+        "phoneNumber": "",
+        "activity": ""
+    }
+  }
+}
+```
+
+#### Update account
+
+Actualiza datos del usuario.
+
+```graphql
+mutation UpdateAccount($input: InputUpdateAccountDto!) {
+  updateAccount(input: $input) {
+    document {
+      documentNumber
+      documentType
+      country
+      isCompany
+      others {
+        documentNumber
+        documentType
+        country
+      }
+    }
+    address {
+      addressStreet
+      addressCountry
+      addressNeighborhood
+      addressCity
+      addressState
+      addressZipCode
+    }
+    personalInfo {
+      names
+      firstLastname
+      secondLastname
+      nationality
+      gender
+      dob
+      phoneNumber
+      activity
+    }
+    email
+  }
+}
+"variables" :
+{
+  "input": {
+    "email": "email@domain.com"
+    "document": {
+      "documentNumber": "",
+      "documentType": "",
+      "country": "",
+      "others": [
+        {
+          "documentNumber": "",
+          "documentType": "",
+          "country": ""
+        }
+      ]
+    },
+    "address": {
+      "addressStreet": "",
+      "addressCountry": "",
+      "addressZipCode": "",
+      "addressCity": "",
+      "addressState": "",
+      "addressNeighborhood": ""
+    },
+    "personalInfo": {
+      "names": "",
+      "firstLastname": "",
+      "secondLastname": "",
+      "nationality": "",
+      "dob": "",
+      "activity": "",
+      "gender": "",
+      "phoneNumber": ""
+    }
+  }
+}
+```
+
+</Accordion>
+
 <Accordion title="Servicios de órdenes">
 
 #### Create Order
@@ -327,7 +560,7 @@ Requiere: `destinationAddress`, `quoteId o symbolIn, symbolOut, amountIn, amount
 
 Requiere: `destinationAddress`, `quoteId o symbolIn, symbolOut, amountIn, amountOut`.
 
-Opcional: `email` ((obligatorio si no se está autenticado con email), `documentNumber` (para facilitar la conciliación bancaria).
+Opcional: `email` (obligatorio si no se está autenticado con email), `documentNumber` (para facilitar la conciliación bancaria).
 
 ```graphql
 mutation createOrder($input: OrderInput!) {

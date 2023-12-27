@@ -12,6 +12,98 @@ title: Basic API flow
 This service is only for customers who have delegated KYC. <br />
 The account to create or update will be based on the email provided in the request. This can be done from the body or through the token. If they are sent from both sides, they must be the same. <br />
 
+## Glossary
+ - <b>email:</b> Email address that will be associated with the user's account.
+ - <b>document:</b>
+    - <b>documentNumber:</b> Document number belonging to the person who is going to register.
+    - <b>documentType:</b> Type of document related to the document number of the person who is going to register.
+    - <b>country:</b> Country of issuance of the document.
+    - <b>isCompany:</b> Type of person to register. If set to true, the account to be registered will be for a legal entity. Otherwise, it will be for a natural person.
+    - <b>others:</b> Array of secondary documents.
+        - <b>documentNumber:</b> Document number belonging to the person who is going to register.
+        - <b>documentType:</b> Type of document related to the document number of the person who is going to register.
+        - <b>country:</b> Country of issuance of the document.
+ - <b>address:</b>
+    - <b>addressCountry:</b> Place of residence of the person. It cannot be different from the one in the document.
+    - <b>addressZipCode:</b> Postal code of the residence.
+    - <b>addressState:</b> Name of the first subdivision of the country of residence. Could be a state, province, region, etc.
+    - <b>addressCity:</b> Name of the city of residence.
+    - <b>addressNeighborhood:</b> Name of the subdivision of the city. Could be a neighborhood, commune, etc.
+    - <b>addressStreet:</b> Street address with numbering, if it has one, where the person, legal or natural resides.
+ - <b>personalInfo:</b>
+    - <b>names:</b> Names of the individual or trade name of the legal entity.
+    - <b>firstLastname:</b> First surname of the individual. Not applicable for legal entity.
+    - <b>secondLastname:</b> Second surname of the individual. Not applicable for legal entity.
+    - <b>nationality:</b> Nationality of the individual. Not applicable for legal entity.
+    - <b>gender:</b> Gender of the individual. Could be M for male, F for female, or O for other. Not applicable for legal entity.
+    - <b>dob:</b> Date of birth of the person or date of commencement of activities for a legal entity. It is in the format YYYY-MM-DD.
+    - <b>phoneNumber:</b> Contact number associated with the person related to the country of registration.
+    - <b>activity:</b> Profession of the individual or activity carried out by the legal entity.
+
+
+## Supported countries
+ARG, CHL, COL, MEX, PER
+
+## Types of documents by supported country
+ - Argentina -> DNI y CUIT
+ - Chile -> RUT
+ - Colombia -> National ID (CED_CIU), Foreigner ID card (CED_EXT) y NIT
+ - México -> RFC y CURP
+ - Perú -> DNI y RUC
+
+## Supported nationalities
+ - ATG: Antigua y Barbuda
+ - ARG: Argentina
+ - BHS: Bahamas
+ - BRB: Barbados
+ - BLZ: Belice
+ - BOL: Bolivia
+ - BRA: Brasil
+ - CAN: Canadá
+ - CHL: Chile
+ - COL: Colombia
+ - CRI: Costa Rica
+ - CUB: Cuba
+ - DMA: Dominica
+ - DOM: República Dominicana
+ - ECU: Ecuador
+ - SLV: El Salvador
+ - GRD: Granada
+ - GTM: Guatemala
+ - GUY: Guyana
+ - HTI: Haití
+ - HND: Honduras
+ - JAM: Jamaica
+ - MEX: México
+ - NIC: Nicaragua
+ - PAN: Panamá
+ - PRY: Paraguay
+ - PER: Perú
+ - PRI: Puerto Rico
+ - KNA: San Cristóbal y Nieves
+ - LCA: Santa Lucía
+ - VCT: San Vicente y las Granadinas
+ - SUR: Surinam
+ - TTO: Trinidad y Tobago
+ - USA: Estados Unidos
+ - URY: Uruguay
+ - VEN: Venezuela
+ - AIA: Anguila(Reino Unido)
+ - ABW: Aruba(Países Bajos)
+ - BMU: Bermudas(Reino Unido)
+ - BES: Bonaire, San Eustaquio y Saba(Países Bajos)
+ - CYM: Islas Caimán(Reino Unido)
+ - SGS: Islas Georgias del Sur y Sandwich del Sur(Reino Unido)
+ - GRL: Groenlandia(Dinamarca)
+ - GLP: Guadalupe(Francia)
+ - FLK: Islas Malvinas(Reino Unido)
+ - MTQ: Martinica(Francia)
+ - MSR: Montserrat(Reino Unido)
+ - ANT: Antillas Neerlandesas(Países Bajos)
+ - TCA: Islas Turcas y Caicos(Reino Unido)
+ - VGB: Islas Vírgenes Británicas(Reino Unido)
+ - VIR: Islas Vírgenes de los Estados Unidos(.UU)
+
 ### `/Auth`
 
 First, you have to authenticate. We suggest adding the user's email to use the JWT token for later calls.

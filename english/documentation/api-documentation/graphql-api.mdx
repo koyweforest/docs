@@ -321,6 +321,241 @@ All the following queries require a Bearer Token in the headers:
 Authorization: Bearer [token]
 ```
 
+<Accordion title="Accounts">
+These user services include: the creation of new user profiles, the ability to update user information, 
+the possibility of consulting user details, and a validation function that checks if the user has provided enough personal data to be able to operate.  <br />
+
+See [Considerations](/english/documentation/api-documentation/basic-api-flow#accounts)
+
+#### Check account
+
+It verifies the user account information and determines if it is possible to perform any operation. 
+If any user data is missing, it could be added through the user update service detailed further below.
+
+```graphql
+query CheckAccount($input: InputEmailAccountDto!) {
+  checkAccount(input: $input) {
+    canOperate
+    errors {
+      field
+      message
+    }
+    accountStatus
+    nextVerificationDate
+  }
+}
+"variables" :
+{
+  "input": {
+    "email": "email@domain.com"
+  }
+}
+```
+
+#### Get account
+
+Returns the registered information of the user.
+
+```graphql
+query GetAccountProfile($input: InputEmailAccountDto!) {
+  getAccountProfile(input: $input) {
+    document {
+      documentNumber
+      documentType
+      country
+      isCompany
+      others {
+        documentNumber
+        documentType
+        country
+      }
+    }
+    address {
+      addressStreet
+      addressCountry
+      addressZipCode
+      addressNeighborhood
+      addressCity
+      addressState
+    }
+    personalInfo {
+      names
+      firstLastname
+      secondLastname
+      nationality
+      gender
+      dob
+      phoneNumber
+      activity
+    }
+    email
+  }
+}
+"variables" :
+{
+  "input": {
+    "email": "email@domain.com"
+  }
+}
+```
+
+#### Create account
+
+Creates a new user account.
+
+```graphql
+mutation CreateAccount($input: InputCreateAccountDto!) {
+  createAccount(input: $input) {
+    document {
+      documentNumber
+      documentType
+      country
+      isCompany
+      others {
+        documentNumber
+        documentType
+        country
+      }
+    }
+    address {
+      addressStreet
+      addressCountry
+      addressNeighborhood
+      addressCity
+      addressState
+      addressZipCode
+    }
+    personalInfo {
+      names
+      firstLastname
+      secondLastname
+      nationality
+      gender
+      dob
+      phoneNumber
+      activity
+    }
+    email
+  }
+}
+"variables" :
+{
+  "input": {
+    "email": "email@domain.com",
+    "document": {
+        "documentNumber": "",
+        "documentType": "",
+        "country": "",
+        "isCompany": false,
+        "others": [
+            {
+                "documentNumber": "",
+                "documentType": "",
+                "country": ""
+            }
+        ]
+    },
+    "address": {
+        "addressStreet": "",
+        "addressCountry": "",
+        "addressZipCode": "",
+        "addressCity": "",
+        "addressState": ""
+    },
+    "personalInfo": {
+        "names": "",
+        "firstLastname": "",
+        "secondLastname": "",
+        "nationality": "",
+        "dob": "",
+        "gender": "",
+        "phoneNumber": "",
+        "activity": ""
+    }
+  }
+}
+```
+
+#### Update account
+
+Updates user data.
+
+```graphql
+mutation UpdateAccount($input: InputUpdateAccountDto!) {
+  updateAccount(input: $input) {
+    document {
+      documentNumber
+      documentType
+      country
+      isCompany
+      others {
+        documentNumber
+        documentType
+        country
+      }
+    }
+    address {
+      addressStreet
+      addressCountry
+      addressNeighborhood
+      addressCity
+      addressState
+      addressZipCode
+    }
+    personalInfo {
+      names
+      firstLastname
+      secondLastname
+      nationality
+      gender
+      dob
+      phoneNumber
+      activity
+    }
+    email
+  }
+}
+"variables" :
+{
+  "input": {
+    "email": "email@domain.com"
+    "document": {
+      "documentNumber": "",
+      "documentType": "",
+      "country": "",
+      "others": [
+        {
+          "documentNumber": "",
+          "documentType": "",
+          "country": ""
+        }
+      ]
+    },
+    "address": {
+      "addressStreet": "",
+      "addressCountry": "",
+      "addressZipCode": "",
+      "addressCity": "",
+      "addressState": "",
+      "addressNeighborhood": ""
+    },
+    "personalInfo": {
+      "names": "",
+      "firstLastname": "",
+      "secondLastname": "",
+      "nationality": "",
+      "dob": "",
+      "activity": "",
+      "gender": "",
+      "phoneNumber": ""
+    }
+  }
+}
+```
+
+</Accordion>
+
+
 <Accordion title="Order services">
 
 #### Create Order
