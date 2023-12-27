@@ -310,12 +310,14 @@ Authorization: Bearer [token]
 ```
 
 <Accordion title="Servicio de cuentas de usuarios">
-Estos servicios de cuentas de usuarios permiten manejar manejar la información los mismos para asi luego poder operar. <br />
+Estos servicios de usuario incluye: la creación de nuevos perfiles de usuario, la capacidad de actualizar información de usuarios, 
+la posibilidad de consultar detalles de usuario, y una función de validación que verifica si el usuario brindo datos suficientes de su persona para poder operar. <br />
 Ver [Consideraciones](/documentacion/documentacion-api/flujo-basico-api#accounts)
 
 #### Check account
 
-Checkea datos de las cuentas de usuarios y determina si puede realizar alguna operacion o no. 
+Verifica la información de la cuenta del usuario y determina si es posible realizar alguna operación. 
+Si llegase a faltar algún dato del usuario, podría agregarlo mediante el servicio de actualización de usuario detallado mas abajo. 
 
 ```graphql
 query CheckAccount($input: InputEmailAccountDto!) {

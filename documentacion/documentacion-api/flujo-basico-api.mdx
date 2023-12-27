@@ -12,34 +12,34 @@ Este servicio es sólo para clientes que han delegado KYC. <br />
 La cuenta a crear o actualizar se basará en el correo electrónico proporcionado en la solicitud. Esto se puede hacer desde el cuerpo o mediante el token. Si se envían desde ambos lados, deben ser iguales. <br />
 
 ## Glosario
- - <b>email: </b> direccion del correo que va a estar asociada al usuario.
+ - <b>email: </b> Dirección de correo electrónico que será asociada a la cuenta del usuario.
  - <b>document:</b>
-    - <b>documentNumber:</b> número de documento perteneciente a la persona que se va a registrar.
-    - <b>documentType:</b> tipo de documento relacionado al número de documento de la persona que se va a registrar.
-    - <b>country:</b> país de emisión del documento.
-    - <b>isCompany:</b> tipo de persona a registrar. En caso de estar en true la cuenta a registrar va a ser de una persona jurídica o jurídica. Caso contrario, una persona natural.
-    - <b>others:</b> array de documentos secundarios.
-        - <b>documentNumber:</b> número de documento perteneciente a la persona que se va a registrar.
-        - <b>documentType:</b> tipo de documento relacionado al número de documento de la persona que se va a registrar.
-        - <b>country:</b> país de emisión del documento.
+    - <b>documentNumber:</b> Número de documento perteneciente a la persona que se va a registrar.
+    - <b>documentType:</b> Tipo de documento relacionado al número de documento de la persona que se va a registrar.
+    - <b>country:</b> País de emisión del documento.
+    - <b>isCompany:</b> Tipo de persona a registrar. En caso de estar en true la cuenta a registrar va a ser de una persona legal o jurídica. Caso contrario, una persona natural.
+    - <b>others:</b> Array de documentos secundarios.
+        - <b>documentNumber:</b> Número de documento perteneciente a la persona que se va a registrar.
+        - <b>documentType:</b> Tipo de documento relacionado al número de documento de la persona que se va a registrar.
+        - <b>country:</b> País de emisión del documento.
 
  - <b>address: </b>
-    - <b>addressCountry:</b> lugar de residencia de la persona. No puede ser distinta de la del documento.
-    - <b>addressZipCode:</b> código postal de la residencia.
-    - <b>addressState:</b> nombre de la primera subdivisión del país de residencia. Podría ser estado, provincia, región, etc.
-    - <b>addressCity:</b> nombre de la ciudad de la residencia.
-    - <b>addressNeighborhood:</b> nombre de la subdivisión de la ciudad. Podría ser barrio, comuna, etc.
-    - <b>addressStreet:</b> direccion de calle con numeración, si la tuviera, donde la persona, jurídica o natural recide.
+    - <b>addressCountry:</b> Lugar de residencia de la persona. No puede ser distinta de la del documento.
+    - <b>addressZipCode:</b> Código postal de la residencia.
+    - <b>addressState:</b> Nombre de la primera subdivisión del país de residencia. Podría ser estado, provincia, región, etc.
+    - <b>addressCity:</b> Nombre de la ciudad de la residencia.
+    - <b>addressNeighborhood:</b> Nombre de la subdivisión de la ciudad. Podría ser barrio, comuna, etc.
+    - <b>addressStreet:</b> Dirección de calle con numeración, si la tuviera, donde la persona, jurídica o natural recide.
   
  - <b>personalInfo:</b>
-    - <b>names:</b> nombres de la persona natural o razón social de la persona jurídica.
-    - <b>firstLastname:</b> primer apellido de la persona natural. No aplica para persona jurídica.
-    - <b>secondLastname:</b> segundo apellido de la persona natural. No aplica para persona jurídica.
+    - <b>names:</b> Nombres de la persona natural o razón social de la persona jurídica.
+    - <b>firstLastname:</b> Primer apellido de la persona natural. No aplica para persona jurídica.
+    - <b>secondLastname:</b> Segundo apellido de la persona natural. No aplica para persona jurídica.
     - <b>nationality:</b> Nacionalidad de la persona natural. No aplica para persona jurídica.
-    - <b>gender:</b> género de la persona natural. Podría ser H para hombre, M para mujer u O para otro. No aplica para persona jurídica.
-    - <b>dob:</b> fecha de nacimiento de la persona o fecha de inicio de actividades para una persona jurídica. Se encuentra en formato YYYY-MM-DD
-    - <b>phoneNumber:</b> número de contacto asociado a la persona relacionado al país de registro.
-    - <b>activity:</b> profesión de la persona natural o actividad que realiza de la persona jurídica.
+    - <b>gender:</b> Género de la persona natural. Podría ser H para hombre, M para mujer u O para otro. No aplica para persona jurídica.
+    - <b>dob:</b> Fecha de nacimiento de la persona o fecha de inicio de actividades para una persona jurídica. Se encuentra en formato YYYY-MM-DD
+    - <b>phoneNumber:</b> Número de contacto asociado a la persona relacionado al país de registro.
+    - <b>activity:</b> Profesión de la persona natural o actividad que realiza de la persona jurídica.
 
 ## Paises soportados
 ARG, CHL, COL, MEX, PER

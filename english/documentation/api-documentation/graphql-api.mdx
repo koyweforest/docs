@@ -322,12 +322,15 @@ Authorization: Bearer [token]
 ```
 
 <Accordion title="Accounts">
-These user account services allow managing user information in order to operate later.
+These user services include: the creation of new user profiles, the ability to update user information, 
+the possibility of consulting user details, and a validation function that checks if the user has provided enough personal data to be able to operate.  <br />
+
 See [Considerations](/english/documentation/api-documentation/basic-api-flow#accounts)
 
 #### Check account
 
-Checks user account data and determines whether they can perform any operation or not.
+It verifies the user account information and determines if it is possible to perform any operation. 
+If any user data is missing, it could be added through the user update service detailed further below.
 
 ```graphql
 query CheckAccount($input: InputEmailAccountDto!) {

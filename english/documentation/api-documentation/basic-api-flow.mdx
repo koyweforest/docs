@@ -13,12 +13,12 @@ This service is only for customers who have delegated KYC. <br />
 The account to create or update will be based on the email provided in the request. This can be done from the body or through the token. If they are sent from both sides, they must be the same. <br />
 
 ## Glossary
- - <b>email:</b> The email address that will be associated with the user.
+ - <b>email:</b> Email address that will be associated with the user's account.
  - <b>document:</b>
     - <b>documentNumber:</b> Document number belonging to the person who is going to register.
     - <b>documentType:</b> Type of document related to the document number of the person who is going to register.
     - <b>country:</b> Country of issuance of the document.
-    - <b>isCompany:</b> Type of person to register. If true, the account to be registered will be a legal entity. Otherwise, an individual.
+    - <b>isCompany:</b> Type of person to register. If set to true, the account to be registered will be for a legal entity. Otherwise, it will be for a natural person.
     - <b>others:</b> Array of secondary documents.
         - <b>documentNumber:</b> Document number belonging to the person who is going to register.
         - <b>documentType:</b> Type of document related to the document number of the person who is going to register.
