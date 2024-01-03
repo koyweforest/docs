@@ -36,9 +36,7 @@
   "paths": {
     "/accounts/{email}": {
       "get": {
-        "tags": [
-          "Accounts"
-        ],
+        "tags": ["Accounts"],
         "summary": "Get account data",
         "description": "Returns the registered information of the user.",
         "operationId": "account",
@@ -80,9 +78,7 @@
     },
     "/accounts/{email}/check": {
       "get": {
-        "tags": [
-          "Accounts"
-        ],
+        "tags": ["Accounts"],
         "summary": "Check if can operate",
         "description": "Check if an account meets all the minimum requirements needed to operate, returning the missing information.",
         "operationId": "account",
@@ -124,9 +120,7 @@
     },
     "/accounts": {
       "post": {
-        "tags": [
-          "Accounts"
-        ],
+        "tags": ["Accounts"],
         "summary": "Creates a new account",
         "description": "Create a new account.",
         "operationId": "account",
@@ -165,9 +159,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Accounts"
-        ],
+        "tags": ["Accounts"],
         "summary": "Updates an account",
         "description": "Update data of an existing account.",
         "operationId": "account",
@@ -208,9 +200,7 @@
     },
     "/currency-tokens": {
       "get": {
-        "tags": [
-          "Currency"
-        ],
+        "tags": ["Currency"],
         "summary": "Returns all supported Currency-Token pairs.",
         "description": "For the moment Koywe supports operations with the following local currencies [CLP, MXN, COP, PEN]",
         "operationId": "tokenCurrecyPairs",
@@ -268,9 +258,7 @@
     },
     "/currency-tokens/{currencySymbol}": {
       "get": {
-        "tags": [
-          "Currency"
-        ],
+        "tags": ["Currency"],
         "summary": "Returns supported Currency-Token pairs for a given currency.",
         "description": "Receives a currency symbol to filter. [CLP, COP, MXN, PEN]",
         "operationId": "tokenCurrecyPair",
@@ -341,9 +329,7 @@
     },
     "/token-currencies": {
       "get": {
-        "tags": [
-          "Token"
-        ],
+        "tags": ["Token"],
         "summary": "Returns all supported Coin-Token pairs.",
         "description": "For the moment Koywe supports operations with the following tokens [ETH, MATIC, BNB, BTC, USDC, DAI]",
         "operationId": "currencyTokenPair",
@@ -401,9 +387,7 @@
     },
     "/token-currencies/{tokenSymbol}": {
       "get": {
-        "tags": [
-          "Token"
-        ],
+        "tags": ["Token"],
         "summary": "Returns supported Coin-Token pairs.",
         "description": "Receives a token symbol to filter. For the moment Koywe supports operations with the following tokens [ETH, MATIC, BNB, BTC, USDC, DAI]",
         "operationId": "currecyTokenPairs",
@@ -474,9 +458,7 @@
     },
     "/payment-providers": {
       "get": {
-        "tags": [
-          "Payment-provider"
-        ],
+        "tags": ["Payment-provider"],
         "summary": "Returns a list of available payment methods for a given currency.",
         "description": "If you want to know how to receive your own clientId, please check the \"Credentials\" section. the domain for all images provided directly by Koywe have the form https://rampa.koywe.com/paymentProviders/exampleImage.svg (keep in mind that this is just an example, but the domain shown is the actual one Koywe uses)",
         "operationId": "PaymentOptionsList",
@@ -550,9 +532,7 @@
     },
     "/payout-providers": {
       "get": {
-        "tags": [
-          "Payout-provider"
-        ],
+        "tags": ["Payout-provider"],
         "summary": "Returns a list of available payout providers for a given currency.",
         "description": "If you want to know how to receive your own clientId, please check the \"Credentials\" section. the domain for all images provided directly by Koywe have the form https://rampa.koywe.com/paymentProviders/exampleImage.svg (keep in mind that this is just an example, but the domain shown is the actual one Koywe uses)",
         "operationId": "PaymentOptionsList",
@@ -626,9 +606,7 @@
     },
     "/auth": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Returns an Authorization Token.",
         "description": "If you want to know how to receive your own clientId and secret, please check the \"Credentials\" section. \"email\" is optional.",
         "operationId": "auth",
@@ -710,9 +688,7 @@
     },
     "/auth/validate": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Returns an id and sends a validation email.",
         "description": "The email that is sent contains a 6-digit code that allows you to validate your session.",
         "operationId": "validate",
@@ -764,9 +740,7 @@
     },
     "/auth/code": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Returns session data.",
         "description": "The value \"code\" shall be retrieved from the email sent by the previous method call (auth/validate).",
         "operationId": "code",
@@ -865,9 +839,7 @@
     },
     "/orders": {
       "get": {
-        "tags": [
-          "Orders"
-        ],
+        "tags": ["Orders"],
         "summary": "Returns a lists of orders.",
         "description": "To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service.",
         "operationId": "order",
@@ -946,9 +918,7 @@
         ]
       },
       "post": {
-        "tags": [
-          "Orders"
-        ],
+        "tags": ["Orders"],
         "summary": "Creates a new order.",
         "description": "Creates a purchase or sell order, returns a UUID for tracking and, depending on the payment method, an URL to do so. For authenticated calls that do not have an email asociated, one must be included as a parameter to link the transaction to a specific user. If quoteId is provided and quote is still valid, symbolIn, symbolOut, amountIn, amountOut, and paymentMethodId are nullable. In the case of amountIn and amountOut, only one must be passed as an input parameter.",
         "operationId": "Createorder",
@@ -1109,9 +1079,7 @@
     },
     "/orders/{orderId}": {
       "get": {
-        "tags": [
-          "Orders"
-        ],
+        "tags": ["Orders"],
         "summary": "Returns order information",
         "description": "To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service.",
         "operationId": "Getorder",
@@ -1182,9 +1150,7 @@
 
     "/orders/external_id/{externalId}": {
       "get": {
-        "tags": [
-          "Orders"
-        ],
+        "tags": ["Orders"],
         "summary": "Returns order information by ExternalId.",
         "description": "To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service.",
         "operationId": "GetorderbyExternalId",
@@ -1231,13 +1197,9 @@
       }
     },
 
-
-
     "/quotes": {
       "post": {
-        "tags": [
-          "Quote Queries"
-        ],
+        "tags": ["Quote Queries"],
         "summary": "Creates a purchase or sell quote",
         "description": "Only one of the input parameters \"amountIn\" and \"amountOut\" must be provided. for on ramps receives additionally clientId and paymentMethodId. Returns a quoteId that can be use to create an order (is not necessary, but if provided and still valid, fewer values will be necessary to create the order). If executable is true, we store it and return a UUID.",
         "operationId": "CreateQuote",
@@ -1319,9 +1281,7 @@
     },
     "/quotes/{quoteId}": {
       "get": {
-        "tags": [
-          "Quote Queries"
-        ],
+        "tags": ["Quote Queries"],
         "summary": "Returns quote details.",
         "description": "Receives a quoteId value. One can be produced using the previous quote service (post /quotes). Returns quote data.",
         "operationId": "GetQuote",
@@ -1364,9 +1324,7 @@
     },
     "/bank-accounts": {
       "get": {
-        "tags": [
-          "Bank Queries"
-        ],
+        "tags": ["Bank Queries"],
         "summary": "Returns bank account info.",
         "operationId": "GetBankAccount",
         "parameters": [
@@ -1425,9 +1383,7 @@
         ]
       },
       "post": {
-        "tags": [
-          "Bank Queries"
-        ],
+        "tags": ["Bank Queries"],
         "summary": "Adds a bank account to proceed with the operation.",
         "description": "bankCode and documentNumber are optional. documentedNumber is required when the users is not KYC'd.",
         "operationId": "CreateBankAccount",
@@ -1552,9 +1508,7 @@
         ]
       },
       "delete": {
-        "tags": [
-          "Bank Queries"
-        ],
+        "tags": ["Bank Queries"],
         "summary": "Deletes bank account info.",
         "operationId": "DeleteBankAccount",
         "parameters": [
@@ -1640,10 +1594,8 @@
     },
     "/bank-info/{countryCode}": {
       "get": {
-        "tags": [
-          "Bank Queries"
-        ],
-        "summary": "Adds a bank account to proceed with the operation.",
+        "tags": ["Bank Queries"],
+        "summary": "Returns the list of supported banks by country",
         "operationId": "GetBankinfo",
         "parameters": [
           {
@@ -1848,7 +1800,8 @@
             "type": "string"
           },
           "externalId": {
-            "type":"string"          }
+            "type": "string"
+          }
         }
       },
       "Order": {
@@ -1923,9 +1876,9 @@
             "type": "string",
             "example": "urlExmaple.com/currencies/MATIC.svg"
           },
-          "externalId":{
-            "type":"string",
-            "example":"A1d2t3456"
+          "externalId": {
+            "type": "string",
+            "example": "A1d2t3456"
           }
         }
       },
@@ -2001,9 +1954,9 @@
             "type": "string",
             "example": "urlExmaple.com/currencies/MATIC.svg"
           },
-          "externalId":{
-            "type":"string",
-            "example":"A1d2t3456"
+          "externalId": {
+            "type": "string",
+            "example": "A1d2t3456"
           },
           "feesInFiat": {
             "$ref": "#/components/schemas/Order_fees"
@@ -2214,10 +2167,7 @@
         }
       },
       "orders_body": {
-        "required": [
-          "destinationAddress",
-          "quoteId"
-        ],
+        "required": ["destinationAddress", "quoteId"],
         "type": "object",
         "properties": {
           "quoteId": {
@@ -2258,8 +2208,8 @@
           "metadata": {
             "type": "string"
           },
-          "externalId":{
-            "type":"string"
+          "externalId": {
+            "type": "string"
           }
         }
       },
@@ -2333,11 +2283,7 @@
         }
       },
       "bankaccounts_body": {
-        "required": [
-          "accountNumber",
-          "countryCode",
-          "currencySymbol"
-        ],
+        "required": ["accountNumber", "countryCode", "currencySymbol"],
         "type": "object",
         "properties": {
           "bankCode": {
@@ -2504,11 +2450,7 @@
         }
       },
       "SecondaryDocument": {
-        "required": [
-          "documentNumber",
-          "documentType",
-          "country"
-        ],
+        "required": ["documentNumber", "documentType", "country"],
         "type": "object",
         "properties": {
           "documentNumber": {
@@ -2523,12 +2465,7 @@
         }
       },
       "MainDocument": {
-        "required": [
-          "isCompany",
-          "documentNumber",
-          "documentType",
-          "country"
-        ],
+        "required": ["isCompany", "documentNumber", "documentType", "country"],
         "type": "object",
         "properties": {
           "isCompany": {
@@ -2593,12 +2530,7 @@
         }
       },
       "PersonalInfo": {
-        "required": [
-          "names",
-          "activity",
-          "phoneNumber",
-          "dob"
-        ],
+        "required": ["names", "activity", "phoneNumber", "dob"],
         "type": "object",
         "properties": {
           "names": {
@@ -2657,11 +2589,7 @@
         }
       },
       "NewAccount": {
-        "required": [
-          "document",
-          "address",
-          "personalInfo"
-        ],
+        "required": ["document", "address", "personalInfo"],
         "type": "object",
         "properties": {
           "email": {
@@ -2683,12 +2611,7 @@
         }
       },
       "ResultAccount": {
-        "required": [
-          "email",
-          "document",
-          "address",
-          "personalInfo"
-        ],
+        "required": ["email", "document", "address", "personalInfo"],
         "type": "object",
         "properties": {
           "email": {
