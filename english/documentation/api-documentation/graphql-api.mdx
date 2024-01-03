@@ -866,3 +866,38 @@ mutation deleteBankAccount($input: DeleteBankAccountInput!) {
 ```
 
 </Accordion>
+<Accordion title="Deals">
+#### Get Deals
+
+Returns deals information for authenticated user. Receives a `status` filter, accepts PAID | EXPIRED | PENDING.
+
+```graphql
+query getOrder($input: ScheduledDealsInput!) {
+  getOrder(input: $input){
+scheduledDealdId
+    orderIds
+    amount
+    pendingAmount
+    createdAt
+    expiresAt
+    destinationAddress
+    email
+    document
+    exchangeRate
+    countryCode
+    symbolIn
+    symbolOut
+    amountCrypto
+    metaData
+    quoteId
+    status
+  }
+}
+"variables":
+{
+  "input": {
+    "status": "PAID | EXPIRED | PENDING" 
+  }
+}
+```
+</Accordion>
