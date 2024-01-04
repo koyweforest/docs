@@ -1658,7 +1658,7 @@
           "Deals"
         ],
         "summary": "Get deals",
-        "description": "Returns deals information for authenticated user. To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service.",
+        "description": "Returns deals information for authenticated user. To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service. This endpoint is not available for every client, please contact us to contacto@koywe.com for more info",
         "operationId": "Getdeals",
         "parameters": [
           {
