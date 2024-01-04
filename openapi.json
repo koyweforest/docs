@@ -31,6 +31,9 @@
     },
     {
       "name": "Bank Queries"
+    },
+    {
+      "name": "Deals"
     }
   ],
   "paths": {
@@ -1648,6 +1651,78 @@
           }
         }
       }
+    },
+    "/scheduled-deals": {
+      "get": {
+        "tags": [
+          "Deals"
+        ],
+        "summary": "Get deals",
+        "description": "Returns deals information for authenticated user. To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service. This endpoint is not available for every client, please contact us to contacto@koywe.com for more info",
+        "operationId": "Getdeals",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Can be PAID | EXPIRED | PENDING",
+            "required": true,
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deals"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                },
+                "examples": {
+                  "status empty": {
+                    "value": {
+                      "message": "\"status\" cannot be empty"
+                    }
+                  },
+                  "status invalid": {
+                    "value": {
+                      "message": "\"status\" must be: PAID, EXPIRED or PENDING"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404_1"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -1882,6 +1957,77 @@
           }
         }
       },
+      "Deal": {
+        "type": "object",
+        "properties": {
+          "orderIds": {
+            "type": "array",
+            "items": {
+              "description": "order Ids",
+              "type": "string"
+            },
+            "example": ["b88f4ed0-10a2-412f-be3e-b5e47abe9b50"]
+          },
+          "quoteId": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number",
+            "example": 1000
+          },
+          "pendingAmount": {
+            "type": "number",
+            "example": 1000
+          },
+          "symbolIn": {
+            "type": "string",
+            "example": "CLP"
+          },
+          "symbolOut": {
+            "type": "string",
+            "example": "MATIC"
+          },
+          "document": {
+            "type": "number",
+            "example": 752174722
+          },
+          "amountCrypto": {
+            "type": "number",
+            "example": 32.171150520770496
+          },
+          "scheduledDealdId": {
+            "type": "string",
+            "example": "3965a24q-fdfd-4d65-96e4-c412de827213"
+          },
+          "destinationAddress": {
+            "type": "string",
+            "example": "0x40f9bf922c23c43acede50Ab4425280C0ffBD697"
+          },
+          "email": {
+            "type": "string",
+            "example": "example@gmail.com"
+          },
+          "exchangeRate": {
+            "type": "number",
+            "example": 746.01
+          },
+          "status": {
+            "type": "string",
+            "example": "PAID"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2023-11-30T15:42:20.269+00:00"
+          },
+          "expiresAt": {
+            "type": "string",
+            "example": "2023-11-30T15:42:20.269+00:00"
+          },
+          "metadata": {
+            "type": "string"
+          }
+        }
+      },
       "Order_wfees": {
         "type": "object",
         "properties": {
@@ -1994,6 +2140,17 @@
           },
           "pagination": {
             "$ref": "#/components/schemas/Pagination"
+          }
+        }
+      },
+      "Deals": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Deal"
+            }
           }
         }
       },
