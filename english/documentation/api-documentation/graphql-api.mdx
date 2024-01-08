@@ -873,7 +873,7 @@ Returns deals information for authenticated user. Receives a `status` filter, ac
 This endpoint is not available for every client, please contact us to contacto@koywe.com for more info
 
 ```graphql
-query getOrder($input: ScheduledDealsInput!) {
+query getDeals($input: ScheduledDealsInput!) {
   getOrder(input: $input){
 scheduledDealdId
     orderIds

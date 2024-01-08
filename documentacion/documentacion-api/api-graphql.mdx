@@ -847,7 +847,7 @@ Devuelve información de 'deals' para el usuario autenticado. Recibe un filtro `
 Este endpoint no está disponible para todos los clientes, por favor contactenos a contacto@koywe.com para más información.
 
 ```graphql
-query getOrder($input: ScheduledDealsInput!) {
+query getDeals($input: ScheduledDealsInput!) {
   getOrder(input: $input){
 scheduledDealdId
     orderIds
