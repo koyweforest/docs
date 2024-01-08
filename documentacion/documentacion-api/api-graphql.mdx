@@ -840,3 +840,39 @@ mutation deleteBankAccount($input: DeleteBankAccountInput!) {
 ```
 
 </Accordion>
+<Accordion title="Deals">
+#### Get Deals
+
+Devuelve información de 'deals' para el usuario autenticado. Recibe un filtro `status`, que acepta PAID | EXPIRED | PENDING.
+Este endpoint no está disponible para todos los clientes, por favor contactenos a contacto@koywe.com para más información.
+
+```graphql
+query getDeals($input: ScheduledDealsInput!) {
+  getOrder(input: $input){
+scheduledDealdId
+    orderIds
+    amount
+    pendingAmount
+    createdAt
+    expiresAt
+    destinationAddress
+    email
+    document
+    exchangeRate
+    countryCode
+    symbolIn
+    symbolOut
+    amountCrypto
+    metaData
+    quoteId
+    status
+  }
+}
+"variables":
+{
+  "input": {
+    "status": "PAID | EXPIRED | PENDING" 
+  }
+}
+```
+</Accordion>

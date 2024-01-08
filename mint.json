@@ -158,6 +158,13 @@
                 "english/documentation/api-documentation/restful-api/Quote Queries/Creates-a-purchase-or-sell-quote",
                 "english/documentation/api-documentation/restful-api/Quote Queries/Returns-quote-details"
               ]
+            },
+            {
+              "group": "Deals",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Deals/Get-deals-data"
+
+              ]
             }
           ]
         }
