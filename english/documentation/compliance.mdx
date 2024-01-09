@@ -27,9 +27,15 @@ Either way, these are the minimum data that we will require for our process:
 - Full name
 - Identification number according to the operating country.
   - Chile: RUT
-  - Mexico: CURP for individuals, RFC for corporations
-  - Colombia: Citizen ID or foreigner ID for individuals, NIT for corporations.
-  - Peru: DNI for individuals, RUC for corporations.
+    - You should send `RUT` in your API requests.
+  - Mexico: CURP for individuals, RFC for companies
+    - You should send `CURP` or `RFC` in your API requests.
+  - Colombia: Citizen ID or foreigner ID for individuals, NIT for companies.
+    - You should send `CED_CIU`, `CED_EXT` or `NIT` in your API requests.
+  - Peru: DNI for individuals, RUC for companies.
+    - You should send `DNI`, `CE` or `RUC` in your API requests.
+  - Argentina: DNI o CUIL individuals, CUIT for companies.
+    - You should send `DNI` or `CUIT`, for either CUILs or CUITs, in your API requests.
 - Date of Birth
 - Address/Home
 - Activity or Profession
