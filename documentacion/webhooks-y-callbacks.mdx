@@ -43,6 +43,11 @@ bancarias y normalmente se debe a un error o cancelación por parte del usuario.
 en transferir o Koywe no pudo detectar el pago a tiempo. Se debería crear otra orden o cotización para asegurar un precio.
 El estado de la orden será `REJECTED`.
 
+`payment_received_modified_order_amount`: Este evento de webhook se activa cuando se modifica una orden debido a un depósito bancario recibido. Este evento por ahora solo se aplica a las transferencias bancarias realizadas en Perú.
+Cuando un usuario realiza un depósito bancario, puede ocurrir que el monto depositado sea mayor o menor al monto original de la orden. En este caso, la orden se ajusta automáticamente al monto recibido.
+Para modificar la orden, se genera un nuevo presupuesto ( quote ) basado en el monto recibido y se actualiza la orden con este nuevo presupuesto. De esta manera, la orden reflejará el monto correcto después del depósito bancario.
+Este evento también envia un objeto en donde se recibirá la orden original( originalOrder ) y la orden recalculada ( orderAdjustedByBankIncome )
+
 Eventos específicos de onramp:
 
 `crypto_tx_sent`: se envía la transacción criptográfica después de que se confirma el pago en fiat. El estado de la orden será `IN_PROGRESS`.
