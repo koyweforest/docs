@@ -27,10 +27,16 @@ los requisitos básicos que pedimos y si está de acuerdo podrás comapartir la 
 De cualquier forma, estos son los datos mínimos que requeriremos para nuestro proceso:
 - Nombre completo
 - Número de identificación de acuerdo al país de operación.
-  - Chile: RUT
-  - México: CURP para personas físicas, RFC para personas morales
+  - Chile: RUT.
+    - En la API deberás enviar el texto `RUT` en el request.
+  - México: CURP para personas físicas, RFC para personas morales.
+    - En la API deberás enviar el texto `CURP` o `RFC` en el request.
   - Colombia: Cédula de ciudadanía o de extranjería para personas naturales, NIT para personas jurídicas.
+    - En la API deberás enviar el texto `CED_CIU`, `CED_EXT` o `NIT` en el request.
   - Perú: DNI para personas naturales, RUC para personas jurídicas.
+    - En la API deberás enviar el texto `DNI`, `CE` o `RUC` en el request.
+  - Argentina: DNI o CUIL para personas naturales, CUIT para personas jurídicas.
+    - En la API deberás enviar el texto `DNI` o `CUIT`, tanto para CUILs como CUITs, en el request.
 - Fecha de nacimiento
 - Dirección/Domicilio
 - Actividad o Profesión
