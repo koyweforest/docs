@@ -869,7 +869,7 @@ mutation deleteBankAccount($input: DeleteBankAccountInput!) {
 <Accordion title="Deals">
 #### Get Deals
 
-Returns deals information for authenticated user. Receives a `status` filter, accepts PAID | EXPIRED | PENDING.
+Returns deals information for authenticated user. Receives a `status` filter, accepts PAID | EXPIRED | PENDING A date from and date to filter, as well as a record limit and page for paging.
 This endpoint is not available for every client, please contact us to contacto@koywe.com for more info
 
 ```graphql
@@ -897,7 +897,11 @@ scheduledDealdId
 "variables":
 {
   "input": {
-    "status": "PAID | EXPIRED | PENDING" 
+    "status": "PAID | EXPIRED | PENDING",
+    "endDate": "2023-10-01",
+    "pageNumber": 0,
+    "pageSize": 50,
+    "startDate": "2023-05-01"
   }
 }
 ```

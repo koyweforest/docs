@@ -1671,6 +1671,50 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Max amount of documents in the response",
+            "required": true,
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Current page",
+            "required": true,
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2151,6 +2195,9 @@
             "items": {
               "$ref": "#/components/schemas/Deal"
             }
+          },
+          "totalPages": {
+            "type": "number"
           }
         }
       },
