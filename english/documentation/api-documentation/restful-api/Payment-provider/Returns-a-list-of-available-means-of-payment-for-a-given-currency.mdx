@@ -1,10 +1,19 @@
 ---
-title: Returns a List of Available Payment Methods for a Given Currency"
+title: Returns a List of Available Payment Methods for a Given Currency
 openapi: get /payment-providers
 ---
+
+<Info color="blue">
+
+**Rules for Bank Transfer Payments WIRE:**
+For payments made through bank transfer, the following rules have been established:
+- Users are allowed to have only one active order per client if they use bank transfer as their payment method. This implies that if a user creates a new order via bank transfer, any previous orders will be canceled, and only the latest order will remain active.
+- If a user makes a payment through bank transfer, and the balance is not equal to the order amount, the system will automatically adjust the order. This adjustment is necessary for both payments that are less than the order amount and orders that exceed the specified amount.
+</Info>
 
 <Info>
     The domain for all images provided directly by Koywe have the form: https://rampa.koywe.com/paymentProviders/exampleImage.svg
 
     El dominio para las imágenes que provee Koywe tiene la forma: https://rampa.koywe.com/paymentProviders/exampleImage.svg
 </Info>
+
