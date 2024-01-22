@@ -2342,6 +2342,9 @@
       "auth_validate_body": {
         "type": "object",
         "properties": {
+          "clientId": {
+            "type": "string"
+          },
           "email": {
             "type": "string"
           }
