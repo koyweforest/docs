@@ -486,7 +486,10 @@ mutation CreateAccount($input: InputCreateAccountDto!) {
 
 #### Update account
 
-Updates user data.
+Updates user data. If update email is present, the API validate that is a valid email and that already do not exist another account with that email.
+If update document number is present, the API validates that has a valid format, that do not exist on another account, that has no orders or deals executed and runs an async
+validation on metamap for missmatching personal data. In order to get the results of that validation the Metaaccount associated to that account has to have configured a new callback called
+updateDocumentNumberCallback
 
 ```graphql
 mutation UpdateAccount($input: InputUpdateAccountDto!) {
@@ -520,7 +523,8 @@ mutation UpdateAccount($input: InputUpdateAccountDto!) {
       phoneNumber
       activity
     }
-    email
+    email,
+    resultUpdateDocumentNumber
   }
 }
 "variables" :
@@ -556,7 +560,9 @@ mutation UpdateAccount($input: InputUpdateAccountDto!) {
       "activity": "",
       "gender": "",
       "phoneNumber": ""
-    }
+    },
+    "updateDocumentNumber",
+    "updateEmail"
   }
 }
 ```
