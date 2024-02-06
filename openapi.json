@@ -737,6 +737,23 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Client not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404"
+                },
+                "examples": {
+                  "Client_not_found": {
+                    "value": {
+                      "message": "Client not found for ID: 63631a561f41f8fd18f8c3e1"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -763,7 +780,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthToken"
+                  "$ref": "#/components/schemas/AuthTokenWithCode"
                 }
               }
             }
@@ -1876,6 +1893,31 @@
           }
         }
       },
+      "AuthTokenWithCode": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5pY29sYXNAa295d2UuY29tIiwibWV0YUFjY291bnQiOiI2Mzg4ZDVjNzA2YmFkOWIxNjE1MWYzNmEiLCJjbGllbnRBdXRoIjpmYWxzZSwiaWF0IjoxNjc0NTAzMzE2LCJleHAiOjE2NzQ1NDY1MTZ9.C1aL9-FSL-VF8t9wce--4M6ZB_d1IHihpDuOYCmUcIT_-M3Fvp2Zds1HSI9WKPjvCj4zLhCBIX9Z8MExhOPinLsjWJO_SC96YFzo7HjZRZgRKgRNMjPaz5w2NSRnRKYqRbaH_ZLIcdoMu1hD7y1wQhsSh1TXQ9MuWfXZvto-484geJ5FWjkmaV5QpNIP-1B5OVL_skZ46Kin4uX3CMpRjeFA3x0__RLZIOqVFy_1XCnzrew_UjamXWoUWonP_4xoPmcSTz23OEvPPxW2syFkvakDskIovOyCU2WzlLs0nMhY6UnKQzpGhN9DclXdVG89xyJOB9ri2GKAW8pIIbguioTgqhykpaaSxRoDFtIvsGD8ptDMoF4xp1aZG2Tq_23MFVrF8EbTzHTx0DB4Gt2hWY5W5nabEU9gts0PqIbuEWVhD4KryrOQv5vmbfr2GuXRx_194zAD2ixSfxyiWnhAN_FMvzmj2wwe-GWWLaKH35yqHfwNRJIkYqEX5TL5T0KFR5izWbGJoyR6EXn6MU1-SrO1by22HmLlKF7Fs-2zXSYTT31a5KnWenA2UPMWbLUbsP_xY3ESWP3YY2k7QRkqIP-Rl90RYHi5_z2"
+          },
+          "isIdentify": {
+            "type": "boolean",
+            "example": false
+          },
+          "needVerificate": {
+            "type": "boolean",
+            "example": true
+          },
+          "identity": {
+            "type": "string",
+            "example": ""
+          },
+          "firstOp": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
       "ValidationId": {
         "type": "object",
         "properties": {
@@ -2318,6 +2360,7 @@
       },
       "auth_body": {
         "type": "object",
+        "required": ["clientId", "secret"],
         "properties": {
           "clientId": {
             "type": "string"
@@ -2341,6 +2384,7 @@
       },
       "auth_validate_body": {
         "type": "object",
+        "required": ["clientId", "email"],
         "properties": {
           "clientId": {
             "type": "string"
@@ -2352,6 +2396,7 @@
       },
       "auth_code_body": {
         "type": "object",
+        "required": ["clientId", "email", "code"],
         "properties": {
           "email": {
             "type": "string"
