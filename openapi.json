@@ -2517,7 +2517,6 @@
           },
           "payoutMethodId": {
             "type": "string",
-            "optional": true,
             "description": "Currently being used only for Colombia, this optional field represents the payout provider."
           }
         }
