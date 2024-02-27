@@ -792,7 +792,7 @@ query getBankInfoByCountry($countryCode: String!) {
 
 Crea una nueva cuenta bancaria y la guarda para futuras operaciones.
 
-opcional: `bankCode`, `documentNumber`
+opcional: `bankCode`, `documentNumber`, `payoutMethodId`
 
 `documentNumber` es requerido en el caso de que el usuario no haya hecho el KYC.
 
@@ -820,6 +820,14 @@ mutation createBankAccount($input: BankAccountInput!) {
   }
 }
 ```
+<Info color="blue">
+
+**Para crear cuentas bancarias en Colombia:**
+
+Es necesario incluir el payoutMethodId. Este ID representa al proveedor de pagos (https://docs.koywe.com/english/documentation/api-documentation/restful-api/Payout-provider/Returns-a-list-of-available-payout-providers-for-a-given-currency).
+
+**Indicación adicional:** Puedes obtener el proveedor de pagos específico para Colombia consultando por la moneda que se usará, en este caso COP.
+</Info>
 
 #### Delete Bank Account
 

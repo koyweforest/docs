@@ -2514,6 +2514,10 @@
           },
           "email": {
             "type": "string"
+          },
+          "payoutMethodId": {
+            "type": "string",
+            "description": "Currently being used only for Colombia, this optional field represents the payout provider."
           }
         }
       },
