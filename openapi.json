@@ -953,7 +953,7 @@
                       "symbolIn": "CLP",
                       "symbolOut": "ETH",
                       "paymentMethodId": "63473a5f743da0f55fa04c8f",
-                      "providedAction": "https://urlexample/tracing/83899239-7c4c-4b60-bb6a-bcf66f5b4e65?success=true",
+                      "providedAction": "url.example.com",
                       "email": "kenneth@koywe.com",
                       "documentNumber": "158289164"
                     }
@@ -966,7 +966,7 @@
                       "amountOut": 1313696,
                       "symbolIn": "ETH",
                       "symbolOut": "CLP",
-                      "providedAction": "https://urlexample/tracing/83899239-7c4c-4b60-bb6a-bcf66f5b4e65?success=true",
+                      "providedAction": "url.example.com",
                       "email": "kenneth@koywe.com",
                       "documentNumber": "158289164"
                     }
