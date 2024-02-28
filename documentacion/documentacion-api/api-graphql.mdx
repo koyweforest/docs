@@ -474,10 +474,9 @@ mutation CreateAccount($input: InputCreateAccountDto!) {
 #### Update account
 
 Actualiza datos del usuario. Si updateEmail está presente, la API valida que sea un email válido y que no exista ya otra cuenta con ese email.
-Si updateDocumentNumber está presente, la API valida que tenga un formato válido, que no exista en otra cuenta, que no tenga orders o deals ejecutados y ejecuta una validación asíncrona en Metamap
+Si updateDocumentNumber está presente, la API valida que tenga un formato válido, que no exista en otra cuenta, que no tenga ordenes ejecutadas y ejecuta una validación asíncrona en Metamap
 para corroborar que los datos personales sean correctos.
- Para obtener los resultados de esa validación la Metaacount asociada a esa cuenta tiene que tener configurado un nuevo callback llamado
-updateDocumentNumberCallback
+ Los resultados de la validación asíncrona serán enviados a el callback configurado.
 
 ```graphql
 mutation UpdateAccount($input: InputUpdateAccountDto!) {
