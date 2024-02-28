@@ -562,13 +562,15 @@ Necesitas introducir `amountIn` o `amountOut`, no ambos.
 
 #### On ramp
 
-Requiere: `destinationAddress`, `quoteId o symbolIn, symbolOut, amountIn, amountOut, y paymentMethodId`.
+Requiere: `destinationAddress`, `quoteId `.
 
 #### Off ramp
 
-Requiere: `destinationAddress`, `quoteId o symbolIn, symbolOut, amountIn, amountOut`.
+Requiere: `destinationAddress`, `quoteId`.
 
 Opcional: `email` (obligatorio si no se está autenticado con email), `documentNumber` (para facilitar la conciliación bancaria).
+
+Descripción de datos: ver [Order Rest](https://docs.koywe.com/english/documentation/api-documentation/restful-api/Orders/Creates-a-new-order)
 
 ```graphql
 mutation createOrder($input: OrderInput!) {
@@ -592,10 +594,7 @@ mutation createOrder($input: OrderInput!) {
 "variables":
 {
   "input": {
-    "callbackUrl": "example@domain.com",
-    "quoteId": null, #nullable. if provided and quote is still valid,
-                    #symbolIn, symbolOut, amountIn, amountOut,
-                    #and paymentMethodId are nullable
+    "quoteId": "63e154dbc47d9176668a9af6",
     "amountIn": 1.100.000,
     "amountOut": 1,
     "email": "example@domain.com", #for API calls
@@ -605,7 +604,8 @@ mutation createOrder($input: OrderInput!) {
     "symbolIn": "CLP",
     "symbolOut": "ETH",
     "metadata": null,
-    "externalId": "12A2324A"
+    "externalId": "12A2324A",
+    "callbackUrl": "https://urlexample/mytracing/",
   }
 }
 ```
