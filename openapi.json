@@ -2379,44 +2379,33 @@
         "properties": {
           "quoteId": {
             "type": "string",
-            "example": "63dd19bcf23fcbec3bfee51b"
+            "example": "63dd19bcf23fcbec3bfee51b",
+            "description": "[Related Documentation](https://docs.koywe.com/english/documentation/api-documentation/restful-api/Quote%20Queries/Creates-a-purchase-or-sell-quote)"
           },
-          "amountIn": {
-            "type": "number",
-            "example": 2000
-          },
-          "amountOut": {
-            "type": "number",
-            "example": 1
-          },
+
           "email": {
             "type": "string",
             "example": "example@domain.com"
-          },
-          "paymentMethodId": {
-            "type": "string",
-            "example": "62a0c6a4c7ab3a52fd683080"
           },
           "documentNumber": {
             "type": "string"
           },
           "destinationAddress": {
             "type": "string",
-            "example": "0x40f9bf922c23c43acdad71Ab4425280C0ffBD697"
-          },
-          "symbolIn": {
-            "type": "string",
-            "example": "CLP"
-          },
-          "symbolOut": {
-            "type": "string",
-            "example": "ETH"
+            "example": "0x40f9bf922c23c43acdad71Ab4425280C0ffBD697",
+            "description": "This is a required attribute when creating an order. Its content varies depending on the type of order: for an 'off-ramp' order, `destinationAddress` should contain the identifier of the bank account (BankAccount); for an 'on-ramp' order, it should be the destination address for the cryptocurrencies. This attribute is crucial in ensuring that funds are sent to the correct place."
           },
           "metadata": {
-            "type": "string"
+            "type": "string",
+            "description": "This is an optional attribute that you can use to store any additional information you need to associate with the order. This information will be stored with the order details and can come in handy for keeping track of customer-specific data, order features, or other relevant information not covered in other attributes of the order."
           },
           "externalId": {
-            "type": "string"
+            "type": "string",
+            "description": "This attribute is employed to provide idempotency in the order creation requests. It is a unique identifier per order, supplied from the client side, that allows for a unique identification of an order and prevents the duplicate processing of the same order. By incorporating an `externalId`, clients have the ability to safely retry requests without the fear of inadvertently carrying out repeated transactions."
+          },
+          "callbackUrl": {
+            "type": "string",
+            "description": "This is an optional attribute that can be provided when creating an order. If supplied, this value will be returned in the 'providedAction' attribute of the response upon the creation of the order. The primary purpose is to allow the client to redirect users to a specific URL following the order creation. If no `callbackUrl` is provided, the system will generate and return a default URL, reflected in the 'providedAction' attribute, that points to a specific interface of Koywe."
           }
         }
       },
@@ -2445,7 +2434,8 @@
           },
           "paymentMethodId": {
             "type": "string",
-            "example": "632d7fe6237ded3a748112cf"
+            "example": "632d7fe6237ded3a748112cf",
+            "description": "This is a crucial attribute when creating 'on-ramp' orders. It acts as an identifier for the payment method that will be used to receive funds. Its purpose is to ensure alignment between the system and the client regarding the transaction mechanism, paving the way for efficient transaction processing and tracking. For 'off-ramp' orders, providing this attribute is not required."
           },
           "executable": {
             "type": "boolean",

@@ -576,14 +576,15 @@ For authenticated calls without an email, this parameter must be included to ass
 
 #### On ramp
 
-Requires: `destinationAddress`, `quoteId o symbolIn, symbolOut, amountIn, amountOut, y paymentMethodId`.
+Requires: `destinationAddress`, `quoteId`.
 
 #### Off ramp
 
-Requires: `destinationAddress`, `quoteId o symbolIn, symbolOut, amountIn, amountOut`.
+Requires: `destinationAddress`, `quoteId`.
 
 Optional: `email` (required if user is not suthenticated with email), documentNumber (to facilitate bank reconciliation)
 
+Data Description: see [Order Rest](https://docs.koywe.com/english/documentation/api-documentation/restful-api/Orders/Creates-a-new-order)
 ```graphql
 mutation createOrder($input: OrderInput!) {
   createOrder(input: $input) {
@@ -606,10 +607,7 @@ mutation createOrder($input: OrderInput!) {
 "variables":
 {
   "input": {
-    "callbackUrl": "example@domain.com",
-    "quoteId": null, #nullable. if provided and quote is still valid,
-                    #symbolIn, symbolOut, amountIn, amountOut,
-                    #and paymentMethodId are nullable
+    "quoteId": "63e154dbc47d9176668a9af6",
     "amountIn": 1.100.000,
     "amountOut": 1,
     "email": "example@domain.com", #for API calls
@@ -619,7 +617,8 @@ mutation createOrder($input: OrderInput!) {
     "symbolIn": "CLP",
     "symbolOut": "ETH",
     "metadata": null,
-    "externalId":"12A2324A"
+    "externalId":"12A2324A",
+    "callbackUrl": "https://urlexample/mytracing/",
   }
 }
 ```
