@@ -1,4 +1,13 @@
 ---
-title: "Returns Bank Account Info"
+title: "Returns Bank Account"
 openapi: get /bank-accounts
 ---
+
+<Info color="blue">
+
+**For getting bank accounts in Colombia:**
+
+It's necessary to include the payoutMethodId. This ID represents the payout provider (https://docs.koywe.com/english/documentation/api-documentation/restful-api/Payout-provider/Returns-a-list-of-available-payout-providers-for-a-given-currency).
+
+**Additional indication:** You can obtain the payout provider specific to Colombia by querying for the currency to be used, in this case COP.
+</Info>

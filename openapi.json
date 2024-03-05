@@ -1328,7 +1328,7 @@
     "/bank-accounts": {
       "get": {
         "tags": ["Bank Queries"],
-        "summary": "Returns bank account info.",
+        "summary": "Returns bank account",
         "operationId": "GetBankAccount",
         "parameters": [
           {
@@ -1346,6 +1346,17 @@
             "name": "currencySymbol",
             "in": "query",
             "description": "Symbol of the currency of the chosen country.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "user email",
             "required": true,
             "style": "form",
             "explode": true,
