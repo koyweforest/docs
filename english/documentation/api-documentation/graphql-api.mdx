@@ -769,50 +769,6 @@ query orders($input: PaginationInput!) {
 
 <Accordion title="Banking services">
 
-#### Get Bank Account
-
-Returns a list of bank accounts the users has associated, filtered using `countryCode` and `currencySymbol`.
-
-```graphql
-query getBankAccount($filters: FiltersBankAccount!) {
-  getBankAccount(filters: $filters) {
-    _id
-    name
-    bankCode
-    countryCode
-    currencySymbol
-    accountNumber
-    account
-  }
-}
-"variables":
-{
-  "filters": {
-    "countryCode": "CHL",
-    "currencySymbol": "CLP"
-  }
-}
-```
-
-#### Get Bank Info by Country
-
-Returns a list of available banks for a given `countryCode`.
-
-```graphql
-query getBankInfoByCountry($countryCode: String!) {
-  getBankInfoByCountry(countryCode: $countryCode) {
-    bankCode
-    name
-    institutionName
-    transferCode
-  }
-}
-"variables":
-{
-  "countryCode": "CHL"
-}
-```
-
 #### Create Bank Account
 
 Creates a new bank account and saves it for future operations.
@@ -854,6 +810,33 @@ It's necessary to include the payoutMethodId. This ID represents the payout prov
 **Additional indication:** You can obtain the payout provider specific to Colombia by querying for the currency to be used, in this case COP.
 </Info>
 
+#### Get Bank Account
+
+Returns a list of bank accounts the users has associated, filtered using `countryCode`, `currencySymbol` and `email`.
+
+```graphql
+query getBankAccount($filters: FiltersBankAccount!) {
+  getBankAccount(filters: $filters) {
+    _id
+    name
+    bankCode
+    countryCode
+    currencySymbol
+    accountNumber
+    account
+  }
+}
+"variables":
+{
+  "filters": {
+    "countryCode": "CHL",
+    "currencySymbol": "CLP",
+    "email": "test@koywe.com"
+  }
+}
+```
+
+
 #### Delete Bank Account
 
 Deletes a Bank Account from the lists of the client's bank accounts.
@@ -879,6 +862,52 @@ mutation deleteBankAccount($input: DeleteBankAccountInput!) {
   }
 }
 ```
+
+#### Get Bank Info by Country
+
+Returns a list of available banks for a given `countryCode`.
+
+```graphql
+query getBankInfoByCountry($countryCode: String!) {
+  getBankInfoByCountry(countryCode: $countryCode) {
+    bankCode
+    name
+    institutionName
+    transferCode
+  }
+}
+"variables":
+{
+  "countryCode": "CHL"
+}
+```
+
+<Info color="blue">
+
+**For getting supported banks in Colombia:**
+
+It's necessary to include the payoutMethodId. This ID represents the payout provider (https://docs.koywe.com/english/documentation/api-documentation/restful-api/Payout-provider/Returns-a-list-of-available-payout-providers-for-a-given-currency).
+
+**Additional indication:** You can obtain the payout provider specific to Colombia by querying for the currency to be used, in this case COP.
+
+Example:
+
+```graphql
+query GetBankInfoByCountry($countryCode: String!, $payoutMethodId: String) {
+  getBankInfoByCountry(countryCode: $countryCode, payoutMethodId: $payoutMethodId) {
+             bankCode
+             name
+             institutionName
+             transferCode
+           }
+         }
+         {
+           "countryCode": "COL",
+           "payoutMethodId" : "646f399e43c4d97514ef40db"
+         }
+         ```
+</Info>
+
 
 </Accordion>
 <Accordion title="Deals">
