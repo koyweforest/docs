@@ -486,9 +486,10 @@ mutation CreateAccount($input: InputCreateAccountDto!) {
 
 #### Update account
 
-Updates user data. If update email is present, the API validate that is a valid email and that already do not exist another account with that email.
-If update document number is present, the API validates that has a valid format, that do not exist on another account, that has no orders executed and runs an async
-validation on metamap for missmatching personal data. The results of the asynchronous validation will be sent to the configured callback.
+Updates user data. If an updated email is present, the API validates whether it is a valid email and ensures that another account with that email does not already exist.
+If an updated document number is present, the API validates that it has a valid format, does not exist on another account, has no executed orders,
+and initiates an asynchronous validation on Metamap for mismatching personal data.
+The results of the asynchronous validation will be sent to the configured callback
 
 ```graphql
 mutation UpdateAccount($input: InputUpdateAccountDto!) {
