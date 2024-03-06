@@ -183,7 +183,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "$ref": "#/components/schemas/ResultAccount"
+                  "$ref": "#/components/schemas/ResultUpdateAccount"
                 }
               }
             }
@@ -2844,6 +2844,32 @@
           }
         }
       },
+      "ResultUpdateAccount": {
+        "required": ["email", "document", "address", "personalInfo"],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "example@mail.com"
+          },
+          "document": {
+            "type": "object",
+            "$ref": "#/components/schemas/MainDocument"
+          },
+          "address": {
+            "type": "object",
+            "$ref": "#/components/schemas/Address"
+          },
+          "personalInfo": {
+            "type": "object",
+            "$ref": "#/components/schemas/PersonalInfo"
+          },
+          "resultUpdateDocumentNumber": {
+            "type": "string",
+            "example": "Document number is pending validation"
+          }
+        }
+      },
       "UpdateAccount": {
         "type": "object",
         "properties": {
@@ -2862,6 +2888,14 @@
           "personalInfo": {
             "type": "object",
             "$ref": "#/components/schemas/UpdatePersonalInfo"
+          },
+          "updateEmail": {
+            "type": "string",
+            "example": "example@mail.com"
+          },
+          "updateDocumentNumber": {
+            "type": "string",
+            "example": "11111111"
           }
         }
       }

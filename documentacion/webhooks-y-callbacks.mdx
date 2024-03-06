@@ -141,3 +141,21 @@ const validUser(email) {
     reurn data
 }
 ```
+
+### Webhooks Actualización número de documento
+
+Si realizaste un cambio de número de documento, nosotros realizaremos una validación asíncrona de los datos de la persona. Los resultados de esa valdación serán enviados a través de webhook
+
+`UPDATE_DOCUMENT_NUMBER`: Luego de una validación de datos, se recibirá un evento con este nombre en donde habrá un mensaje de confirmación, o un mensaje de error ya que hubo discrepancia en los datos del usuario.
+
+
+Ejemplo de una request:
+
+```json
+{
+  "eventName": "UPDATE_DOCUMENT_NUMBER",
+  "message": "There is incompatible personal info between the account and metamap",
+  "timeStamp": "2022-10-26T22:36:41.658Z",
+  "signature": "ed40d34ab7a587cf1a16338a16cc7765ae4420936677482bb33f5f738e4f7189" // hash
+}
+```
