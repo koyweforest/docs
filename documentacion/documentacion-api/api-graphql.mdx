@@ -892,43 +892,58 @@ query GetBankInfoByCountry($countryCode: String!, $payoutMethodId: String) {
 
 
 </Accordion>
-<Accordion title="Deals">
-#### Get Deals
 
-Devuelve información de 'deals' para el usuario autenticado. Recibe un filtro `status`, que acepta PAID | EXPIRED | PENDING ; un filtro de fecha desde y fecha hasta, además del limite de registros y pagina para paginado.
-Este endpoint no está disponible para todos los clientes, por favor contactenos a contacto@koywe.com para más información.
+<Accordion title="Servicios de cliente">
+
+#### Actualizar webhook
+
+Actualiza los webhooks del cliente
 
 ```graphql
-query getDeals($input: ScheduledDealsInput!) {
-  getOrder(input: $input){
-scheduledDealdId
-    orderIds
-    amount
-    pendingAmount
-    createdAt
-    expiresAt
-    destinationAddress
-    email
-    document
-    exchangeRate
-    countryCode
-    symbolIn
-    symbolOut
-    amountCrypto
-    metaData
-    quoteId
-    status
+mutation updateWebhook($input: InputUpdateWebhookDto!) {
+  updateWebhook(input: $input) {
+    callback {
+      _id
+      url
+      secret
+    },
   }
 }
 "variables":
 {
   "input": {
-    "status": "PAID | EXPIRED | PENDING",
-    "endDate": "2023-10-01",
-    "pageNumber": 0,
-    "pageSize": 50,
-    "startDate": "2023-05-01"
+    "url": "https://www.test.com",
+    "secret": "test1234"
   }
 }
 ```
+
+#### Actualizar webhook de validación
+
+Actualiza los webhooks de validación del cliente
+
+```graphql
+mutation updateValidationWebhook($input: InputUpdateValidationWebhookDto!) {
+  updateValidationWebhook(input: $input) {
+    validationCallback {
+      _id
+      url
+      secret,
+      field,
+      secretType
+    },
+  }
+}
+"variables":
+{
+  "input": {
+    "url": "https://www.test.com",
+    "secret": "test1234"
+    "field": "email",
+    "authMethod: "Hash",
+  }
+}
+```
+
 </Accordion>
+

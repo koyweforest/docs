@@ -1778,6 +1778,98 @@
           }
         ]
       }
+    },
+    "/updateWebhook": {
+      "post": {
+        "tags": ["Clients"],
+        "summary": "Create or update a webhook",
+        "description": "Create or update a webhook",
+        "operationId": "updateWebhook",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Callback"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ResultCallback"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
+      }
+    },
+    "/updateValidationWebhook": {
+      "post": {
+        "tags": ["Clients"],
+        "summary": "Create or update the validation webhook",
+        "description": "Create or update the validation webhook",
+        "operationId": "updateWebhook",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidationCallback"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ResultValidationCallback"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -2896,6 +2988,106 @@
           "updateDocumentNumber": {
             "type": "string",
             "example": "11111111"
+          }
+        }
+      },
+      "Callback": {
+        "required": ["url"],
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "example": "https://webhook.site/d00d833c-ea45-4df2-91d2"
+          },
+          "secret": {
+            "type": "string",
+            "example": "test1234"
+          }
+        }
+      },
+      "ResultCallback": {
+        "required": ["callback"],
+        "type": "object",
+        "properties": {
+          "callback": {
+            "type": "object",
+            "$ref": "#/components/schemas/callbackResponse"
+          }
+        }
+      },
+      "callbackResponse": {
+        "required": ["_id", "url"],
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "65e8c66d64ab5eeea1c2eda0"
+          },
+          "url": {
+            "type": "string",
+            "example": "https://webhook.site/d00d833c-ea45-4df2-91d2-b583178493bf"
+          },
+          "secret": {
+            "type": "string",
+            "example": "test1234"
+          }
+        }
+      },
+      "ValidationCallback": {
+        "required": ["url", "secret", "field", "authMethod"],
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "example": "https://webhook.site/d00d833c-ea45-4df2-91d2"
+          },
+          "secret": {
+            "type": "string",
+            "example": "test1234"
+          },
+          "field": {
+            "type": "string",
+            "example": "email"
+          },
+          "authMethod": {
+            "type": "string",
+            "example": "Hash"
+          }
+        }
+      },
+      "ResultValidationCallback": {
+        "required": ["callback"],
+        "type": "object",
+        "properties": {
+          "validationCallback": {
+            "type": "object",
+            "$ref": "#/components/schemas/validationCallbackResponse"
+          }
+        }
+      },
+      "validationCallbackResponse": {
+        "required": ["_id", "url"],
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "65e8c66d64ab5eeea1c2eda0"
+          },
+          "url": {
+            "type": "string",
+            "example": "https://webhook.site/d00d833c-ea45-4df2-91d2-b583178493bf"
+          },
+          "secret": {
+            "type": "string",
+            "example": "test1234"
+          },
+          "field": {
+            "type": "string",
+            "example": "email"
+          },
+          "authMethod": {
+            "type": "string",
+            "example": "Hash"
           }
         }
       }
