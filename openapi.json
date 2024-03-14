@@ -37,6 +37,58 @@
     }
   ],
   "paths": {
+    "/accounts/movements-balance/{accountID}": {
+      "get": {
+        "tags": ["Accounts"],
+        "summary": "Get movements balance data",
+        "description": "Returns the registered movements and balance of the user.",
+        "operationId": "account",
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "description": "accountID associated with the user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Optional email parameter to filter the data",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "email"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ResultAccountMovementsBalance"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/accounts/{email}": {
       "get": {
         "tags": ["Accounts"],
@@ -1665,9 +1717,7 @@
     },
     "/scheduled-deals": {
       "get": {
-        "tags": [
-          "Deals"
-        ],
+        "tags": ["Deals"],
         "summary": "Get deals",
         "description": "Returns deals information for authenticated user. To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service. This endpoint is not available for every client, please contact us to contacto@koywe.com for more info",
         "operationId": "Getdeals",
@@ -2800,6 +2850,139 @@
           }
         }
       },
+      "MovementDetails": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "format": "uuid",
+            "example": "d219960c-6244-41ea-9db1-0655fa724c6f"
+          },
+          "transactionStatus": {
+            "type": "string",
+            "example": "DELIVERED"
+          },
+          "amount": {
+            "type": "number",
+            "format": "float",
+            "example": 82185
+          },
+          "currencySymbol": {
+            "type": "string",
+            "example": "CLP"
+          },
+          "cryptoSymbol": {
+            "type": "string",
+            "example": "USDC Polygon"
+          },
+          "exchangeRate": {
+            "type": "number",
+            "format": "float",
+            "example": 803
+          },
+          "localCurrencyConversion": {
+            "type": "number",
+            "format": "float",
+            "example": 101.347063
+          },
+          "dates": {
+            "type": "object",
+            "properties": {
+              "orderedDate": {
+                "type": "string",
+                "format": "date-time",
+                "example": "2023-07-06T13:52:35.134Z"
+              },
+              "payedDate": {
+                "type": "string",
+                "format": "date-time",
+                "example": "2023-07-06T14:00:11.943Z"
+              },
+              "transactionDate": {
+                "type": "string",
+                "format": "date-time",
+                "example": "2023-07-06T14:00:20.754Z"
+              },
+              "deliveredDate": {
+                "type": "string",
+                "format": "date-time",
+                "example": "2023-07-06T14:11:29.719Z"
+              },
+              "_id": {
+                "type": "string",
+                "format": "uuid",
+                "example": "64a6c723b67c262341bc705d"
+              }
+            }
+          },
+          "paymentMethod": {
+            "type": "string",
+            "example": "KHIPU"
+          },
+          "invoiceLink": {
+            "type": "string",
+            "format": "uri",
+            "example": "https://invoice.koywe.com/api/invoices/pdf/d219960c-6244-41ea-9db1-0655fa724c6f"
+          },
+          "txhash": {
+            "type": "string",
+            "example": "0xbe97c2ef9838f429701ab58134ea22215a9a612b723b3f83c54635c224083500"
+          }
+        }
+      },
+      "BalanceDetails": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "64a6c677ca3d967f1760eb9a"
+          },
+          "accountId": {
+            "type": "string",
+            "format": "uuid",
+            "example": "64a6c358683529b844a3f03d"
+          },
+          "currencySymbol": {
+            "type": "string",
+            "example": "CLP"
+          },
+          "countryCode": {
+            "type": "string",
+            "example": "CHL"
+          },
+          "totalBalance": {
+            "type": "number",
+            "format": "float",
+            "example": 0
+          },
+          "description": {
+            "type": "string",
+            "example": "balance: alvaroescalonacastillo@gmail.com"
+          },
+          "retries": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true,
+            "example": null
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-07-06T13:49:43.067Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-07-06T13:49:43.067Z"
+          },
+          "__v": {
+            "type": "integer",
+            "format": "int32",
+            "example": 0
+          }
+        }
+      },
       "NewAccount": {
         "required": ["document", "address", "personalInfo"],
         "type": "object",
@@ -2819,6 +3002,24 @@
           "personalInfo": {
             "type": "object",
             "$ref": "#/components/schemas/PersonalInfo"
+          }
+        }
+      },
+      "ResultAccountMovementsBalance": {
+        "required": ["allMovements", "balances"],
+        "type": "object",
+        "properties": {
+          "allMovements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MovementDetails"
+            }
+          },
+          "balances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BalanceDetails"
+            }
           }
         }
       },
