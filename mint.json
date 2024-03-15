@@ -165,6 +165,14 @@
               "pages": [
                 "english/documentation/api-documentation/restful-api/Deals/Get-deals-data"
               ]
+            },
+            {
+              "group": "Clients",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Clients/update-webhook",
+                "english/documentation/api-documentation/restful-api/Clients/update-validation-webhook"
+
+              ]
             }
           ]
         }
