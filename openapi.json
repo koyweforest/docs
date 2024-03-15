@@ -1829,7 +1829,7 @@
         ]
       }
     },
-    "/updateWebhook": {
+    "/clients/updateWebhook": {
       "post": {
         "tags": ["Clients"],
         "summary": "Create or update a webhook",
@@ -1875,7 +1875,7 @@
         ]
       }
     },
-    "/updateValidationWebhook": {
+    "/clients/updateValidationWebhook": {
       "post": {
         "tags": ["Clients"],
         "summary": "Create or update the validation webhook",
