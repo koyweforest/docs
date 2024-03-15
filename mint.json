@@ -95,6 +95,7 @@
               "group": "Accounts",
               "pages": [
                 "english/documentation/api-documentation/restful-api/Accounts/Returns-account-data",
+                "english/documentation/api-documentation/restful-api/Accounts/Returns-account-data-movements-balance",
                 "english/documentation/api-documentation/restful-api/Accounts/Returns-if-can-operate",
                 "english/documentation/api-documentation/restful-api/Accounts/Creates-a-new-account",
                 "english/documentation/api-documentation/restful-api/Accounts/Updates-an-account"
@@ -163,7 +164,6 @@
               "group": "Deals",
               "pages": [
                 "english/documentation/api-documentation/restful-api/Deals/Get-deals-data"
-
               ]
             },
             {
@@ -225,6 +225,7 @@
               "group": "Accounts",
               "pages": [
                 "english/documentation/api-documentation/restful-api/Accounts/Returns-if-can-operate",
+                "english/documentation/api-documentation/restful-api/Accounts/Returns-account-data-movements-balance",
                 "english/documentation/api-documentation/restful-api/Accounts/Creates-a-new-account",
                 "english/documentation/api-documentation/restful-api/Accounts/Updates-an-account"
               ]
