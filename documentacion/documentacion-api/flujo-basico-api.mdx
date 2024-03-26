@@ -106,7 +106,10 @@ ARG, CHL, COL, MEX, PER
 
 ### `/Auth`
 
-Primero, debes autenticarte. Sugerimos agregar el email del usuario, para usar el JWT en los siguientes llamados.
+Primero, debes autenticarte. Para ello, tienes dos maneras:
+ - De manera directa, si ya eres cliente, puedes hacerlo con un secret y el clientId mediante el uso del servicio `POST /auth`. Sugerimos agregar el email del usuario, para usar el JWT en los siguientes llamados.
+ - En dos pasos, a traves del correo electrónico consumiendo el endpoint `POST /auth/validate`. Te enviaremos un código para validarlo y luego confirmandolo con `POST /auth/code`.
+
 
 ### `GetCurrencyTokens (on ramp) GetTokenCurrency (off ramp)`
 
