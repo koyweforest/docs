@@ -790,7 +790,7 @@ Es necesario incluir el payoutMethodId. Este ID representa al proveedor de pagos
 
 #### Get Bank Account
 
-Retorna una lista de cuentas bancarias asociadas al usuario, filtrados de acuerdo a `countryCode` y `currencySymbol`.
+Retorna una lista de cuentas bancarias asociadas al usuario, filtrados de acuerdo a `countryCode`, `currencySymbol` y `email`.
 
 ```graphql
 query getBankAccount($filters: FiltersBankAccount!) {
@@ -812,6 +812,16 @@ query getBankAccount($filters: FiltersBankAccount!) {
   }
 }
 ```
+
+"<Info color="blue">
+
+**Para obtener cuentas bancarias en Colombia:**
+
+Es necesario incluir el payoutMethodId. Este ID representa al proveedor de pagos (https://docs.koywe.com/english/documentation/api-documentation/restful-api/Payout-provider/Returns-a-list-of-available-payout-providers-for-a-given-currency).
+
+**Indicación adicional:** Puedes obtener el proveedor de pagos específico para Colombia consultando por la moneda a utilizar, en este caso COP.
+</Info>
+"
 
 #### Delete Bank Account
 
