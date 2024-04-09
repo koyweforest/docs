@@ -2329,7 +2329,7 @@
       "Orders": {
         "type": "object",
         "properties": {
-          "orders": {
+          "data": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Order"
