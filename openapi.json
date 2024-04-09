@@ -3189,6 +3189,10 @@
           "updateDocumentNumber": {
             "type": "string",
             "example": "11111111"
+          },
+          "updateDocumentType": {
+            "type": "string",
+            "example": "RUT"
           }
         }
       },
