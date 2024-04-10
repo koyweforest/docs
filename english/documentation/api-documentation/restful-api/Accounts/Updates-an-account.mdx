@@ -2,3 +2,16 @@
 title: "Update an Account"
 openapi: put /accounts
 ---
+
+<Info color="blue">
+
+**Updating Email or Document:**
+
+If an updated email is present, the API validates whether it is a valid email and ensures that another account with that email does not already exist.
+
+If an updated document number or type is present, the API validates that it has a valid format, does not exist on another account, has no executed orders,
+and initiates an asynchronous validation for mismatching personal data.
+
+The results of the asynchronous validation will be sent to the configured callback. You can find more information in [the webhooks section](/english/documentation/webhooks-and-callbacks#webhooks-document-number-update).
+
+</Info>

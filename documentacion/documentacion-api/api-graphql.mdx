@@ -474,9 +474,11 @@ mutation CreateAccount($input: InputCreateAccountDto!) {
 #### Update account
 
 Actualiza datos del usuario. Si updateEmail está presente, la API valida que sea un email válido y que no exista ya otra cuenta con ese email.
-Si updateDocumentNumber o updateDocumentType está presente, la API valida que tenga un formato válido, que no exista en otra cuenta, que no tenga ordenes ejecutadas y ejecuta una validación asíncrona en Metamap
+
+Si updateDocumentNumber o updateDocumentType está presente, la API valida que tenga un formato válido, que no exista en otra cuenta, que no tenga ordenes ejecutadas y ejecuta una validación asíncrona
 para corroborar que los datos personales sean correctos.
- Los resultados de la validación asíncrona serán enviados a el callback configurado.
+
+Los resultados de la validación asíncrona serán enviados a el callback configurado. Puedes ver más información en la [sección de webhooks](/documentacion/webhooks-y-callbacks#webhooks-actualizacion-numero-de-documento).
 
 ```graphql
 mutation UpdateAccount($input: InputUpdateAccountDto!) {
@@ -820,7 +822,7 @@ query getBankAccount($filters: FiltersBankAccount!) {
 }
 ```
 
-"<Info color="blue">
+<Info color="blue">
 
 **Para obtener cuentas bancarias en Colombia:**
 
@@ -828,7 +830,6 @@ Es necesario incluir el payoutMethodId. Este ID representa al proveedor de pagos
 
 **Indicación adicional:** Puedes obtener el proveedor de pagos específico para Colombia consultando por la moneda a utilizar, en este caso COP.
 </Info>
-"
 
 #### Delete Bank Account
 
