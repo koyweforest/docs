@@ -701,9 +701,13 @@ query getOrderByExternalId($input: GetExternalIdOrderInput!) {
 
 Retorna una lista de todas las órdenes asociadas al `clientId` o al `email` especificado al autenticarse.
 
-`pagesize`: Límite de 50, representa la cantidad de respuestas por página.
+`pagesize`: Límite de 300, representa la cantidad de respuestas por página.
 
 `pageNumber`: Número de páginas a mostrar.
+
+`initDate`: Fecha de inicio desde la cual se obtienen los registros. Formato: YYYY-MM-DD. Se incluirán los registros desde esta fecha en adelante, a menos que se especifique una endDate.
+
+`endDate`: Fecha de fin hasta la cual se obtienen los registros. Formato: YYYY-MM-DD. Se incluirán solo los registros hasta esta fecha. Si se omite, se retornarán los registros hasta la fecha actual.
 
 ```graphql
 query orders($input: PaginationInput!) {
@@ -743,8 +747,10 @@ query orders($input: PaginationInput!) {
 "variables":
 {
   "input": {
-    "pageNumber": null,
-    "pageSize": null
+    "pageNumber": 100,
+    "pageSize": 1,
+    "initDate": "2024-01-01", # opcional
+    "endDate": "2024-03-01", # opcional
   }
 }
 ```

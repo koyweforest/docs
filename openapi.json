@@ -920,6 +920,28 @@
             "schema": {
               "type": "number"
             }
+          },
+          {
+            "name": "initDate",
+            "in": "query",
+            "description": "The initial date from which records are retrieved. Format: YYYY-MM-DD. Records from this date onwards will be included unless an 'endDate' is specified.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "The end date until which records are retrieved. Format: YYYY-MM-DD. Only records up to this date will be included. If omitted, records up to the current date are returned.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
