@@ -12,104 +12,123 @@ Este servicio es sólo para clientes que han delegado KYC. <br />
 La cuenta a crear o actualizar se basará en el correo electrónico proporcionado en la solicitud. Esto se puede hacer desde el cuerpo o mediante el token. Si se envían desde ambos lados, deben ser iguales. <br />
 
 ## Glosario
- - <b>email: </b> Dirección de correo electrónico que será asociada a la cuenta del usuario.
- - <b>document:</b>
-    - <b>documentNumber:</b> Número de documento perteneciente a la persona que se va a registrar.
-    - <b>documentType:</b> Tipo de documento relacionado al número de documento de la persona que se va a registrar.
-    - <b>country:</b> País de emisión del documento.
-    - <b>isCompany:</b> Tipo de persona a registrar. En caso de estar en true la cuenta a registrar va a ser de una persona legal o jurídica. Caso contrario, una persona natural.
-    - <b>others:</b> Array de documentos secundarios.
-        - <b>documentNumber:</b> Número de documento perteneciente a la persona que se va a registrar.
-        - <b>documentType:</b> Tipo de documento relacionado al número de documento de la persona que se va a registrar.
-        - <b>country:</b> País de emisión del documento.
 
- - <b>address: </b>
-    - <b>addressCountry:</b> Lugar de residencia de la persona. No puede ser distinta de la del documento.
-    - <b>addressZipCode:</b> Código postal de la residencia.
-    - <b>addressState:</b> Nombre de la primera subdivisión del país de residencia. Podría ser estado, provincia, región, etc.
-    - <b>addressCity:</b> Nombre de la ciudad de la residencia.
-    - <b>addressNeighborhood:</b> Nombre de la subdivisión de la ciudad. Podría ser barrio, comuna, etc.
-    - <b>addressStreet:</b> Dirección de calle con numeración, si la tuviera, donde la persona, jurídica o natural recide.
-  
- - <b>personalInfo:</b>
-    - <b>names:</b> Nombres de la persona natural o razón social de la persona jurídica.
-    - <b>firstLastname:</b> Primer apellido de la persona natural. No aplica para persona jurídica.
-    - <b>secondLastname:</b> Segundo apellido de la persona natural. No aplica para persona jurídica.
-    - <b>nationality:</b> Nacionalidad de la persona natural. No aplica para persona jurídica.
-    - <b>gender:</b> Género de la persona natural. Podría ser H para hombre, M para mujer u O para otro. No aplica para persona jurídica.
-    - <b>dob:</b> Fecha de nacimiento de la persona o fecha de inicio de actividades para una persona jurídica. Se encuentra en formato YYYY-MM-DD
-    - <b>phoneNumber:</b> Número de contacto asociado a la persona relacionado al país de registro.
-    - <b>activity:</b> Profesión de la persona natural o actividad que realiza de la persona jurídica.
+- <b>email: </b> Dirección de correo electrónico que será asociada a la cuenta del
+  usuario.
+- <b>document:</b>- <b>documentNumber:</b> Número de documento perteneciente a
+  la persona que se va a registrar. - <b>documentType:</b> Tipo de documento
+  relacionado al número de documento de la persona que se va a registrar. - <b>
+    country:
+  </b> País de emisión del documento. - <b>isCompany:</b> Tipo de persona a
+  registrar. En caso de estar en true la cuenta a registrar va a ser de una
+  persona legal o jurídica. Caso contrario, una persona natural. - <b>
+    others:
+  </b> Array de documentos secundarios. - <b>documentNumber:</b> Número de
+  documento perteneciente a la persona que se va a registrar. - <b>
+    documentType:
+  </b> Tipo de documento relacionado al número de documento de la persona que se
+  va a registrar. - <b>country:</b> País de emisión del documento.
+
+- <b>address: </b>- <b>addressCountry:</b> Lugar de residencia de la persona. No
+  puede ser distinta de la del documento. - <b>addressZipCode:</b> Código postal
+  de la residencia. - <b>addressState:</b> Nombre de la primera subdivisión del
+  país de residencia. Podría ser estado, provincia, región, etc. - <b>
+    addressCity:
+  </b> Nombre de la ciudad de la residencia. - <b>
+    addressNeighborhood:
+  </b> Nombre de la subdivisión de la ciudad. Podría ser barrio, comuna, etc. - <b>
+    addressStreet:
+  </b> Dirección de calle con numeración, si la tuviera, donde la persona,
+  jurídica o natural recide.
+
+- <b>personalInfo:</b>- <b>names:</b> Nombres de la persona natural o razón
+  social de la persona jurídica. - <b>firstLastname:</b> Primer apellido de la
+  persona natural. No aplica para persona jurídica. - <b>
+    secondLastname:
+  </b> Segundo apellido de la persona natural. No aplica para persona jurídica.
+  - <b>nationality:</b> Nacionalidad de la persona natural. No aplica para
+  persona jurídica. - <b>gender:</b> Género de la persona natural. Podría ser H
+  para hombre, M para mujer u O para otro. No aplica para persona jurídica. - <b>
+    dob:
+  </b> Fecha de nacimiento de la persona o fecha de inicio de actividades para
+  una persona jurídica. Se encuentra en formato YYYY-MM-DD - <b>
+    phoneNumber:
+  </b> Número de contacto asociado a la persona relacionado al país de registro.
+  - <b>activity:</b> Profesión de la persona natural o actividad que realiza de
+  la persona jurídica.
 
 ## Paises soportados
+
 ARG, CHL, COL, MEX, PER
 
 ## Tipos de documentos por país soportado
- - Argentina -> DNI y CUIT
- - Chile -> RUT
- - Colombia -> Cedula Nacional (CED_CIU), Cédula de extranjería (CED_EXT) y NIT
- - México -> RFC y CURP
- - Perú -> DNI y RUC
+
+- Argentina -> DNI y CUIT
+- Chile -> RUT
+- Colombia -> Cedula Nacional (CED_CIU), Cédula de extranjería (CED_EXT) y NIT
+- México -> RFC y CURP
+- Perú -> DNI y RUC
 
 ## Nacionalidades soportadas
- - ATG: Antigua y Barbuda
- - ARG: Argentina
- - BHS: Bahamas
- - BRB: Barbados
- - BLZ: Belice
- - BOL: Bolivia
- - BRA: Brasil
- - CAN: Canadá
- - CHL: Chile
- - COL: Colombia
- - CRI: Costa Rica
- - CUB: Cuba
- - DMA: Dominica
- - DOM: República Dominicana
- - ECU: Ecuador
- - SLV: El Salvador
- - GRD: Granada
- - GTM: Guatemala
- - GUY: Guyana
- - HTI: Haití
- - HND: Honduras
- - JAM: Jamaica
- - MEX: México
- - NIC: Nicaragua
- - PAN: Panamá
- - PRY: Paraguay
- - PER: Perú
- - PRI: Puerto Rico
- - KNA: San Cristóbal y Nieves
- - LCA: Santa Lucía
- - VCT: San Vicente y las Granadinas
- - SUR: Surinam
- - TTO: Trinidad y Tobago
- - USA: Estados Unidos
- - URY: Uruguay
- - VEN: Venezuela
- - AIA: Anguila(Reino Unido)
- - ABW: Aruba(Países Bajos)
- - BMU: Bermudas(Reino Unido)
- - BES: Bonaire, San Eustaquio y Saba(Países Bajos)
- - CYM: Islas Caimán(Reino Unido)
- - SGS: Islas Georgias del Sur y Sandwich del Sur(Reino Unido)
- - GRL: Groenlandia(Dinamarca)
- - GLP: Guadalupe(Francia)
- - FLK: Islas Malvinas(Reino Unido)
- - MTQ: Martinica(Francia)
- - MSR: Montserrat(Reino Unido)
- - ANT: Antillas Neerlandesas(Países Bajos)
- - TCA: Islas Turcas y Caicos(Reino Unido)
- - VGB: Islas Vírgenes Británicas(Reino Unido)
- - VIR: Islas Vírgenes de los Estados Unidos(.UU)
+
+- ATG: Antigua y Barbuda
+- ARG: Argentina
+- BHS: Bahamas
+- BRB: Barbados
+- BLZ: Belice
+- BOL: Bolivia
+- BRA: Brasil
+- CAN: Canadá
+- CHL: Chile
+- COL: Colombia
+- CRI: Costa Rica
+- CUB: Cuba
+- DMA: Dominica
+- DOM: República Dominicana
+- ECU: Ecuador
+- SLV: El Salvador
+- GRD: Granada
+- GTM: Guatemala
+- GUY: Guyana
+- HTI: Haití
+- HND: Honduras
+- JAM: Jamaica
+- MEX: México
+- NIC: Nicaragua
+- PAN: Panamá
+- PRY: Paraguay
+- PER: Perú
+- PRI: Puerto Rico
+- KNA: San Cristóbal y Nieves
+- LCA: Santa Lucía
+- VCT: San Vicente y las Granadinas
+- SUR: Surinam
+- TTO: Trinidad y Tobago
+- USA: Estados Unidos
+- URY: Uruguay
+- VEN: Venezuela
+- AIA: Anguila(Reino Unido)
+- ABW: Aruba(Países Bajos)
+- BMU: Bermudas(Reino Unido)
+- BES: Bonaire, San Eustaquio y Saba(Países Bajos)
+- CYM: Islas Caimán(Reino Unido)
+- SGS: Islas Georgias del Sur y Sandwich del Sur(Reino Unido)
+- GRL: Groenlandia(Dinamarca)
+- GLP: Guadalupe(Francia)
+- FLK: Islas Malvinas(Reino Unido)
+- MTQ: Martinica(Francia)
+- MSR: Montserrat(Reino Unido)
+- ANT: Antillas Neerlandesas(Países Bajos)
+- TCA: Islas Turcas y Caicos(Reino Unido)
+- VGB: Islas Vírgenes Británicas(Reino Unido)
+- VIR: Islas Vírgenes de los Estados Unidos(.UU)
 
 ### `/Auth`
 
 Primero, debes autenticarte. Para ello, tienes dos maneras:
- - De manera directa, si ya eres cliente, puedes hacerlo con un secret y el clientId mediante el uso del servicio `POST /auth`. Sugerimos agregar el email del usuario, para usar el JWT en los siguientes llamados.
- - En dos pasos, a traves del correo electrónico consumiendo el endpoint `POST /auth/validate`. Te enviaremos un código para validarlo y luego confirmandolo con `POST /auth/code`.
 
+- De manera directa, si ya eres cliente, puedes hacerlo con un secret y el clientId mediante el uso del servicio `POST /auth`. Sugerimos agregar el email del usuario, para usar el JWT en los siguientes llamados.
+- Solo disponible para clientes con KYC no delegado. En dos pasos, a traves del correo electrónico consumiendo el endpoint `POST /auth/validate`. Te enviaremos un código para validarlo y luego confirmandolo con `POST /auth/code`.
 
 ### `GetCurrencyTokens (on ramp) GetTokenCurrency (off ramp)`
 
@@ -189,8 +208,8 @@ a API devolverá un orderId, los detalles del pago (una url para redirigir a tu 
 
 <Tip>
   Si el quote ya había expirado, se puede generar un nuevo quote `(obligatorio a
-  partir del 6 de noviembre del 2023)` o llamar a createOrder con los mismos parámetros
-  para tener un quote y orden al mismo tiempo.
+  partir del 6 de noviembre del 2023)` o llamar a createOrder con los mismos
+  parámetros para tener un quote y orden al mismo tiempo.
 </Tip>
 
 Una vez recibido el `orderId` podemos guardarlo, asociándolo al usuario.
