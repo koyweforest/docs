@@ -2728,6 +2728,10 @@
           "payoutMethodId": {
             "type": "string",
             "description": "Currently being used only for Colombia, this optional field represents the payout provider."
+          },
+          "accountType": {
+            "type": "string",
+            "description": "Must be one of: checking or savings"
           }
         }
       },
