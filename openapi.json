@@ -86,7 +86,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
       }
     },
     "/accounts/{email}": {
@@ -128,7 +133,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
       }
     },
     "/accounts/{email}/check": {
@@ -170,7 +180,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
       }
     },
     "/accounts": {
@@ -211,7 +226,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
       },
       "put": {
         "tags": ["Accounts"],
@@ -250,7 +270,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
       }
     },
     "/currency-tokens": {
@@ -1868,6 +1893,44 @@
         ]
       }
     },
+    "/client/getAddress":{
+      "get": {
+        "tags": ["Clients"],
+        "summary":"Receives a crypto symbol, retrieves the wallet address",
+        "description":"Receives a crypto symbol, retrieves the wallet address",
+        "operationId":"getAddress",
+        "parameters":[
+           {
+              "name":"cryptoSymbol",
+              "required":true,
+              "in":"query",
+              "schema":{
+                 "type":"string"
+              }
+           }
+        ],
+        "responses":{
+           "200":{
+              "description":"Retrieve address",
+              "content":{
+                 "application/json":{
+                    "schema":{
+                       "$ref":"#/components/schemas/ClientAddressOutput"
+                    }
+                 }
+              }
+           },
+           "403":{
+              "description":"Forbidden."
+           }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
+      }
+    },
     "/clients/updateWebhook": {
       "post": {
         "tags": ["Clients"],
@@ -3264,6 +3327,15 @@
           "updateDocumentType": {
             "type": "string",
             "example": "RUT"
+          }
+        }
+      },
+      "ClientAddressOutput": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "example": "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
           }
         }
       },

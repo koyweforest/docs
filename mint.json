@@ -92,86 +92,84 @@
           "pages": [
             "english/documentation/api-documentation/restful-api/restful-api",
             {
+              "group": "Authentication",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Auth/creates-an-authorization-token"
+              ]
+            },
+            {
               "group": "Accounts",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Accounts/Returns-account-data",
-                "english/documentation/api-documentation/restful-api/Accounts/Returns-account-data-movements-balance",
-                "english/documentation/api-documentation/restful-api/Accounts/Returns-if-can-operate",
-                "english/documentation/api-documentation/restful-api/Accounts/Creates-a-new-account",
-                "english/documentation/api-documentation/restful-api/Accounts/Updates-an-account"
+                "english/documentation/api-documentation/restful-api/Accounts/retrieve-account-data",
+                "english/documentation/api-documentation/restful-api/Accounts/retrieve-account-data-movements-balance",
+                "english/documentation/api-documentation/restful-api/Accounts/check-if-the-account-can-operate",
+                "english/documentation/api-documentation/restful-api/Accounts/creates-a-new-account",
+                "english/documentation/api-documentation/restful-api/Accounts/updates-an-account"
               ]
             },
             {
               "group": "Currency",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Currency/Returns-all-supported-Currency-Token-pairs",
-                "english/documentation/api-documentation/restful-api/Currency/Returns-supported-Currency-Token-pairs-for-a-given-currency"
+                "english/documentation/api-documentation/restful-api/Currency/list-supported-currency-token-pairs",
+                "english/documentation/api-documentation/restful-api/Currency/retrieve-currency-token-pair"
               ]
             },
             {
               "group": "Token",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Token/Returns-all-supported-Coin-Token-pairs",
-                "english/documentation/api-documentation/restful-api/Token/Returns-supported-Coin-Token-pairs"
+                "english/documentation/api-documentation/restful-api/Token/list-supported-coin-token-pairs",
+                "english/documentation/api-documentation/restful-api/Token/retrieve-coin-token-pair"
               ]
             },
             {
               "group": "Payment Provider",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Payment-provider/Returns-a-list-of-available-means-of-payment-for-a-given-currency"
+                "english/documentation/api-documentation/restful-api/Payment-provider/list-of-payment-methods-available-for-a-given-currency"
               ]
             },
             {
               "group": "Payout Provider",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Payout-provider/Returns-a-list-of-available-payout-providers-for-a-given-currency"
+                "english/documentation/api-documentation/restful-api/Payout-provider/list-of-payout-methods-available-for-a-given-currency"
               ]
             },
             {
-              "group": "Authentication",
+              "group": "Quotes",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Auth/Returns-an-Authorization-Token",
-                "english/documentation/api-documentation/restful-api/Auth/Returns-an-id-and-sends-a-validation-email",
-                "english/documentation/api-documentation/restful-api/Auth/Returns-session-data"
+                "english/documentation/api-documentation/restful-api/Quotes/creates-a-purchase-or-sale-quote",
+                "english/documentation/api-documentation/restful-api/Quotes/retrieve-quote"
               ]
             },
             {
               "group": "Orders",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Orders/Creates-a-new-order",
-                "english/documentation/api-documentation/restful-api/Orders/Returns-a-lists-of-orders",
-                "english/documentation/api-documentation/restful-api/Orders/Returns-order-information",
-                "english/documentation/api-documentation/restful-api/Orders/Returns-order-information-by-externalId"
+                "english/documentation/api-documentation/restful-api/Orders/creates-a-new-order",
+                "english/documentation/api-documentation/restful-api/Orders/list-orders",
+                "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information",
+                "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information-by-externalId"
               ]
             },
             {
-              "group": "Bank Queries",
+              "group": "Banks",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Bank Queries/Adds-a-bank-account-to-proceed-with-the-operation",
-                "english/documentation/api-documentation/restful-api/Bank Queries/Returns-bank-account-info",
-                "english/documentation/api-documentation/restful-api/Bank Queries/Deletes-bank-account-info",
-                "english/documentation/api-documentation/restful-api/Bank Queries/Returns-banks-by-country"
-              ]
-            },
-            {
-              "group": "Quote Queries",
-              "pages": [
-                "english/documentation/api-documentation/restful-api/Quote Queries/Creates-a-purchase-or-sell-quote",
-                "english/documentation/api-documentation/restful-api/Quote Queries/Returns-quote-details"
+                "english/documentation/api-documentation/restful-api/Banks/list-banks-by-country",
+                "english/documentation/api-documentation/restful-api/Banks/retrieve-bank-account",
+                "english/documentation/api-documentation/restful-api/Banks/creates-bank-account",
+                "english/documentation/api-documentation/restful-api/Banks/deletes-bank-account"
               ]
             },
             {
               "group": "Deals",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Deals/Get-deals-data"
+                "english/documentation/api-documentation/restful-api/Deals/list-deals"
               ]
             },
             {
               "group": "Clients",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Clients/update-webhook",
-                "english/documentation/api-documentation/restful-api/Clients/update-validation-webhook"
-
+                "english/documentation/api-documentation/restful-api/Clients/updates-webhook",
+                "english/documentation/api-documentation/restful-api/Clients/updates-validation-webhook",
+                "english/documentation/api-documentation/restful-api/Clients/retrieve-address"
               ]
             }
           ]
@@ -222,71 +220,84 @@
           "pages": [
             "documentacion/documentacion-api/api-rest",
             {
+              "group": "Authentication",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Auth/creates-an-authorization-token"
+              ]
+            },
+            {
               "group": "Accounts",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Accounts/Returns-if-can-operate",
-                "english/documentation/api-documentation/restful-api/Accounts/Returns-account-data-movements-balance",
-                "english/documentation/api-documentation/restful-api/Accounts/Creates-a-new-account",
-                "english/documentation/api-documentation/restful-api/Accounts/Updates-an-account"
+                "english/documentation/api-documentation/restful-api/Accounts/retrieve-account-data",
+                "english/documentation/api-documentation/restful-api/Accounts/retrieve-account-data-movements-balance",
+                "english/documentation/api-documentation/restful-api/Accounts/check-if-the-account-can-operate",
+                "english/documentation/api-documentation/restful-api/Accounts/creates-a-new-account",
+                "english/documentation/api-documentation/restful-api/Accounts/updates-an-account"
               ]
             },
             {
               "group": "Currency",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Currency/Returns-all-supported-Currency-Token-pairs",
-                "english/documentation/api-documentation/restful-api/Currency/Returns-supported-Currency-Token-pairs-for-a-given-currency"
+                "english/documentation/api-documentation/restful-api/Currency/list-supported-currency-token-pairs",
+                "english/documentation/api-documentation/restful-api/Currency/retrieve-currency-token-pair"
               ]
             },
             {
               "group": "Token",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Token/Returns-all-supported-Coin-Token-pairs",
-                "english/documentation/api-documentation/restful-api/Token/Returns-supported-Coin-Token-pairs"
+                "english/documentation/api-documentation/restful-api/Token/list-supported-coin-token-pairs",
+                "english/documentation/api-documentation/restful-api/Token/retrieve-coin-token-pair"
               ]
             },
             {
               "group": "Payment Provider",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Payment-provider/Returns-a-list-of-available-means-of-payment-for-a-given-currency"
+                "english/documentation/api-documentation/restful-api/Payment-provider/list-of-payment-methods-available-for-a-given-currency"
               ]
             },
             {
               "group": "Payout Provider",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Payout-provider/Returns-a-list-of-available-payout-providers-for-a-given-currency"
+                "english/documentation/api-documentation/restful-api/Payout-provider/list-of-payout-methods-available-for-a-given-currency"
               ]
             },
             {
-              "group": "Authentication",
+              "group": "Quotes",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Auth/Returns-an-Authorization-Token",
-                "english/documentation/api-documentation/restful-api/Auth/Returns-an-id-and-sends-a-validation-email",
-                "english/documentation/api-documentation/restful-api/Auth/Returns-session-data"
+                "english/documentation/api-documentation/restful-api/Quotes/creates-a-purchase-or-sale-quote",
+                "english/documentation/api-documentation/restful-api/Quotes/retrieve-quote"
               ]
             },
             {
               "group": "Orders",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Orders/Creates-a-new-order",
-                "english/documentation/api-documentation/restful-api/Orders/Returns-a-lists-of-orders",
-                "english/documentation/api-documentation/restful-api/Orders/Returns-order-information",
-                "english/documentation/api-documentation/restful-api/Orders/Returns-order-information-by-externalId"
+                "english/documentation/api-documentation/restful-api/Orders/creates-a-new-order",
+                "english/documentation/api-documentation/restful-api/Orders/list-orders",
+                "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information",
+                "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information-by-externalId"
               ]
             },
             {
-              "group": "Bank Queries",
+              "group": "Banks",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Bank Queries/Adds-a-bank-account-to-proceed-with-the-operation",
-                "english/documentation/api-documentation/restful-api/Bank Queries/Returns-bank-account-info",
-                "english/documentation/api-documentation/restful-api/Bank Queries/Deletes-bank-account-info",
-                "english/documentation/api-documentation/restful-api/Bank Queries/Adds-a-bank-account-to-proceed-with-the-operation.-1"
+                "english/documentation/api-documentation/restful-api/Banks/list-banks-by-country",
+                "english/documentation/api-documentation/restful-api/Banks/retrieve-bank-account",
+                "english/documentation/api-documentation/restful-api/Banks/creates-bank-account",
+                "english/documentation/api-documentation/restful-api/Banks/deletes-bank-account"
               ]
             },
             {
-              "group": "Quote Queries",
+              "group": "Deals",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Quote Queries/Creates-a-purchase-or-sell-quote",
-                "english/documentation/api-documentation/restful-api/Quote Queries/Returns-quote-details"
+                "english/documentation/api-documentation/restful-api/Deals/list-deals"
+              ]
+            },
+            {
+              "group": "Clients",
+              "pages": [
+                "english/documentation/api-documentation/restful-api/Clients/updates-webhook",
+                "english/documentation/api-documentation/restful-api/Clients/updates-validation-webhook",
+                "english/documentation/api-documentation/restful-api/Clients/retrieve-address"
               ]
             }
           ]
