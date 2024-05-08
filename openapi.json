@@ -86,7 +86,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
       }
     },
     "/accounts/{email}": {
@@ -128,7 +133,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
       }
     },
     "/accounts/{email}/check": {
@@ -170,7 +180,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
       }
     },
     "/accounts": {
@@ -211,7 +226,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
       },
       "put": {
         "tags": ["Accounts"],
@@ -250,7 +270,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
       }
     },
     "/currency-tokens": {
