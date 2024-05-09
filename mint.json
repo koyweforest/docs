@@ -51,7 +51,7 @@
     {
       "group": "Introduction",
       "version": "English",
-      "pages": ["english/introduction"]
+      "pages": ["english/introduction", "english/video-tour"]
     },
     {
       "group": "About Koywe",
@@ -179,7 +179,7 @@
     {
       "group": "Introducción",
       "version": "Español",
-      "pages": ["bienvenido-a-koywe"]
+      "pages": ["bienvenido-a-koywe", "video-tour"]
     },
     {
       "group": "Sobre Koywe",
