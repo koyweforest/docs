@@ -94,7 +94,7 @@
             {
               "group": "Authentication",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Auth/creates-an-authorization-token"
+                "english/documentation/api-documentation/restful-api/Auth/creates-authorization-token"
               ]
             },
             {
@@ -103,8 +103,8 @@
                 "english/documentation/api-documentation/restful-api/Accounts/retrieve-account-data",
                 "english/documentation/api-documentation/restful-api/Accounts/retrieve-account-data-movements-balance",
                 "english/documentation/api-documentation/restful-api/Accounts/check-if-the-account-can-operate",
-                "english/documentation/api-documentation/restful-api/Accounts/creates-a-new-account",
-                "english/documentation/api-documentation/restful-api/Accounts/updates-an-account"
+                "english/documentation/api-documentation/restful-api/Accounts/creates-account",
+                "english/documentation/api-documentation/restful-api/Accounts/updates-account"
               ]
             },
             {
@@ -143,7 +143,7 @@
             {
               "group": "Orders",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Orders/creates-a-new-order",
+                "english/documentation/api-documentation/restful-api/Orders/creates-order",
                 "english/documentation/api-documentation/restful-api/Orders/list-orders",
                 "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information",
                 "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information-by-externalId"
@@ -222,7 +222,7 @@
             {
               "group": "Authentication",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Auth/creates-an-authorization-token"
+                "english/documentation/api-documentation/restful-api/Auth/creates-authorization-token"
               ]
             },
             {
@@ -231,8 +231,8 @@
                 "english/documentation/api-documentation/restful-api/Accounts/retrieve-account-data",
                 "english/documentation/api-documentation/restful-api/Accounts/retrieve-account-data-movements-balance",
                 "english/documentation/api-documentation/restful-api/Accounts/check-if-the-account-can-operate",
-                "english/documentation/api-documentation/restful-api/Accounts/creates-a-new-account",
-                "english/documentation/api-documentation/restful-api/Accounts/updates-an-account"
+                "english/documentation/api-documentation/restful-api/Accounts/creates-account",
+                "english/documentation/api-documentation/restful-api/Accounts/updates-account"
               ]
             },
             {
@@ -271,7 +271,7 @@
             {
               "group": "Orders",
               "pages": [
-                "english/documentation/api-documentation/restful-api/Orders/creates-a-new-order",
+                "english/documentation/api-documentation/restful-api/Orders/creates-order",
                 "english/documentation/api-documentation/restful-api/Orders/list-orders",
                 "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information",
                 "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information-by-externalId"
