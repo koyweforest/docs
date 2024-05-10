@@ -825,6 +825,26 @@ It's necessary to include the payoutMethodId. This ID represents the payout prov
 **Additional indication:** You can obtain the payout provider specific to Colombia by querying for the currency to be used, in this case COP.
 </Info>
 
+
+<Info color="blue">
+### Colombian Bank validations
+
+To avoid rejections, you need to take into account the requirements of the destination accounts according to the bank to which you are going to send the payment:
+
+| Bank                     | Validations                                                   |
+|--------------------------|---------------------------------------------------------------|
+| NEQUI                    | Maximum account number size must be 11                        |
+| DAVIVIENDA               | Minimum account number size must be 12                        |
+| BANCOLOMBIA              | Maximum account number size must be 11                        |
+| DAVIPLATA                | The account number must start with 3 and the minimum size must be 10 |
+| BANCO CAJA SOCIAL BCSC SA| Maximum account number size must be 11                        |
+| BANCO DE BOGOTÁ          | Maximum account number size must be 9                         |
+| SCOTIABANK COLPATRIA SA  | Maximum account number size must be 10                        |
+
+> **Warning:** The bankAccountNumber: Bank Account Number field must contain only numbers and be different from 0.
+
+</Info>
+
 #### Get Bank Account
 
 Returns a list of bank accounts the users has associated, filtered using `countryCode`, `currencySymbol` and `email`.
@@ -932,6 +952,4 @@ query GetBankInfoByCountry($countryCode: String!, $payoutMethodId: String) {
          }
          ```
 </Info>
-
-
 </Accordion>
