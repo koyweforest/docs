@@ -2353,7 +2353,7 @@
             "type": "string",
             "example": "REJECTED"
           },
-          "date": {
+          "dates": {
             "$ref": "#/components/schemas/Order_date"
           },
           "outReceipt": {
@@ -2502,7 +2502,7 @@
             "type": "string",
             "example": "REJECTED"
           },
-          "date": {
+          "dates": {
             "$ref": "#/components/schemas/Order_date"
           },
           "outReceipt": {
