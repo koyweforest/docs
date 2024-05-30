@@ -147,6 +147,9 @@ const validUser(email) {
 Si realizaste un cambio de número de documento, nosotros realizaremos una validación asíncrona de los datos de la persona. Los resultados de esa valdación serán enviados a través de webhook
 
 `UPDATE_DOCUMENT_NUMBER`: Luego de una validación de datos, se recibirá un evento con este nombre en donde habrá un mensaje de confirmación, o un mensaje de error ya que hubo discrepancia en los datos del usuario.
+- `document_number_sucessfully_updated`: El proceso de validación de datos finalizo con éxito y el número de document se actualizo correctamente.
+
+- `document_number_failed_to_update`: Hubo un error en el proceso de validación de datos, por ejemplo: "Account does not have any personal info", "Account not found",  "There is incompatible personal info between the account and metamap".
 
 
 Ejemplo de una request:
