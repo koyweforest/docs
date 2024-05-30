@@ -148,6 +148,9 @@ const validUser(email) {
 If you made a document number change, we will perform an asynchronous validation of the person's data. The results of that validation will be sent through webhooks
 
 `UPDATE_DOCUMENT_NUMBER`: After a data validation, you will receive an event with this name where there will be a confirmation message, or an error message because there was a discrepancy in the user's data.
+- `document_number_sucessfully_updated`: The data verification process finished with success and the document number has been updated.
+
+- `document_number_failed_to_update`: There was an error during the verification flow, ie: "Account does not have any personal info", "Account not found",  "There is incompatible personal info between the account and metamap". 
 
 
 
@@ -155,9 +158,13 @@ Example of a request:
 
 ```json
 {
-  "eventName": "UPDATE_DOCUMENT_NUMBER",
-  "message": "There is incompatible personal info between the account and metamap",
-  "timeStamp": "2022-10-26T22:36:41.658Z",
-  "signature": "ed40d34ab7a587cf1a16338a16cc7765ae4420936677482bb33f5f738e4f7189" // hash
+"eventName": "document_number_sucessfully_updated", // Or "document_number_failed_to_update" if failed,
+"orderId": "UPDATE_DOCUMENT_NUMBER",
+"timeStamp": "2022-10-26T22:36:41.658Z",
+"data": {
+"email": {{email}},
+"message": {{error or success message}}
+},
+"signature": "ed40d34ab7a587cf1a16338a16cc7765ae4420936677482bb33f5f738e4f7189" // hash
 }
 ```
