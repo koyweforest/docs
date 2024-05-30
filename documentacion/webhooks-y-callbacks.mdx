@@ -153,9 +153,13 @@ Ejemplo de una request:
 
 ```json
 {
-  "eventName": "UPDATE_DOCUMENT_NUMBER",
-  "message": "There is incompatible personal info between the account and metamap",
-  "timeStamp": "2022-10-26T22:36:41.658Z",
-  "signature": "ed40d34ab7a587cf1a16338a16cc7765ae4420936677482bb33f5f738e4f7189" // hash
+"eventName": "document_number_sucessfully_updated", // O "document_number_failed_to_update" si falló,
+"orderId": "UPDATE_DOCUMENT_NUMBER",
+"timeStamp": "2022-10-26T22:36:41.658Z",
+"data": {
+"email": {{email}},
+"message": {{Mensaje de error o completado}}
+},
+"signature": "ed40d34ab7a587cf1a16338a16cc7765ae4420936677482bb33f5f738e4f7189" // hash
 }
 ```
