@@ -613,8 +613,8 @@
     "/payout-providers": {
       "get": {
         "tags": ["Payout-provider"],
-        "summary": "Returns a list of available payout providers for a given currency.",
-        "description": "If you want to know how to receive your own clientId, please check the \"Credentials\" section. the domain for all images provided directly by Koywe have the form https://rampa.koywe.com/paymentProviders/exampleImage.svg (keep in mind that this is just an example, but the domain shown is the actual one Koywe uses)",
+        "summary": "This endpoint is deprecated | ~ Returns a list of available payout providers for a given currency. ~",
+        "description": "**This endpoint is deprecated and will be removed in a future version.** | ~If you want to know how to receive your own clientId, please check the \"Credentials\" section. the domain for all images provided directly by Koywe have the form https://rampa.koywe.com/paymentProviders/exampleImage.svg (keep in mind that this is just an example, but the domain shown is the actual one Koywe uses)~",
         "operationId": "PaymentOptionsList",
         "parameters": [
           {
@@ -640,16 +640,15 @@
             }
           }
         ],
+        "deprecated": true,
         "responses": {
           "200": {
             "description": "successful operation",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Payments"
-                  }
+                  "type": "string",
+                  "example": "This is a deprecated endpoint."
                 }
               }
             }
@@ -1893,36 +1892,36 @@
         ]
       }
     },
-    "/client/getAddress":{
+    "/client/getAddress": {
       "get": {
         "tags": ["Clients"],
-        "summary":"Receives a crypto symbol, retrieves the wallet address",
-        "description":"Receives a crypto symbol, retrieves the wallet address",
-        "operationId":"getAddress",
-        "parameters":[
-           {
-              "name":"cryptoSymbol",
-              "required":true,
-              "in":"query",
-              "schema":{
-                 "type":"string"
-              }
-           }
+        "summary": "Receives a crypto symbol, retrieves the wallet address",
+        "description": "Receives a crypto symbol, retrieves the wallet address",
+        "operationId": "getAddress",
+        "parameters": [
+          {
+            "name": "cryptoSymbol",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
-        "responses":{
-           "200":{
-              "description":"Retrieve address",
-              "content":{
-                 "application/json":{
-                    "schema":{
-                       "$ref":"#/components/schemas/ClientAddressOutput"
-                    }
-                 }
+        "responses": {
+          "200": {
+            "description": "Retrieve address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientAddressOutput"
+                }
               }
-           },
-           "403":{
-              "description":"Forbidden."
-           }
+            }
+          },
+          "403": {
+            "description": "Forbidden."
+          }
         },
         "security": [
           {
@@ -2112,14 +2111,30 @@
       "CurrencyDetails": {
         "type": "object",
         "properties": {
-          "currency": {"type": "string", "example": "Chilean Peso"},
-          "totalOnOps": {"type": "integer", "example": 0},
-          "netOnCurrencyAmount": {"type": "number", "example": 0.0, "format": "double"},
-          "totalOffOps": {"type": "integer", "example": 1},
-          "netOffCurrencyAmount": {"type": "number", "example": 5000.0, "format": "double"},
-          "balance": {"type": "number", "example": 3255.0, "format": "double"},
-          "totalTopUpOps": {"type": "integer", "example": 1},
-          "netTopUpCurrencyAmount": {"type": "number", "example": 8255.0, "format": "double"}
+          "currency": { "type": "string", "example": "Chilean Peso" },
+          "totalOnOps": { "type": "integer", "example": 0 },
+          "netOnCurrencyAmount": {
+            "type": "number",
+            "example": 0.0,
+            "format": "double"
+          },
+          "totalOffOps": { "type": "integer", "example": 1 },
+          "netOffCurrencyAmount": {
+            "type": "number",
+            "example": 5000.0,
+            "format": "double"
+          },
+          "balance": {
+            "type": "number",
+            "example": 3255.0,
+            "format": "double"
+          },
+          "totalTopUpOps": { "type": "integer", "example": 1 },
+          "netTopUpCurrencyAmount": {
+            "type": "number",
+            "example": 8255.0,
+            "format": "double"
+          }
         }
       },
       "Currency": {
