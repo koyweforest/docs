@@ -166,3 +166,29 @@ Ejemplo de una request:
 "signature": "ed40d34ab7a587cf1a16338a16cc7765ae4420936677482bb33f5f738e4f7189" // hash
 }
 ```
+
+### Webhooks Depósitos
+
+Este evento avisará a los clientes si llega un depósito a nuestro sistema de un usuario que no tiene ordenes vigentes
+
+`NEW_DEPOSIT_REGISTERED`: Al procesar el depósito recibido, y asociarlo a un usuario, si este no tiene órdenes vigentes quedará en su balance, en este momento se disparará este evento
+- `deposit_without_order`
+
+
+Ejemplo de una request:
+
+```json
+{
+  "eventName": "deposit_without_order",
+  "orderId": "NEW_DEPOSIT_REGISTERED",
+  "timeStamp": "2024-06-07T16:17:54.258Z",
+  "data": {
+    "documentNumber": "{{documentNumber}}",
+    "currency": "ARS",
+    "clientId": "65c4ed085f193b99de04f061",
+    "accountBalanceAmount": 50000,
+    "email": "{{email}}"
+  },
+  "signature": "ae0e02ae78ef00c5b2c623d3abf41c2785434af0bbba55e2371b1fa38c6b63f3"
+}
+```

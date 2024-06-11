@@ -168,3 +168,29 @@ Example of a request:
 "signature": "ed40d34ab7a587cf1a16338a16cc7765ae4420936677482bb33f5f738e4f7189" // hash
 }
 ```
+
+### Webhooks Deposits
+
+This event will notify the clients if a deposit arrives to our system from a user that has no current orders.
+
+`NEW_DEPOSIT_REGISTERED`: When processing the deposit received, and associating it to a user, if this user has no current orders it will remain in his balance, at this moment this event will be fired.
+- `deposit_without_order`.
+
+
+Example of a request:
+
+```json
+{
+  "eventName": "deposit_without_order",
+  "orderId": "NEW_DEPOSIT_REGISTERED",
+  "timeStamp": "2024-06-07T16:17:54.258Z",
+  "data": {
+    "documentNumber": "{{documentNumber}}",
+    "currency": "ARS",
+    "clientId": "65c4ed085f193b99de04f061",
+    "accountBalanceAmount": 50000,
+    "email": "{{email}}"
+  },
+  "signature": "ae0e02ae78ef00c5b2c623d3abf41c2785434af0bbba55e2371b1fa38c6b63f3"
+}
+```
