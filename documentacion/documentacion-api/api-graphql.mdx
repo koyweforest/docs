@@ -766,7 +766,7 @@ query orders($input: PaginationInput!) {
 
 Crea una nueva cuenta bancaria y la guarda para futuras operaciones.
 
-opcional: `bankCode`, `documentNumber`, `payoutMethodId`
+opcional: `bankCode`, `documentNumber`, `payoutMethodId (deprecado)`
 
 `documentNumber` es requerido en el caso de que el usuario no haya hecho el KYC.
 
@@ -794,16 +794,6 @@ mutation createBankAccount($input: BankAccountInput!) {
   }
 }
 ```
-<Info color="blue">
-
-**Para crear cuentas bancarias en Colombia:**
-
-Es necesario incluir el payoutMethodId. Este ID representa al proveedor de pagos (https://docs.koywe.com/english/documentation/api-documentation/restful-api/Payout-provider/Returns-a-list-of-available-payout-providers-for-a-given-currency).
-
-**Indicación adicional:** Puedes obtener el proveedor de pagos específico para Colombia consultando por la moneda que se usará, en este caso COP.
-</Info>
-
-
 
 #### Get Bank Account
 
@@ -829,15 +819,6 @@ query getBankAccount($filters: FiltersBankAccount!) {
   }
 }
 ```
-
-<Info color="blue">
-
-**Para obtener cuentas bancarias en Colombia:**
-
-Es necesario incluir el payoutMethodId. Este ID representa al proveedor de pagos (https://docs.koywe.com/english/documentation/api-documentation/restful-api/Payout-provider/Returns-a-list-of-available-payout-providers-for-a-given-currency).
-
-**Indicación adicional:** Puedes obtener el proveedor de pagos específico para Colombia consultando por la moneda a utilizar, en este caso COP.
-</Info>
 
 #### Delete Bank Account
 
@@ -883,31 +864,6 @@ query getBankInfoByCountry($countryCode: String!) {
   "countryCode": "CHL"
 }
 ```
-<Info color="blue">
-
-**Para obtener los bancos soportados en Colombia:**
-
-Es necesario incluir el payoutMethodId. Este ID representa al proveedor de pagos (https://docs.koywe.com/english/documentation/api-documentation/restful-api/Payout-provider/Returns-a-list-of-available-payout-providers-for-a-given-currency).
-
-**Indicación adicional:** Puedes obtener el proveedor de pagos específico para Colombia consultando por la moneda que se usará, en este caso COP.
-
-Ejemplo:
-
-```graphql
-query GetBankInfoByCountry($countryCode: String!, $payoutMethodId: String) {
-  getBankInfoByCountry(countryCode: $countryCode, payoutMethodId: $payoutMethodId) {
-             bankCode
-             name
-             institutionName
-             transferCode
-           }
-         }
-         {
-           "countryCode": "COL",
-           "payoutMethodId" : "646f399e43c4d97514ef40db"
-         }
-         ```
-</Info>
 </Accordion>
 
 <Accordion title="Merchant Balance">
