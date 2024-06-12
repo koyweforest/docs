@@ -3,7 +3,7 @@ title: 'GraphQL API'
 ---
 
 Testing URL:
-[https://api-test.koywe.com/graphql](https://api-test.koywe.com/graphql)
+[https://api-sandbox.koywe.com/graphql](https://api-sandbox.koywe.com/graphql)
 
 This URL runs an Apollo explorer instance, in case you want to test directly
 from your browser.
@@ -29,7 +29,7 @@ purposes):
 curl --request POST \
     --header 'content-type: application/json' \
     --header 'Authorization: Bearer JWTTOKEN' \
-    --url 'https://api-test.koywe.com/graphql' \
+    --url 'https://api-sandbox.koywe.com/graphql' \
     --data '{"query":"mutation authenticate($input: AuthInput!) {\n  authenticate(input: $input) {\n    token\n  }\n}","variables":{"input":{"clientId":"63631a561f41f8fd18f8c3e0","secret":"supersecretstringFTW"}}}'
 ```
 
