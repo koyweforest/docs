@@ -789,7 +789,7 @@ query orders($input: PaginationInput!) {
 
 Creates a new bank account and saves it for future operations.
 
-optional: `bankCode`, `documentNumber`, `payoutMethodId`
+optional: `bankCode`, `documentNumber`, `payoutMethodId (deprecated)`
 
 `documentNumber` is required when the user has not been KYC'd.
 
@@ -817,15 +817,6 @@ mutation createBankAccount($input: BankAccountInput!) {
   }
 }
 ```
-<Info color="blue">
-
-**For creating bank accounts in Colombia:**
-
-It's necessary to include the payoutMethodId. This ID represents the payout provider (https://docs.koywe.com/english/documentation/api-documentation/restful-api/Payout-provider/Returns-a-list-of-available-payout-providers-for-a-given-currency).
-
-**Additional indication:** You can obtain the payout provider specific to Colombia by querying for the currency to be used, in this case COP.
-</Info>
-
 
 <Info color="blue">
 ### Colombian Bank validations
@@ -872,17 +863,6 @@ query getBankAccount($filters: FiltersBankAccount!) {
 }
 ```
 
-<Info color="blue">
-
-**For getting bank accounts in Colombia:**
-
-It's necessary to include the payoutMethodId. This ID represents the payout provider (https://docs.koywe.com/english/documentation/api-documentation/restful-api/Payout-provider/Returns-a-list-of-available-payout-providers-for-a-given-currency).
-
-**Additional indication:** You can obtain the payout provider specific to Colombia by querying for the currency to be used, in this case COP.
-</Info>
-
-
-
 #### Delete Bank Account
 
 Deletes a Bank Account from the lists of the client's bank accounts.
@@ -927,33 +907,8 @@ query getBankInfoByCountry($countryCode: String!) {
   "countryCode": "CHL"
 }
 ```
-
-<Info color="blue">
-
-**For getting supported banks in Colombia:**
-
-It's necessary to include the payoutMethodId. This ID represents the payout provider (https://docs.koywe.com/english/documentation/api-documentation/restful-api/Payout-provider/Returns-a-list-of-available-payout-providers-for-a-given-currency).
-
-**Additional indication:** You can obtain the payout provider specific to Colombia by querying for the currency to be used, in this case COP.
-
-Example:
-
-```graphql
-query GetBankInfoByCountry($countryCode: String!, $payoutMethodId: String) {
-  getBankInfoByCountry(countryCode: $countryCode, payoutMethodId: $payoutMethodId) {
-             bankCode
-             name
-             institutionName
-             transferCode
-           }
-         }
-         {
-           "countryCode": "COL",
-           "payoutMethodId" : "646f399e43c4d97514ef40db"
-         }
-         ```
-</Info>
 </Accordion>
+
 <Accordion title="Merchant Balance">
 #### Get Merchant Balance
 Provides balance information for 'On', 'Off', and 'TopUp' ops, for clients with Async Settlement configuration.

@@ -2901,7 +2901,7 @@
           },
           "payoutMethodId": {
             "type": "string",
-            "description": "Currently being used only for Colombia, this optional field represents the payout provider."
+            "description": "[DEPRECATED] Currently being used only for Colombia, this optional field represents the payout provider."
           },
           "accountType": {
             "type": "string",
