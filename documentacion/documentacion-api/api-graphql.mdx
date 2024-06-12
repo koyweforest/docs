@@ -2,7 +2,7 @@
 title: "GraphQL API"
 ---
 
-URL de pruebas: https://api-test.koywe.com/graphql
+URL de pruebas: https://api-sandbox.koywe.com/graphql
 
 Esta URL corre una instancia del explorador Apollo, por si es que quieres probar la API desde tu navegador.
 
@@ -22,7 +22,7 @@ Para hacer llamados a la API GraphQL, siempre debes enviar un request POST a la 
 curl --request POST \
     --header 'content-type: application/json' \
     --header 'Authorization: Bearer JWTTOKEN' \
-    --url 'https://api-test.koywe.com/graphql' \
+    --url 'https://api-sandbox.koywe.com/graphql' \
     --data '{"query":"mutation authenticate($input: AuthInput!) {\n  authenticate(input: $input) {\n    token\n  }\n}","variables":{"input":{"clientId":"63631a561f41f8fd18f8c3e0","secret":"supersecretstringFTW"}}}'
 ```
 

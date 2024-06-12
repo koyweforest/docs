@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://api-test.koywe.com/rest"
+      "url": "https://api-sandbox.koywe.com/rest"
     }
   ],
   "tags": [
