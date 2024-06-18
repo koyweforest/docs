@@ -2068,10 +2068,149 @@
           }
         ]
       }
+    },
+    "/upload-delegated-kyc-files": {
+      "post": {
+        "tags": ["Clients"],
+        "summary": "Allows clients with delegated KYC to securely upload documents required for the identity verification process.",
+        "description": "The endpoint facilitates efficient and safe uploading of necessary files to complete the KYC process.",
+        "operationId": "uploadDelegatedKycFiles",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FileUpload"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "File uploaded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "File uploaded successfully"
+                    },
+                    "fileUrl": {
+                      "type": "string",
+                      "format": "uri",
+                      "example": "https://example-bucket.s3.amazonaws.com/path/to/file.pdf"
+                    }
+                  }
+                }
+              }
+            }
+          },
+           "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "File size should not exceed the allowed limit."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Forbidden: No Token Provided"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Failed to register file upload."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
+      }
     }
   },
   "components": {
     "schemas": {
+      "FileUpload": {
+        "type": "object",
+        "properties": {
+          "pdf": {
+            "type": "string",
+            "format": "binary"
+          },
+          "video": {
+            "type": "string",
+            "format": "binary"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary"
+          }
+        },
+        "oneOf": [
+          {
+            "required": ["pdf"]
+          },
+          {
+            "required": ["video"]
+          },
+          {
+            "required": ["image"]
+          }
+        ],
+        "description": "Provide the binary content of the file as the value for the respective file type field (pdf, video, or image)."
+
+      },
       "MerchantBalanceReport": {
         "type": "object",
         "properties": {
