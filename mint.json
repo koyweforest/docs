@@ -170,7 +170,8 @@
                 "english/documentation/api-documentation/restful-api/Clients/updates-webhook",
                 "english/documentation/api-documentation/restful-api/Clients/updates-validation-webhook",
                 "english/documentation/api-documentation/restful-api/Clients/retrieve-address",
-                "english/documentation/api-documentation/restful-api/Clients/merchant-balance"
+                "english/documentation/api-documentation/restful-api/Clients/merchant-balance",
+                "english/documentation/api-documentation/restful-api/Clients/upload-delegated-kyc-files"
               ]
             }
           ]
@@ -299,7 +300,9 @@
                 "english/documentation/api-documentation/restful-api/Clients/updates-webhook",
                 "english/documentation/api-documentation/restful-api/Clients/updates-validation-webhook",
                 "english/documentation/api-documentation/restful-api/Clients/retrieve-address",
-                "english/documentation/api-documentation/restful-api/Clients/merchant-balance"
+                "english/documentation/api-documentation/restful-api/Clients/merchant-balance",
+                "english/documentation/api-documentation/restful-api/Clients/upload-delegated-kyc-files"
+
               ]
             }
           ]
