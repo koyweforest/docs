@@ -1314,7 +1314,65 @@
         ]
       }
     },
+    "/orders/offramp/{orderId}/refund": {
+      "post": {
+        "tags": ["Orders"],
+        "summary": "Crypto Refund Request Service",
+        "description": "This service allows users to request a refund of cryptocurrencies when off-ramp orders have errors in their fiat transfer details (status: INVALID_WITHDRAWALS_DETAIL). The refund process is managed through multiple statuses and notifications via webhooks.\n\n    Flows:\n    1. **Refund Request:**\n       - Endpoint: `/orders/offramp/{orderId}/refund`\n       - Description: Initiates a cryptocurrency refund request for orders with errors in their fiat transfer details.\n       - Result: Generates a new order status `REFUND_STARTED` and sends a notification via webhook with the event `refund_started` to confirm the request receipt.\n\n    2. **Crypto Sending Process:**\n       - Once the process of sending cryptocurrencies begins, the status changes to `REFUND_IN_PROGRESS`. A notification will be sent via webhook with the event `refund_in_progress`.\n\n    3. **Sending Confirmation:**\n       - When the cryptocurrency sending is confirmed, the final order status will be `REFUND_DELIVERED` and a notification will be sent via webhook with the event `refund_delivered`.\n\n    **Note:**\n    - Multiple notifications may be received for each change in the order",
 
+        "operationId": "OrderRefund",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "OrderId identifier.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/refund_order_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderRefund"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404_1"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
+      }
+    },
     "/quotes": {
       "post": {
         "tags": ["Quote Queries"],
@@ -2531,6 +2589,33 @@
           }
         }
       },
+      "OrderRefund": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "ok"
+          },
+          "timestamp": {
+            "type": "string",
+            "example": "2024-06-24T17:27:48.585Z"
+          },
+          "code": {
+            "description": "            - `REFUND_000`: Refund order successful.\n\n            - `REFUND_001`: Order not found.\n\n            - `REFUND_002`: Wrong order type.\n\n            - `REFUND_003`: Wrong order status.\n\n            - `REFUND_004`: Refund is processing.\n\n            - `REFUND_005`: Refund already requested.\n\n            - `REFUND_006`: Wrong wallet address.\n\n            - `REFUND_007`: Missing transaction wallet address.",
+            "type": "string",
+            "example": "REFUND_000"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "orderId": {
+                "type": "string",
+                "example": "b3b6d577-1be4-4845-9d5b-b43fdef1920a"
+              }
+            }
+          }
+        }
+      },
       "Deal": {
         "type": "object",
         "properties": {
@@ -2939,6 +3024,17 @@
           "callbackUrl": {
             "type": "string",
             "description": "This is an optional attribute that can be provided when creating an order. If supplied, this value will be returned in the 'providedAction' attribute of the response upon the creation of the order. The primary purpose is to allow the client to redirect users to a specific URL following the order creation. If no `callbackUrl` is provided, the system will generate and return a default URL, reflected in the 'providedAction' attribute, that points to a specific interface of Koywe."
+          }
+        }
+      },
+      "refund_order_body": {
+        "required": ["destinationAddress"],
+        "type": "object",
+        "properties": {
+          "destinationAddress": {
+            "type": "string",
+            "example": "0x40f9bf922c23c43acdad71Ab4425280C0ffBD697",
+            "description": "it should be the destination address for the cryptocurrencies. This attribute is crucial in ensuring that funds are sent to the correct place."
           }
         }
       },

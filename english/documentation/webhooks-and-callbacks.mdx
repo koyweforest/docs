@@ -64,6 +64,12 @@ Specific off ramp events:
 the account or the owner of the account didn't match existing records. There's a special endpoint to correct these details.
 Check out the API docs for more information. Order state will be `INVALID_WITHDRAWALS_DETAILS`.
 
+- `refund_started`: The request for a crypto refund has been initiated due to errors in the fiat transfer details. Order state will be `REFUND_STARTED`.
+
+- `refund_in_progress`: The process of sending the crypto refund has begun. Order state will be `REFUND_IN_PROGRESS`.
+
+- `refund_delivered`: The crypto refund has been successfully sent and confirmed. Order state will be `REFUND_DELIVERED`.
+
 Additionally, you weill be able to defined a `secret` to validate our requests.
 Using this secret, we encrypt the request parameters and add the hash for you to
 verify:
@@ -150,7 +156,7 @@ If you made a document number change, we will perform an asynchronous validation
 `UPDATE_DOCUMENT_NUMBER`: After a data validation, you will receive an event with this name where there will be a confirmation message, or an error message because there was a discrepancy in the user's data.
 - `document_number_sucessfully_updated`: The data verification process finished with success and the document number has been updated.
 
-- `document_number_failed_to_update`: There was an error during the verification flow, ie: "Account does not have any personal info", "Account not found",  "There is incompatible personal info between the account and metamap". 
+- `document_number_failed_to_update`: There was an error during the verification flow, ie: "Account does not have any personal info", "Account not found",  "There is incompatible personal info between the account and metamap".
 
 
 
