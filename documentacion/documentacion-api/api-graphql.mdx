@@ -757,6 +757,58 @@ query orders($input: PaginationInput!) {
 }
 ```
 
+
+#### Reembolso de Orden
+
+Inicia una solicitud de reembolso para una orden off-ramp debido a errores en los detalles de la transferencia de fiat, devolviendo el orderId y el estado de la solicitud.
+
+
+  ```graphql
+  mutation OffRampRefund($input: OrderRefundInputDto!) {
+    offRampRefund(input: $input) {
+      code
+      data {
+        orderId
+      }
+      message
+      timestamp
+    }
+  }
+  "variables":
+  {
+    "input": {
+      "orderId": "ec2af111-acdc-43bb-a0f3-eb1ed1800bbc"
+    }
+  }
+
+
+  #### Ejemplo de Respuesta de Error
+  {
+    "errors": [
+      {
+        "message": "Refund already requested",
+        "status": "INTERNAL_SERVER_ERROR"
+      }
+    ],
+    "data": null
+  }
+
+  #### Ejemplo de Respuesta Exitosa
+
+  {
+    "data": {
+      "offRampRefund": {
+        "code": "REFUND_000",
+        "data": {
+          "orderId": "ec2af111-acdc-43bb-a0f3-eb1ed1800bbc"
+        },
+        "message": "ok",
+        "timestamp": "2024-06-27T22:34:04.685Z"
+      }
+    }
+  }
+```
+
 </Accordion>
 
 <Accordion title="Servicios Bancarios">

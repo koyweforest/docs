@@ -781,6 +781,56 @@ query orders($input: PaginationInput!) {
 }
 ```
 
+#### Refund Order
+
+  Initiate a refund request for an off-ramp order due to errors in the fiat transfer details, returning the orderId and the status of the request.
+
+  ```graphql
+  mutation OffRampRefund($input: OrderRefundInputDto!) {
+    offRampRefund(input: $input) {
+      code
+      data {
+        orderId
+      }
+      message
+      timestamp
+    }
+  }
+  "variables":
+  {
+    "input": {
+      "orderId": "ec2af111-acdc-43bb-a0f3-eb1ed1800bbc"
+    }
+  }
+
+
+  #### Example of Error Response
+  {
+    "errors": [
+      {
+        "message": "Refund already requested",
+        "status": "INTERNAL_SERVER_ERROR"
+      }
+    ],
+    "data": null
+  }
+
+  #### Example of Successful Response
+
+  {
+    "data": {
+      "offRampRefund": {
+        "code": "REFUND_000",
+        "data": {
+          "orderId": "ec2af111-acdc-43bb-a0f3-eb1ed1800bbc"
+        },
+        "message": "ok",
+        "timestamp": "2024-06-27T22:34:04.685Z"
+      }
+    }
+  }
+```
+
 </Accordion>
 
 <Accordion title="Banking services">
