@@ -1265,6 +1265,64 @@
         ]
       }
     },
+    "/orders/tx-hash/{txHash}":{
+      "get":{
+        "tags":["Orders"],
+        "summary":"Returns order/s information by txHash",
+        "description":"To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service.",
+        "operationId":"GetOrderByTxHash",
+        "parameters":[
+        {
+          "name":"txHash",
+          "in":"path",
+          "description": "Transaction Hash of an order(s)",
+          "required": true,
+          "style": "simple",
+          "explode": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrdersByTxHash"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/get_by_tx_hash_inline_response_400"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/get_by_tx_hash_inline_response_500"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
+        }
+    },
 
     "/orders/external_id/{externalId}": {
       "get": {
@@ -1276,7 +1334,7 @@
           {
             "name": "externalId",
             "in": "path",
-            "description": "Extenal Order's identifier.",
+            "description": "External Order's identifier.",
             "required": true,
             "style": "simple",
             "explode": false,
@@ -2802,6 +2860,18 @@
           }
         }
       },
+      "OrdersByTxHash": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Order"
+            }
+          }
+        }
+      },
+      
       "Deals": {
         "type": "object",
         "properties": {
@@ -2991,6 +3061,25 @@
           }
         }
       },
+      "get_by_tx_hash_inline_response_500": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "More than one paid order found for the given confirmation hash"
+          }
+        }
+      },
+      "get_by_tx_hash_inline_response_400": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "No order is associated to this transaction hash"
+          }
+        }
+      },
+
       "orders_body": {
         "required": ["destinationAddress", "quoteId"],
         "type": "object",
