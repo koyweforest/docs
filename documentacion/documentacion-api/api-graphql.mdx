@@ -699,6 +699,71 @@ query getOrderByExternalId($input: GetExternalIdOrderInput!) {
   }
 }
 ```
+#### Consultar Ordenes Por txHash
+
+Retorna la información de las ordenes vinculadas al txHash. Recibe un `txHash`.
+
+```graphql
+query GetOrderByTxHash($input: GetTxHashOrderInput!) {
+  getOrderByTxHash(input: $input) {
+    orderId
+    quoteId
+    orderType
+    symbolIn
+    symbolOut
+    logoIn
+    logoOut
+    amountIn
+    amountOut
+    paymentMethodId
+    destinationAddress
+    email
+    exchangeRate
+    koyweFee
+    partnerFee
+    networkFee
+    status
+    outReceipt
+    dates {
+      confirmationDate
+      paymentDate
+      executionDate
+      deliveryDate
+    }
+    metaData
+    externalId
+    errors {
+      invalidWithdrawalsDetails {
+        _id
+        currencySymbol
+        countryCode
+        documentNumber
+        accountNumber
+        bankCode
+        accountType
+        payoutMethodName
+      }
+    }
+    feesInFiat {
+      koyweFee
+      netFee
+      partnerFee
+    }
+    feesInUSD {
+      koyweFee
+      netFee
+      partnerFee
+    }
+  }
+}
+"variables":
+{
+  "input": {
+    "txHash": "0x7bd90e6285dbf85b48f0907288bdbd79ba082bc2c639640ie8234a5867cgd190"
+  }
+}
+```
+
 #### Lista de órdenes pasadas
 
 Retorna una lista de todas las órdenes asociadas al `clientId` o al `email` especificado al autenticarse.
