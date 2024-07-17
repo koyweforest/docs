@@ -574,8 +574,8 @@ mutation UpdateAccount($input: InputUpdateAccountDto!) {
 Returns the registered movements and balance of the user.
 
 ```graphql
-query MovementsBalance($accountId: String!) {
-  movementsBalance(accountID: $accountId) {
+query MovementsBalance($input: AccountMovementsBalanceInput!) {
+  movementsBalance(input: $input) {
     allMovements {
       orderId
       transactionStatus
@@ -615,7 +615,10 @@ query MovementsBalance($accountId: String!) {
 }
 "variables":
 {
-  "accountId": "userId"
+   "input": {
+    "accountID": "668561002363adab95bdff65",
+    "email": "user@email.com" //Optional
+  }
 }
 ```
 
