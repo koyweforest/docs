@@ -148,7 +148,9 @@
                 "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information",
                 "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information-by-externalId",
                 "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information-by-txHash",
-                "english/documentation/api-documentation/restful-api/Orders/order-refund"
+                "english/documentation/api-documentation/restful-api/Orders/order-refund",
+                "english/documentation/api-documentation/restful-api/Orders/creates-topup",
+                "english/documentation/api-documentation/restful-api/Orders/retrieve-topups"
               ]
             },
             {
@@ -280,7 +282,9 @@
                 "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information",
                 "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information-by-externalId",
                 "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information-by-txHash",
-                "english/documentation/api-documentation/restful-api/Orders/order-refund"
+                "english/documentation/api-documentation/restful-api/Orders/order-refund",
+                "english/documentation/api-documentation/restful-api/Orders/creates-topup",
+                "english/documentation/api-documentation/restful-api/Orders/retrieve-topups"
               ]
             },
             {
@@ -306,7 +310,6 @@
                 "english/documentation/api-documentation/restful-api/Clients/retrieve-address",
                 "english/documentation/api-documentation/restful-api/Clients/merchant-balance",
                 "english/documentation/api-documentation/restful-api/Clients/upload-delegated-kyc-files"
-
               ]
             }
           ]

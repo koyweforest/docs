@@ -1265,26 +1265,26 @@
         ]
       }
     },
-    "/orders/tx-hash/{txHash}":{
-      "get":{
-        "tags":["Orders"],
-        "summary":"Returns order/s information by txHash",
-        "description":"To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service.",
-        "operationId":"GetOrderByTxHash",
-        "parameters":[
-        {
-          "name":"txHash",
-          "in":"path",
-          "description": "Transaction Hash of an order(s)",
-          "required": true,
-          "style": "simple",
-          "explode": false,
-          "schema": {
-            "type": "string"
+    "/orders/tx-hash/{txHash}": {
+      "get": {
+        "tags": ["Orders"],
+        "summary": "Returns order/s information by txHash",
+        "description": "To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service.",
+        "operationId": "GetOrderByTxHash",
+        "parameters": [
+          {
+            "name": "txHash",
+            "in": "path",
+            "description": "Transaction Hash of an order(s)",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
           }
-        }
-      ],
-      "responses": {
+        ],
+        "responses": {
           "200": {
             "description": "successful operation",
             "content": {
@@ -1321,9 +1321,8 @@
             "AuthorizationToken": []
           }
         ]
-        }
+      }
     },
-
     "/orders/external_id/{externalId}": {
       "get": {
         "tags": ["Orders"],
@@ -2222,7 +2221,7 @@
               }
             }
           },
-           "400": {
+          "400": {
             "description": "Bad Request",
             "content": {
               "application/json": {
@@ -2293,6 +2292,113 @@
           }
         ]
       }
+    },
+    "/topups": {
+      "get": {
+        "tags": ["Orders"],
+        "summary": "Retrieve TopUps information",
+        "description": "Provides information about the topUps created or Provides information about the topUp with the entered orderId. For clients with Asynchronous Settlement configuration.",
+        "operationId": "getTopUps",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "query",
+            "required": false,
+            "description": "Order Identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "description": "Number of records per page",
+            "schema": {
+              "type": "string",
+              "format": "number"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "description": "Number of the pages",
+            "schema": {
+              "type": "string",
+              "format": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation topUp orderId",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/Order"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TopUpPagination"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
+      },
+      "post": {
+        "tags": ["Orders"],
+        "summary": "Creates a new TopUp.",
+        "description": "It allows you to create TopUps, requires that a quote be made and the quoteId is expected as a variable, for clients with Asynchronous Settlement configuration.",
+        "operationId": "CreateTopUp",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTopUp"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOrder"
+                },
+                "example": {
+                  "orderId": "3ae57c43-6fae-4b0c-b0d5-2c35759e76d9",
+                  "quoteId": "63e154dbc47d9176668a9af6",
+                  "amountIn": 1,
+                  "amountOut": 1313696,
+                  "symbolIn": "ETH",
+                  "symbolOut": "CLP",
+                  "providedAction": "url.example.com",
+                  "email": "kenneth@koywe.com",
+                  "documentNumber": "158289164"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -2325,7 +2431,6 @@
           }
         ],
         "description": "Provide the binary content of the file as the value for the respective file type field (pdf, video, or image)."
-
       },
       "MerchantBalanceReport": {
         "type": "object",
@@ -2871,7 +2976,6 @@
           }
         }
       },
-      
       "Deals": {
         "type": "object",
         "properties": {
@@ -3871,6 +3975,61 @@
           "authMethod": {
             "type": "string",
             "example": "Hash"
+          }
+        }
+      },
+      "CreateTopUp": {
+        "type": "object",
+        "properties": {
+          "quoteId": {
+            "type": "string"
+          }
+        }
+      },
+      "topUp": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "668da79295a8b8a7fc2230f7"
+          },
+          "koyweFee": {
+            "type": "number",
+            "example": 2.390547
+          },
+          "partnerFee": {
+            "type": "number",
+            "example": 0
+          },
+          "netFee": {
+            "type": "number",
+            "example": 0
+          },
+          "orderId": {
+            "type": "string",
+            "example": "4136d0d5-195a-4556-9462-97b728bf589f"
+          },
+          "quoteId": {
+            "type": "string",
+            "example": "668da78995a8b8a7fc2230dc"
+          },
+          "externalId": {
+            "type": "string",
+            "example": ""
+          }
+        }
+      },
+      "TopUpPagination": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/topUp"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/Pagination"
           }
         }
       }
