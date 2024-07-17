@@ -1167,3 +1167,37 @@ If you're interested in learning more about this and its use cases, please write
   </Warning>
 
 </Accordion>
+<Accordion title="TopUps Create">
+#### CreateTopUps
+It allows you to create TopUps, requires that a quote be made and the quoteId is expected as a variable, for clients with Asynchronous Settlement configuration.
+```graphql
+mutation CreateTopUps($input: OrderInput!) {
+  createTopUps(input: $input) {
+    orderId
+    quoteId
+    symbolOut
+    symbolIn
+    amountOut
+    amountIn
+    paymentMethodId
+    providedAddress
+    providedAction
+    email
+    documentNumber
+    metadata
+    externalId
+  }
+}
+"variables":
+{
+  "input": {
+    "quoteId": "6696beb139b613706bbe3786"
+  }
+}
+```
+<Warning>
+**This method is only available for specific clients**
+If you're interested in learning more about this and its use cases, please write us at: [contacto@koywe.com](mailto:contacto@koywe.com)!
+  </Warning>
+
+</Accordion>

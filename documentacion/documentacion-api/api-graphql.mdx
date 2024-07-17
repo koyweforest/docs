@@ -1132,3 +1132,38 @@ Si estás interesado en saber más sobre esto y sus casos de uso, contáctanos e
 </Warning>
 
 </Accordion>
+<Accordion title="TopUps Create">
+#### CreateTopUps
+Permite crear TopUps, requiere que se realice una cotizacion y se espera como variable el quoteId, para clientes con configuración de Settlement Asíncrono.
+```graphql
+mutation CreateTopUps($input: OrderInput!) {
+  createTopUps(input: $input) {
+    orderId
+    quoteId
+    symbolOut
+    symbolIn
+    amountOut
+    amountIn
+    paymentMethodId
+    providedAddress
+    providedAction
+    email
+    documentNumber
+    metadata
+    externalId
+  }
+}
+"variables":
+{
+  "input": {
+    "quoteId": "6696beb139b613706bbe3786"
+  }
+}
+```
+<Warning>
+**Este método solo está disponible para clientes especificos**
+
+Si estás interesado en saber más sobre esto y sus casos de uso, contáctanos en: contacto@koywe.com.
+</Warning>
+
+</Accordion>
