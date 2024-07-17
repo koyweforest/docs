@@ -1060,3 +1060,110 @@ If you're interested in learning more about this and its use cases, please write
   </Warning>
 
 </Accordion>
+
+<Accordion title="TopUp Get">
+#### Get TopUps on PaymentOrderOutputPaginated
+Provides information about the topUps created, for clients with Asynchronous Settlement configuration.
+```graphql
+query GetTopUps {
+  getTopUps {
+    ... on PaymentOrderOutputPaginated {
+      pagination {
+        totalCount
+        pageSize
+        pageNumber
+      }
+      data {
+        orderId
+        koyweFee
+        quoteId
+        partnerFee
+        netFee
+        externalId
+      }
+    }
+  }
+}
+"variables":
+{
+  "pageSize": 1,
+  "pageNumber": 10
+}
+```
+#### Get TopUps on OrderOutput
+Provides information about the topUp with the entered orderId, for clients with Asynchronous Settlement configuration.
+```graphql
+query GetTopUps($orderId: String) {
+  getTopUps(orderId: $orderId) {
+    ... on OrderOutput {
+      orderId
+      quoteId
+      orderType
+      symbolIn
+      symbolOut
+      logoIn
+      logoOut
+      amountIn
+      amountOut
+      paymentMethodId
+      destinationAddress
+      email
+      exchangeRate
+      koyweFee
+      partnerFee
+      networkFee
+      status
+      outReceipt
+      dates {
+        confirmationDate
+        paymentDate
+        executionDate
+        deliveryDate
+      }
+      metaData
+      externalId
+      errors {
+        invalidWithdrawalsDetails {
+          _id
+          currencySymbol
+          countryCode
+          documentNumber
+          accountNumber
+          bankCode
+          accountType
+          payoutMethodName
+        }
+      }
+      feesInFiat {
+        koyweFee
+        netFee
+        partnerFee
+      }
+      feesInUSD {
+        koyweFee
+        netFee
+        partnerFee
+      }
+      refund {
+        dates {
+          startDate
+          processDate
+          deliveredDate
+        }
+        destinationAddress
+        transactionReceipt
+      }
+    }
+  }
+}
+"variables":
+{
+  "orderId": "518b441f-f643-4ce7-b979-7b346b2f3ffd"
+}
+```
+<Warning>
+**This method is only available for specific clients**
+If you're interested in learning more about this and its use cases, please write us at: [contacto@koywe.com](mailto:contacto@koywe.com)!
+  </Warning>
+
+</Accordion>

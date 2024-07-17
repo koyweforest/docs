@@ -1022,3 +1022,113 @@ Si estás interesado en saber más sobre esto y sus casos de uso, contáctanos e
 </Warning>
 
 </Accordion>
+
+<Accordion title="TopUp Get">
+#### Get TopUps on PaymentOrderOutputPaginated
+Proporciona información sobre los topUps creados, para clientes con configuración de Settlement Asíncrono.
+```graphql
+query GetTopUps {
+  getTopUps {
+    ... on PaymentOrderOutputPaginated {
+      pagination {
+        totalCount
+        pageSize
+        pageNumber
+      }
+      data {
+        orderId
+        koyweFee
+        quoteId
+        partnerFee
+        netFee
+        externalId
+      }
+    }
+  }
+}
+"variables":
+{
+  "pageSize": 1,
+  "pageNumber": 10
+}
+```
+#### Get TopUps on OrderOutput
+Proporciona información sobre el topUp con el orderId ingresado, para clientes con configuración de Settlement Asíncrono.
+```graphql
+query GetTopUps($orderId: String) {
+  getTopUps(orderId: $orderId) {
+    ... on OrderOutput {
+      orderId
+      quoteId
+      orderType
+      symbolIn
+      symbolOut
+      logoIn
+      logoOut
+      amountIn
+      amountOut
+      paymentMethodId
+      destinationAddress
+      email
+      exchangeRate
+      koyweFee
+      partnerFee
+      networkFee
+      status
+      outReceipt
+      dates {
+        confirmationDate
+        paymentDate
+        executionDate
+        deliveryDate
+      }
+      metaData
+      externalId
+      errors {
+        invalidWithdrawalsDetails {
+          _id
+          currencySymbol
+          countryCode
+          documentNumber
+          accountNumber
+          bankCode
+          accountType
+          payoutMethodName
+        }
+      }
+      feesInFiat {
+        koyweFee
+        netFee
+        partnerFee
+      }
+      feesInUSD {
+        koyweFee
+        netFee
+        partnerFee
+      }
+      refund {
+        dates {
+          startDate
+          processDate
+          deliveredDate
+        }
+        destinationAddress
+        transactionReceipt
+      }
+    }
+  }
+}
+"variables":
+{
+  "orderId": "518b441f-f643-4ce7-b979-7b346b2f3ffd"
+}
+```
+<Warning>
+
+**Este método solo está disponible para clientes especificos**
+
+Si estás interesado en saber más sobre esto y sus casos de uso, contáctanos en: contacto@koywe.com.
+
+</Warning>
+
+</Accordion>
