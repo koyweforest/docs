@@ -42,7 +42,7 @@
         "tags": ["Accounts"],
         "summary": "Get movements balance data",
         "description": "Returns the registered movements and balance of the user.",
-        "operationId": "account",
+        "operationId": "accountMovementsBalance",
         "parameters": [
           {
             "name": "accountID",
@@ -99,7 +99,7 @@
         "tags": ["Accounts"],
         "summary": "Get account data",
         "description": "Returns the registered information of the user.",
-        "operationId": "account",
+        "operationId": "accountEmail",
         "parameters": [
           {
             "name": "email",
@@ -146,7 +146,7 @@
         "tags": ["Accounts"],
         "summary": "Check if can operate",
         "description": "Check if an account meets all the minimum requirements needed to operate, returning the missing information.",
-        "operationId": "account",
+        "operationId": "accountEmailCheck",
         "parameters": [
           {
             "name": "email",
@@ -237,7 +237,7 @@
         "tags": ["Accounts"],
         "summary": "Updates an account",
         "description": "Update data of an existing account.",
-        "operationId": "account",
+        "operationId": "accountUpdate",
         "requestBody": {
           "content": {
             "application/json": {
@@ -615,7 +615,7 @@
         "tags": ["Payout-provider"],
         "summary": "This endpoint is deprecated | ~ Returns a list of available payout providers for a given currency. ~",
         "description": "**This endpoint is deprecated and will be removed in a future version.** | ~If you want to know how to receive your own clientId, please check the \"Credentials\" section. the domain for all images provided directly by Koywe have the form https://rampa.koywe.com/paymentProviders/exampleImage.svg (keep in mind that this is just an example, but the domain shown is the actual one Koywe uses)~",
-        "operationId": "PaymentOptionsList",
+        "operationId": "PayOutProvider",
         "parameters": [
           {
             "name": "symbol",
@@ -1265,26 +1265,26 @@
         ]
       }
     },
-    "/orders/tx-hash/{txHash}":{
-      "get":{
-        "tags":["Orders"],
-        "summary":"Returns order/s information by txHash",
-        "description":"To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service.",
-        "operationId":"GetOrderByTxHash",
-        "parameters":[
-        {
-          "name":"txHash",
-          "in":"path",
-          "description": "Transaction Hash of an order(s)",
-          "required": true,
-          "style": "simple",
-          "explode": false,
-          "schema": {
-            "type": "string"
+    "/orders/tx-hash/{txHash}": {
+      "get": {
+        "tags": ["Orders"],
+        "summary": "Returns order/s information by txHash",
+        "description": "To try these services, an Authorization token must be provided as a BearerToken header. The Authorization token can be obtained in the /auth service.",
+        "operationId": "GetOrderByTxHash",
+        "parameters": [
+          {
+            "name": "txHash",
+            "in": "path",
+            "description": "Transaction Hash of an order(s)",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
           }
-        }
-      ],
-      "responses": {
+        ],
+        "responses": {
           "200": {
             "description": "successful operation",
             "content": {
@@ -1321,7 +1321,7 @@
             "AuthorizationToken": []
           }
         ]
-        }
+      }
     },
 
     "/orders/external_id/{externalId}": {
@@ -2097,7 +2097,7 @@
         "tags": ["Clients"],
         "summary": "Create or update the validation webhook",
         "description": "Create or update the validation webhook",
-        "operationId": "updateWebhook",
+        "operationId": "clientUpdateWebhook",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2126,53 +2126,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/inline_response_400"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "AuthorizationToken": []
-          }
-        ]
-      }
-    },
-    "/merchant-balance": {
-      "get": {
-        "tags": ["Clients"],
-        "summary": "Retrieve merchant balance",
-        "description": "This service provides information on the balances of 'On', 'Off', and, if enabled, 'TopUp' transactions for Asynchronous Settlement configurations. This is essential for clients to monitor and manage their settlement adjustments effectively.",
-        "operationId": "merchantBalance",
-        "parameters": [
-          {
-            "name": "startDate",
-            "in": "query",
-            "required": true,
-            "description": "Start date of the query period in YYYY-MM-DD format",
-            "schema": {
-              "type": "string",
-              "format": "date"
-            }
-          },
-          {
-            "name": "endDate",
-            "in": "query",
-            "required": true,
-            "description": "End date of the query period in YYYY-MM-DD format",
-            "schema": {
-              "type": "string",
-              "format": "date"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MerchantBalanceReport"
                 }
               }
             }
@@ -2222,7 +2175,7 @@
               }
             }
           },
-           "400": {
+          "400": {
             "description": "Bad Request",
             "content": {
               "application/json": {
@@ -2325,28 +2278,6 @@
           }
         ],
         "description": "Provide the binary content of the file as the value for the respective file type field (pdf, video, or image)."
-
-      },
-      "MerchantBalanceReport": {
-        "type": "object",
-        "properties": {
-          "reportByCountryAndCurrency": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CountryCurrencyReport"
-            }
-          },
-          "dateOfBalance": {
-            "type": "string",
-            "example": "2024-05-16T19:50:00.932Z"
-          },
-          "warning": {
-            "type": "string",
-            "description": "A warning message related to the report, included when applicable.",
-            "example": "NEGATIVE TOPUP AMOUNT -$5"
-          }
-        },
-        "required": ["reportByCountryAndCurrency", "dateOfBalance"]
       },
       "CountryCurrencyReport": {
         "type": "object",
@@ -2871,7 +2802,7 @@
           }
         }
       },
-      
+
       "Deals": {
         "type": "object",
         "properties": {
