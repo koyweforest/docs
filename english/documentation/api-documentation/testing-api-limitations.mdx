@@ -39,3 +39,37 @@ After receiving test tokens, we can try out the off ramps:
 5. We wait for the webhooks and blockchain confirmations, occasionally querying the orders endpoint to check the status.
 
 For off ramps, once we have confirmed the testnet crypto payment, we always simulate a successful bank transaction. To add more real world conditions, we're working on simulating failed transfers.
+
+### OffRamp in Argentina
+
+In Argentina, in order to make the corresponding transfer, bank accounts will be validated to ensure they are not blocked or inactive, and that the bank account holder matches the user who is operating the account.
+To do this, we have a batch of specific data.
+
+```
+Account Number                    Document
+0000242600000000009120            34770518
+0000362700000000000116            14013056
+0000389400000000000055            25715125
+4310001322000000000846            11270545
+4310001342400000011259            30890437      // Inactive bank account
+```
+
+The operation procedure is as follows:
+
+1. We must have a user account with any document mentioned above.
+2. Create a bank account [POST /bank-accounts](/english/documentation/api-documentation/restful-api/Banks/creates-bank-account).
+   We will use the corresponding bank account number for the document of the previously created user account.
+   Example for a user account with document number: 34770518
+
+```
+{
+  "countryCode": "ARG",
+  "currencySymbol": "ARS",
+  "accountNumber": "0000242600000000009120",
+  "email": "example@mail.com"
+}
+```
+
+3. If everything is fine, the bank account will be verified and can be operated through it. Otherwise, the bank account will be invalid for that user account.
+4. Create the quote [POST /quotes](/english/documentation/api-documentation/restful-api/Quotes/creates-a-purchase-or-sale-quote).
+5. Create the order [POST /orders](/english/documentation/api-documentation/restful-api/Orders/creates-order).

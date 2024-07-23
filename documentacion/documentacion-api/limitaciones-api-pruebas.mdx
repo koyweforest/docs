@@ -36,3 +36,37 @@ Después de recibir los tokens de prueba, podemos probar las transacciones de of
 5. Esperamos los webhooks y las confirmaciones de cadena de bloques, consultando ocasionalmente el endpoint de pedidos para verificar el estado.
 
 Para las off ramps, una vez que hemos confirmado el pago crypto de testnet, siempre simulamos una transacción bancaria exitosa. Para añadir condiciones más parecidas a la realidad, estamos trabajando en simular transferencias fallidas.
+
+### OffRamp en Argentina
+
+En Argentina, para poder realizar el giro de correspondiente, las cuentas bancarias se validarán de que no este bloqueada o inactiva, y que el titular de la cuenta bancaria corresponda al usuario que esta operando.
+Para ello, tenemos un lote de datos especificos.
+
+```
+Numero de cuenta                  Documento
+0000242600000000009120            34770518
+0000362700000000000116            14013056
+0000389400000000000055            25715125
+4310001322000000000846            11270545
+4310001342400000011259            30890437      // Cuenta bancaria inactiva
+```
+
+La forma de operar es la siguiente:
+
+1. Tenemos que tener una cuenta de usuario algún documento mencionado anteriormente.
+2. Creamos una cuenta bancaria [POST /bank-accounts](/english/documentation/api-documentation/restful-api/Banks/creates-bank-account).
+   Tomaremos el número de cuenta bancaria correspondiente al documento de la cuenta de usuario creada previamente.
+   Ejemplo para una cuenta de usuario con documento número: 34770518
+
+```
+{
+  "countryCode": "ARG",
+  "currencySymbol": "ARS",
+  "accountNumber": "0000242600000000009120",
+  "email": "example@mail.com"
+}
+```
+
+3. Si todo esta bien, la cuenta bancaria quedará verificada y podrá operar a través de ella. Caso contrario, la cuenta bancaria quedará invalida para esa cuenta de usuario.
+4. Crear el quote [POST /quotes](/english/documentation/api-documentation/restful-api/Quotes/creates-a-purchase-or-sale-quote).
+5. Crear orden [POST /orders](/english/documentation/api-documentation/restful-api/Orders/creates-order).
