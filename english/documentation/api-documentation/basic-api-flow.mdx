@@ -134,6 +134,16 @@ show them to the user if they select that payment method.
 
 <b>Off ramp</b>: It is not required.
 
+### `/bank-accounts`
+
+Bank account registration.
+
+<b>On ramp</b>: Required only if using the STP payment method.
+
+<b>Off ramp</b>: Required. Before being able to [create an
+order](/english/documentation/api-documentation/basic-api-flow#post-orders), we
+need to register the bank account where the money will be sent.
+
 ### `Post /quotes`
 
 Having the inputs for both fiat and crypto, the user must input the amount he desires to pay or receive in order to obtain a `quote`. Once the call's response is retrieved, the user will be able to know exactly how much they'll pay in fees and how much they'll receive. Optionally, we can ask the API to keep the quote valid for a few of seconds. If that is the case, `quoteId` can be kept to use in the next step.
@@ -205,3 +215,10 @@ The API will return an `orderId`, the payment details (a url to redirect your us
 Once the `orderId` is received you can save it, associating it to the user.
 
 The only thing left to do is to wait for the calls to your from our API or check every now and then with `Get /order` providing the `orderId`.
+
+<Info>
+  For off-ramp operations in Argentina, they are generally effective
+  immediately. However, the status of the order will not change to delivered
+  until 4 days have passed since the corresponding cryptocurrencies for the
+  created order were deposited.
+</Info>

@@ -143,6 +143,16 @@ pago.
 
 <b>Off ramp</b>: No es requerido.
 
+### `/bank-accounts`
+
+Registro de cuentas bancarias.
+
+<b>On ramp</b>: Requerido solo en caso de usar el método de pago de STP.
+
+<b>Off ramp</b>: Requerido. Antes de poder [crear una
+orden](/documentacion/documentacion-api/flujo-basico-api#post-orders)
+necesitamos registrar la cuenta bancaria donde se mandara el dinero.
+
 ### `Post /quotes`
 
 Teniendo ambas monedas ingresadas, fiat y crypto, el usuario debe ingresar un monto a recibir o a pagar, para poder obtener una cotización. Con la respuesta de la cotización, el usuario podrá conocer exactamente cuánto pagará en comisiones y recibirá al concretarse la operación. Opcionalmente, podemos pedir a la API que guarde la cotización y la mantenga vigente por algunos segundos. En este caso, el quoteId lo podemos guardar para el siguiente paso.
@@ -214,3 +224,10 @@ a API devolverá un orderId, los detalles del pago (una url para redirigir a tu 
 Una vez recibido el `orderId` podemos guardarlo, asociándolo al usuario.
 
 Resta esperar los llamados al webhook desde nuestra API o consultar `Get /order` con el id guardado cada cierto tiempo.
+
+<Info>
+  Para las operaciones off ramps en Argentina generalmente son efectivas en el
+  acto, sin embargo el estado de la orden no va a cambiar a delivered hasta no
+  haber pasado 4 días desde el ingreso de las cryptos correspondiente a la orden
+  creada.
+</Info>
