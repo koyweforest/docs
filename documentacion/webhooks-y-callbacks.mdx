@@ -48,7 +48,7 @@ Cuando un usuario realiza un depósito bancario, puede ocurrir que el monto depo
 Para modificar la orden, se genera un nuevo presupuesto ( quote ) basado en el monto recibido y se actualiza la orden con este nuevo presupuesto. De esta manera, la orden reflejará el monto correcto después del depósito bancario.
 Este evento también envia un objeto en donde se recibirá la orden original( originalOrder ) y la orden recalculada ( orderAdjustedByBankIncome )
 
-Eventos específicos de onramp:
+Eventos específicos de onramp ("currency-crypto"):
 
 `crypto_tx_sent`: se envía la transacción criptográfica después de que se confirma el pago en fiat. El estado de la orden será `IN_PROGRESS`.
 
@@ -58,7 +58,7 @@ Eventos específicos de onramp:
 mínimos (1 de cada 10 mil). Si llegara a suceder, intentaríamos la transacción nuevamente y volverías a recibir los
 eventos de más arriba. El estado de la orden será `REJECTED`.
 
-Eventos específicos de offramp:
+Eventos específicos de offramp ("crypto-currency"):
 
 `fiat_sent`: se envía la transferencia en fiat desde la cuenta de Koywe. El estado de la orden será `IN_PROGRESS`.
 
@@ -81,9 +81,10 @@ Ejemplo de evento reportado:
 
 ```json
 {
-  "eventName": "crypto_delivered", // event, from the list above
-  "orderId": "5a3288ea-0bd4-44d2-af11-aae1f88bbd61", // order id, see above
-  "externalId": "34ae1f88bbd6" // This attribute is returned only if the 'externalId' was specified during the order creation process.
+  "eventName": "crypto_delivered", // Evento de la lista anterior
+  "orderId": "5a3288ea-0bd4-44d2-af11-aae1f88bbd61", // Id de la orden, ver arriba
+  "orderType": "currency-crypto", // Este atributo especifica el tipo de orden, que puede ser OnRamp ("currency-crypto") o OffRamp ("crypto-currency").
+  "externalId": "34ae1f88bbd6", // Este atributo se devuelve solo si el 'externalId' se especificó durante el proceso de creación de la orden.
   "timeStamp": "2022-10-26T22:36:41.658Z",
   "signature": "ed40d34ab7a587cf1a16338a16cc7765ae4420936677482bb33f5f738e4f7189" // hash
 }

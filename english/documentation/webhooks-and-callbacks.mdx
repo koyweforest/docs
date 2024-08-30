@@ -47,7 +47,7 @@ To modify the order, a new quote is generated based on the received amount, and 
 This event also sends an object where the original order (originalOrder) and the recalculated order (orderAdjustedByBankIncome) will be received.
 
 
-Specific on ramp events:
+Specific on ramp events ("currency-crypto"):
 - `crypto_tx_sent`: crypto transaction is sent after fiat payment is confirmed. Order state will be `IN_PROGRESS`.
 
 - `crypto_delivered`: crypto transaction nis confirmed by the blockchain. Order state will be `DELIVERED`.
@@ -55,7 +55,7 @@ Specific on ramp events:
 - `crypto_tx_failed`: crypto transaction failed. This <i>shouldn't</i> happen, but does in some minor cases
 (1 out of 10 thousand). If it were to happen, we would retry the transaction. Order state will be `REJECTED`.
 
-Specific off ramp events:
+Specific off ramp events ("crypto-currency"):
 - `fiat_sent`: fiat transfer is sent from Koywe's account. Order state will be `IN_PROGRESS`.
 
 - `fiat_delivered`: fiat is delivered, according to Koywe's bank. Order state will be `DELIVERED`.
@@ -87,7 +87,8 @@ Example of a request:
 {
   "eventName": "crypto_delivered", // event, from the list above
   "orderId": "5a3288ea-0bd4-44d2-af11-aae1f88bbd61", // order id
-  "externalId':"34ae1f88bbd6" // This attribute is returned only if the 'externalId' was specified during the order creation process.
+  "orderType": "currency-crypto", // This attribute specifies the type of order, which can be either OnRamp ("currency-crypto") or OffRamp ("crypto-currency").
+  "externalId": "34ae1f88bbd6", // This attribute is returned only if the 'externalId' was specified during the order creation process.
   "timeStamp": "2022-10-26T22:36:41.658Z",
   "signature": "ed40d34ab7a587cf1a16338a16cc7765ae4420936677482bb33f5f738e4f7189" // hash
 }
