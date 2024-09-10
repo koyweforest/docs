@@ -1220,7 +1220,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order_wfees"
+                  "$ref": "#/components/schemas/Order"
                 }
               }
             }
@@ -1323,7 +1323,76 @@
         ]
       }
     },
-
+    "/orders/{orderId}/txHash": {
+      "post": {
+        "tags": ["Orders"],
+        "summary": "Adds txHash to Order",
+        "description": "Adds a transaction hash (txhash) to the specified order. Requires the 'orderId' as a parameter and a valid 'txhash' in the request body.",
+        "operationId": "addTxHashToOrder",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Order's identifier.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/txHashResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                },
+                "examples": {
+                  "orderId invalid": {
+                    "value": {
+                      "message": "\"orderId\" must be a valid GUID"
+                    }
+                  },
+                  "Code Length": {
+                    "value": {
+                      "message": "\"code\" length must be 6 characters long"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404_1"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
+      }
+    },
     "/orders/external_id/{externalId}": {
       "get": {
         "tags": ["Orders"],
@@ -2510,13 +2579,9 @@
           "quoteId": {
             "type": "string"
           },
-          "koyweFee": {
-            "type": "number",
-            "example": 1000
-          },
-          "networkFee": {
-            "type": "number",
-            "example": 1000
+          "orderType": {
+            "type": "string",
+            "example": "currency-crypto"
           },
           "symbolIn": {
             "type": "string",
@@ -2534,14 +2599,6 @@
             "type": "number",
             "example": 32.171150520770496
           },
-          "paymentMethodId": {
-            "type": "string",
-            "example": "6294d815d2b5f912da43e699"
-          },
-          "destinationAddress": {
-            "type": "string",
-            "example": "0x40f9bf922c23c43acede50Ab4425280C0ffBD697"
-          },
           "email": {
             "type": "string",
             "example": "example@gmail.com"
@@ -2550,19 +2607,71 @@
             "type": "number",
             "example": 746.01
           },
+          "koyweFee": {
+            "type": "number",
+            "example": 1000
+          },
+          "partnerFee": {
+            "type": "number",
+            "example": 500
+          },
+          "networkFee": {
+            "type": "number",
+            "example": 1000
+          },
           "status": {
             "type": "string",
             "example": "REJECTED"
-          },
-          "dates": {
-            "$ref": "#/components/schemas/Order_date"
           },
           "outReceipt": {
             "type": "string",
             "example": "98abd8a6dbdba6d4b"
           },
-          "metadata": {
+          "bankAccountId": {
+            "type": "string",
+            "example": "6294d815d2b5f912da43e699"
+          },
+          "metaData": {
             "type": "string"
+          },
+          "externalId": {
+            "type": "string",
+            "example": "A1d2t3456"
+          },
+          "feesInFiat": {
+            "$ref": "#/components/schemas/Order_fees"
+          },
+          "feesInUSD": {
+            "$ref": "#/components/schemas/Order_fees"
+          },
+          "dates": {
+            "type": "object",
+            "properties": {
+              "confirmationDate": {
+                "type": "string",
+                "example": "2023-01-01T10:00:00Z"
+              },
+              "paymentDate": {
+                "type": "string",
+                "example": "2023-01-01T12:00:00Z"
+              },
+              "executionDate": {
+                "type": "string",
+                "example": "2023-01-01T14:00:00Z"
+              },
+              "deliveryDate": {
+                "type": "string",
+                "example": "2023-01-01T16:00:00Z"
+              }
+            }
+          },
+          "destinationAddress": {
+            "type": "string",
+            "example": "0x40f9bf922c23c43acede50Ab4425280C0ffBD697"
+          },
+          "paymentMethodId": {
+            "type": "string",
+            "example": "6294d815d2b5f912da43e699"
           },
           "logoIn": {
             "type": "string",
@@ -2570,11 +2679,83 @@
           },
           "logoOut": {
             "type": "string",
-            "example": "urlExmaple.com/currencies/MATIC.svg"
+            "example": "urlExample.com/currencies/MATIC.svg"
           },
-          "externalId": {
-            "type": "string",
-            "example": "A1d2t3456"
+          "refund": {
+            "type": "object",
+            "properties": {
+              "dates": {
+                "type": "object",
+                "properties": {
+                  "startDate": {
+                    "type": "string",
+                    "example": "2023-01-01T18:00:00Z"
+                  },
+                  "processDate": {
+                    "type": "string",
+                    "example": "2023-01-01T20:00:00Z"
+                  },
+                  "deliveredDate": {
+                    "type": "string",
+                    "example": "2023-01-01T22:00:00Z"
+                  }
+                }
+              },
+              "destinationAddress": {
+                "type": "string",
+                "example": "0x40f9bf922c23c43acede50Ab4425280C0ffBD697"
+              },
+              "transactionReceipt": {
+                "type": "string",
+                "example": "98abd8a6dbdba6d4b"
+              }
+            }
+          },
+          "errors": {
+            "type": "object",
+            "properties": {
+              "invalidWithdrawalsDetails": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "example": "6234f5d4d9f4"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "John Doe"
+                  },
+                  "bankCode": {
+                    "type": "string",
+                    "example": "001"
+                  },
+                  "countryCode": {
+                    "type": "string",
+                    "example": "CL"
+                  },
+                  "currencySymbol": {
+                    "type": "string",
+                    "example": "CLP"
+                  },
+                  "accountNumber": {
+                    "type": "string",
+                    "example": "1234567890"
+                  },
+                  "account": {
+                    "type": "string",
+                    "example": "Savings"
+                  },
+                  "accountType": {
+                    "type": "string",
+                    "example": "Savings"
+                  },
+                  "entityName": {
+                    "type": "string",
+                    "example": "Banco de Chile"
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -2673,90 +2854,6 @@
           },
           "metadata": {
             "type": "string"
-          }
-        }
-      },
-      "Order_wfees": {
-        "type": "object",
-        "properties": {
-          "orderId": {
-            "type": "string",
-            "example": "b88f4ed0-10a2-412f-be3e-b5e47abe9b50"
-          },
-          "quoteId": {
-            "type": "string"
-          },
-          "koyweFee": {
-            "type": "number",
-            "example": 1000
-          },
-          "networkFee": {
-            "type": "number",
-            "example": 1000
-          },
-          "symbolIn": {
-            "type": "string",
-            "example": "CLP"
-          },
-          "symbolOut": {
-            "type": "string",
-            "example": "MATIC"
-          },
-          "amountIn": {
-            "type": "number",
-            "example": 25000
-          },
-          "amountOut": {
-            "type": "number",
-            "example": 32.171150520770496
-          },
-          "paymentMethodId": {
-            "type": "string",
-            "example": "6294d815d2b5f912da43e699"
-          },
-          "destinationAddress": {
-            "type": "string",
-            "example": "0x40f9bf922c23c43acede50Ab4425280C0ffBD697"
-          },
-          "email": {
-            "type": "string",
-            "example": "example@gmail.com"
-          },
-          "exchangeRate": {
-            "type": "number",
-            "example": 746.01
-          },
-          "status": {
-            "type": "string",
-            "example": "REJECTED"
-          },
-          "dates": {
-            "$ref": "#/components/schemas/Order_date"
-          },
-          "outReceipt": {
-            "type": "string",
-            "example": "98abd8a6dbdba6d4b"
-          },
-          "metadata": {
-            "type": "string"
-          },
-          "logoIn": {
-            "type": "string",
-            "example": "urlExample.com/currencies/CLP.svg"
-          },
-          "logoOut": {
-            "type": "string",
-            "example": "urlExmaple.com/currencies/MATIC.svg"
-          },
-          "externalId": {
-            "type": "string",
-            "example": "A1d2t3456"
-          },
-          "feesInFiat": {
-            "$ref": "#/components/schemas/Order_fees"
-          },
-          "feesInUSD": {
-            "$ref": "#/components/schemas/Order_fees"
           }
         }
       },
@@ -2927,6 +3024,17 @@
       "inline_response_400": {
         "type": "object",
         "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "txHashResponse": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string"
+          },
           "message": {
             "type": "string"
           }
