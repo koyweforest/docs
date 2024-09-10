@@ -628,8 +628,9 @@ Retorna información de una order. Recibe un `orderId`.
 ```graphql
 query getOrder($input: GetOrderInput!) {
   getOrder(input: $input){
-    orderId
-    quoteId
+    orderId # unique identifier
+    quoteId # quote id
+    orderType # currency-crypto for on ramp, crypto-currency for off ramp
     symbolIn
     symbolOut
     amountIn
@@ -637,20 +638,55 @@ query getOrder($input: GetOrderInput!) {
     email
     exchangeRate
     koyweFee
-    status
+    partnerFee
+    networkFee
+    status # see the webhooks and states docs for more info
     outReceipt
-    orderType
+    bankAccountId # bank account id for off ramps
+    metaData
+    externalId
+    feesInFiat { #Only if the order has a partnerFee and is greather than 0
+      koyweFee
+      netFee
+      partnerFee
+    }
+    feesInUSD { #Only if the order has a partnerFee and is greather than 0
+      koyweFee #(koyweFee / exchangeRate) truncated to 4 digits after the comma
+      netFee #(netFee / exchangeRate) truncated to 4 digits after the comma
+      partnerFee #(partnerFee / exchangeRate) truncated to 4 digits after the comma
+    }
     dates {
       confirmationDate
       paymentDate
       executionDate
       deliveryDate
     }
-    destinationAddress
-    networkFee
+    destinationAddress # wallet address to send or receive tokens
     paymentMethodId
-    logoIn
-    logoOut
+    logoIn # logo url for symbolIn
+    logoOut # logo url for symbolOut
+    refund { # refund details for off ramps
+      dates {
+        startDate
+        processDate
+        deliveredDate
+      }
+      destinationAddress
+      transactionReceipt
+    }
+    errors { # error details for off ramps
+      invalidWithdrawalsDetails {
+        _id
+        name
+        bankCode
+        countryCode
+        currencySymbol
+        accountNumber
+        account
+        accountType
+        entityName
+      }
+    }
   }
 }
 "variables":
@@ -667,8 +703,9 @@ Retorna información de una order. Recibe un `ExternalId`.
 ```graphql
 query getOrderByExternalId($input: GetExternalIdOrderInput!) {
   getOrderByExternalId(input: $input){
-    orderId
-    quoteId
+    orderId # unique identifier
+    quoteId # quote id
+    orderType # currency-crypto for on ramp, crypto-currency for off ramp
     symbolIn
     symbolOut
     amountIn
@@ -676,20 +713,55 @@ query getOrderByExternalId($input: GetExternalIdOrderInput!) {
     email
     exchangeRate
     koyweFee
-    status
+    partnerFee
+    networkFee
+    status # see the webhooks and states docs for more info
     outReceipt
-    orderType
+    bankAccountId # bank account id for off ramps
+    metaData
+    externalId
+    feesInFiat { #Only if the order has a partnerFee and is greather than 0
+      koyweFee
+      netFee
+      partnerFee
+    }
+    feesInUSD { #Only if the order has a partnerFee and is greather than 0
+      koyweFee #(koyweFee / exchangeRate) truncated to 4 digits after the comma
+      netFee #(netFee / exchangeRate) truncated to 4 digits after the comma
+      partnerFee #(partnerFee / exchangeRate) truncated to 4 digits after the comma
+    }
     dates {
       confirmationDate
       paymentDate
       executionDate
       deliveryDate
     }
-    destinationAddress
-    networkFee
+    destinationAddress # wallet address to send or receive tokens
     paymentMethodId
-    logoIn
-    logoOut
+    logoIn # logo url for symbolIn
+    logoOut # logo url for symbolOut
+    refund { # refund details for off ramps
+      dates {
+        startDate
+        processDate
+        deliveredDate
+      }
+      destinationAddress
+      transactionReceipt
+    }
+    errors { # error details for off ramps
+      invalidWithdrawalsDetails {
+        _id
+        name
+        bankCode
+        countryCode
+        currencySymbol
+        accountNumber
+        account
+        accountType
+        entityName
+      }
+    }
   }
 }
 "variables":
@@ -706,53 +778,64 @@ Retorna la información de las ordenes vinculadas al txHash. Recibe un `txHash`.
 ```graphql
 query GetOrderByTxHash($input: GetTxHashOrderInput!) {
   getOrderByTxHash(input: $input) {
-    orderId
-    quoteId
-    orderType
+    orderId # unique identifier
+    quoteId # quote id
+    orderType # currency-crypto for on ramp, crypto-currency for off ramp
     symbolIn
     symbolOut
-    logoIn
-    logoOut
     amountIn
     amountOut
-    paymentMethodId
-    destinationAddress
     email
     exchangeRate
     koyweFee
     partnerFee
     networkFee
-    status
+    status # see the webhooks and states docs for more info
     outReceipt
+    bankAccountId # bank account id for off ramps
+    metaData
+    externalId
+    feesInFiat { #Only if the order has a partnerFee and is greather than 0
+      koyweFee
+      netFee
+      partnerFee
+    }
+    feesInUSD { #Only if the order has a partnerFee and is greather than 0
+      koyweFee #(koyweFee / exchangeRate) truncated to 4 digits after the comma
+      netFee #(netFee / exchangeRate) truncated to 4 digits after the comma
+      partnerFee #(partnerFee / exchangeRate) truncated to 4 digits after the comma
+    }
     dates {
       confirmationDate
       paymentDate
       executionDate
       deliveryDate
     }
-    metaData
-    externalId
-    errors {
+    destinationAddress # wallet address to send or receive tokens
+    paymentMethodId
+    logoIn # logo url for symbolIn
+    logoOut # logo url for symbolOut
+    refund { # refund details for off ramps
+      dates {
+        startDate
+        processDate
+        deliveredDate
+      }
+      destinationAddress
+      transactionReceipt
+    }
+    errors { # error details for off ramps
       invalidWithdrawalsDetails {
         _id
-        currencySymbol
-        countryCode
-        documentNumber
-        accountNumber
+        name
         bankCode
+        countryCode
+        currencySymbol
+        accountNumber
+        account
         accountType
-        payoutMethodName
+        entityName
       }
-    }
-    feesInFiat {
-      koyweFee
-      netFee
-      partnerFee
-    }
-    feesInUSD {
-      koyweFee
-      netFee
-      partnerFee
     }
   }
 }
@@ -785,28 +868,64 @@ query orders($input: PaginationInput!) {
       pageNumber
     }
     data {
-      orderId
-      quoteId
-      orderType
+      orderId # unique identifier
+      quoteId # quote id
+      orderType # currency-crypto for on ramp, crypto-currency for off ramp
       symbolIn
       symbolOut
-      logoIn
-      logoOut
       amountIn
       amountOut
-      paymentMethodId
-      destinationAddress
       email
       exchangeRate
       koyweFee
+      partnerFee
       networkFee
-      status
+      status # see the webhooks and states docs for more info
       outReceipt
+      bankAccountId # bank account id for off ramps
+      metaData
+      externalId
+      feesInFiat { #Only if the order has a partnerFee and is greather than 0
+        koyweFee
+        netFee
+        partnerFee
+      }
+      feesInUSD { #Only if the order has a partnerFee and is greather than 0
+        koyweFee #(koyweFee / exchangeRate) truncated to 4 digits after the comma
+        netFee #(netFee / exchangeRate) truncated to 4 digits after the comma
+        partnerFee #(partnerFee / exchangeRate) truncated to 4 digits after the comma
+      }
       dates {
         confirmationDate
         paymentDate
         executionDate
         deliveryDate
+      }
+      destinationAddress # wallet address to send or receive tokens
+      paymentMethodId
+      logoIn # logo url for symbolIn
+      logoOut # logo url for symbolOut
+      refund { # refund details for off ramps
+        dates {
+          startDate
+          processDate
+          deliveredDate
+        }
+        destinationAddress
+        transactionReceipt
+      }
+      errors { # error details for off ramps
+        invalidWithdrawalsDetails {
+          _id
+          name
+          bankCode
+          countryCode
+          currencySymbol
+          accountNumber
+          account
+          accountType
+          entityName
+        }
       }
     }
   }
@@ -822,6 +941,25 @@ query orders($input: PaginationInput!) {
 }
 ```
 
+#### Agrega txHash para orden Off Ramp
+
+Agrega el txHash a una orden de off ramp. Valida que el hash sea válido para la red de la operación.
+
+```graphql
+  mutation SetTxHashOrder($input: TxHashOrderInputDto!) {
+    setTxHashOrder(input: $input) {
+      orderId
+      message
+    }
+  }
+  "variables":
+  {
+    "input": {
+      "txHash": "0xcef85d0123ea3d2a3c4bdfaa6d13019c1b3d2aa6943e6ba853644d443ab83ad7",
+      "orderId": "ec2af111-acdc-43bb-a0f3-eb1ed1800bbc"
+    }
+  }
+```
 
 #### Reembolso de Orden
 
@@ -911,6 +1049,25 @@ mutation createBankAccount($input: BankAccountInput!) {
   }
 }
 ```
+
+<Info color="blue">
+### Validaciones Bancos en Colombia
+
+Para evitar rechazos, debes cumplir con estos requerimientos al crear una cuenta en Colombia:
+
+| Bank                     | Validations                                                   |
+|--------------------------|---------------------------------------------------------------|
+| NEQUI                    | Maximum account number size must be 11                        |
+| DAVIVIENDA               | Minimum account number size must be 12                        |
+| BANCOLOMBIA              | Maximum account number size must be 11                        |
+| DAVIPLATA                | The account number must start with 3 and the minimum size must be 10 |
+| BANCO CAJA SOCIAL BCSC SA| Maximum account number size must be 11                        |
+| BANCO DE BOGOTÁ          | Maximum account number size must be 9                         |
+| SCOTIABANK COLPATRIA SA  | Maximum account number size must be 10                        |
+
+> **Warning:** El número de cuenta: el campo Bank Account Number debe contener sólo números y ser distinto a 0.
+
+</Info>
 
 #### Get Bank Account
 
