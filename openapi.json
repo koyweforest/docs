@@ -1342,6 +1342,16 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/txHashResquest"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "successful operation",
@@ -3025,6 +3035,14 @@
         "type": "object",
         "properties": {
           "message": {
+            "type": "string"
+          }
+        }
+      },
+      "txHashResquest": {
+        "type": "object",
+        "properties": {
+          "txHash": {
             "type": "string"
           }
         }
