@@ -1263,6 +1263,84 @@
             "AuthorizationToken": []
           }
         ]
+      },
+      "put": {
+        "tags": ["Orders"],
+        "summary": "Reprocess a order.",
+        "description": "Service responsible for reprocessing an order in case of banking errors. The objective is to be able to finalize the transaction of converting crypto to the corresponding currency, where a transfer is made to the bank account associated with the order.",
+        "operationId": "Reprocessorder",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/reprocess_order_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BankAccount"
+                },
+                "examples": {
+                  "Reprocess": {
+                    "value": {
+                      "_id": "66eb25f75752142702c3ca5e",
+                      "bankCode": "90646",
+                      "name": "STP",
+                      "account": "66b114eea67737d9811432b8",
+                      "currencySymbol": "MXN",
+                      "countryCode": "MEX",
+                      "accountNumber": "646180374711307483"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                },
+                "examples": {
+                  "AddressDestination empty": {
+                    "value": {
+                      "message": "\"destinationAddress\" is required."
+                    }
+                  },
+                  "orderId empty": {
+                    "value": {
+                      "message": "\"orderI\" is required."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404_1"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
       }
     },
     "/orders/tx-hash/{txHash}": {
@@ -3181,6 +3259,17 @@
             "type": "string",
             "example": "0x40f9bf922c23c43acdad71Ab4425280C0ffBD697",
             "description": "it should be the destination address for the cryptocurrencies. This attribute is crucial in ensuring that funds are sent to the correct place."
+          }
+        }
+      },
+      "reprocess_order_body": {
+        "required": ["destinationAddress"],
+        "type": "object",
+        "properties": {
+          "destinationAddress": {
+            "type": "string",
+            "example": "63e154dbc47d9176668a9af6",
+            "description": "It should be the new bank account of the user account that owns the order to be able to make the fiat currency deposit."
           }
         }
       },
