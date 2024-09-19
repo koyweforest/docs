@@ -1024,6 +1024,33 @@ Add txHash to an off ramp order. Checks hash is valid for the chosen network.
   }
 ```
 
+### Reprocessing order
+
+Service responsible for reprocessing an order in case of banking errors. The objective is to be able to finalize the transaction of converting crypto to the corresponding currency, where a transfer is made to the bank account associated with the order.
+
+```graphql
+mutation UpdateOrderWithdrawalDetails($input: UpdateBankInTransactionInput!) {
+  updateOrderWithdrawalDetails(input: $input) {
+    _id
+    name
+    bankCode
+    countryCode
+    currencySymbol
+    accountNumber
+    account
+    accountType
+    entityName
+  }
+}
+"variables":
+{
+  "input": {
+    "orderId": "8bc5b15e-7d9a-4748-b343-cc7d01d20e5f", 
+    "destinationAddress": "665a3d05320291a30b6befef" // New bank account id without errors
+  }
+}
+```
+
 </Accordion>
 
 <Accordion title="Banking services">
