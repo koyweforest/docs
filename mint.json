@@ -149,7 +149,8 @@
                 "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information-by-externalId",
                 "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information-by-txHash",
                 "english/documentation/api-documentation/restful-api/Orders/order-refund",
-                "english/documentation/api-documentation/restful-api/Orders/add-txHash-to-order"
+                "english/documentation/api-documentation/restful-api/Orders/add-txHash-to-order",
+                "english/documentation/api-documentation/restful-api/Orders/reprocess-order"
               ]
             },
             {
@@ -280,7 +281,8 @@
                 "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information",
                 "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information-by-externalId",
                 "english/documentation/api-documentation/restful-api/Orders/retrieve-order-information-by-txHash",
-                "english/documentation/api-documentation/restful-api/Orders/order-refund"
+                "english/documentation/api-documentation/restful-api/Orders/order-refund",
+                "english/documentation/api-documentation/restful-api/Orders/reprocess-order"
               ]
             },
             {

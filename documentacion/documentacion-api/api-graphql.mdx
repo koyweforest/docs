@@ -1012,6 +1012,34 @@ Inicia una solicitud de reembolso para una orden off-ramp debido a errores en lo
   }
 ```
 
+### Reprocesando una orden
+
+Servicio responsable de reprocesar un pedido en caso de errores bancarios. El objetivo es poder finalizar la transacción OFF correspondiente, donde se realiza una transferencia a la cuenta bancaria asociada.
+
+```graphql
+mutation UpdateOrderWithdrawalDetails($input: UpdateBankInTransactionInput!) {
+  updateOrderWithdrawalDetails(input: $input) {
+    _id
+    name
+    bankCode
+    countryCode
+    currencySymbol
+    accountNumber
+    account
+    accountType
+    entityName
+  }
+}
+"variables":
+{
+  "input": {
+    "orderId": "8bc5b15e-7d9a-4748-b343-cc7d01d20e5f", 
+    "destinationAddress": "665a3d05320291a30b6befef" // New bank account id without errors
+  }
+}
+```
+
+
 </Accordion>
 
 <Accordion title="Servicios Bancarios">
