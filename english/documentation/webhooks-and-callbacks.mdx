@@ -38,6 +38,9 @@ transaction. possible events are:
 - `payment_rejected`: order is rejected. Something happened and the order has been rejected. This event is
 NOT sent for wire transfers and it's usually due to an error on cancellation on the user's part. Order state will be `REJECTED`.
 
+- `payment_rejected_by_compliance`: the order is rejected. Something happened during the compliance or risk analysis, and the order was rejected.
+This event is NOT sent for wire transfers and is usually due to an issue with the user’s information. The order status will be `REJECTED`.
+
 - `payment_expired`: order is expired. Only sent for wire transfers. The user took too long to transfer or Koywe
 couldn't detect the payment on time. Another order or quote should be created to secure a price. Order state will be `REJECTED`.
 
