@@ -39,6 +39,9 @@ son:
 `payment_rejected`: se rechaza la orden. Algo sucedió y se rechazó la orden. Este evento NO se envía para las transferencias
 bancarias y normalmente se debe a un error o cancelación por parte del usuario. El estado de la orden será `REJECTED`.
 
+`wire_order_canceled`: se cancela la orden. Una orden pendiente existente ha sido cancelada automáticamente debido a la creación
+de una nueva orden de transferencia. El estado de la orden será `REJECTED`.
+
 `payment_rejected_by_compliance`: se rechaza la orden. Algo sucedió con el análisis de compliance o riesgo y se rechazó la orden. Este evento
 NO se envía para las transferencias bancarias y normalmente se debe a un problema con la información del usuario. El estado de la orden será `REJECTED`.
 
