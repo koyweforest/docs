@@ -570,6 +570,58 @@ mutation UpdateAccount($input: InputUpdateAccountDto!) {
   }
 }
 ```
+#### Get Accounts Movements Balance
+Returns the registered movements and balance of the user.
+
+```graphql
+query MovementsBalance($input: AccountMovementsBalanceInput!) {
+  movementsBalance(input: $input) {
+    allMovements {
+      orderId
+      transactionStatus
+      amount
+      currencySymbol
+      cryptoSymbol
+      exchangeRate
+      localCurrencyConversion
+      dates {
+        orderedDate
+        payedDate
+        transactionDate
+        deliveredDate
+        _id
+        updatedAt
+        createdAt
+        refundDeliveredDate
+        refundInProgressDate
+        refundStartedDate
+      }
+      paymentMethod
+      invoiceLink
+      txhash
+    }
+    balances {
+      _id
+      accountId
+      currencySymbol
+      countryCode
+      totalBalance
+      description
+      retries
+      createdAt
+      updatedAt
+    }
+  }
+}
+"variables":
+{
+   "input": {
+    "accountID": "668561002363adab95bdff65",
+    "email": "user@email.com" //Optional
+  }
+}
+```
+
 
 </Accordion>
 
