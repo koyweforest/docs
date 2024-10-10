@@ -31,17 +31,20 @@ happens or to define validation services before executing transactions.
 You can setup a URL to recibe requests every time an event is triggered for a
 transaction. possible events are:
 
-- `payment_created`: order is created, Koywe awaits the payment in either fiat or crypto. The order shows a `WAITING` state.
+- `payment_created`: the order is created, Koywe awaits the payment in either fiat or crypto. The order shows a `WAITING` state.
 
-- `payment_received`: order is paid. Koywe confirms the payment successfully and will deliver the `amountOut`. Order state will be `PENDING`.
+- `payment_received`: the order is paid. Koywe confirms the payment successfully and will deliver the `amountOut`. Order state will be `PENDING`.
 
-- `payment_rejected`: order is rejected. Something happened and the order has been rejected. This event is
+- `payment_rejected`: the order is rejected. Something happened and the order has been rejected. This event is
 NOT sent for wire transfers and it's usually due to an error on cancellation on the user's part. Order state will be `REJECTED`.
+
+`wire_order_canceled`: the order is rejected. An existing pending wire order has been automatically canceled due to the creation
+of a new wire order. The order status will be `REJECTED`.
 
 - `payment_rejected_by_compliance`: the order is rejected. Something happened during the compliance or risk analysis, and the order was rejected.
 This event is NOT sent for wire transfers and is usually due to an issue with the user’s information. The order status will be `REJECTED`.
 
-- `payment_expired`: order is expired. Only sent for wire transfers. The user took too long to transfer or Koywe
+- `payment_expired`: the order is expired. Only sent for wire transfers. The user took too long to transfer or Koywe
 couldn't detect the payment on time. Another order or quote should be created to secure a price. Order state will be `REJECTED`.
 
 - `payment_received_modified_order_amount:` This webhook event is triggered when an order is modified due to a received bank deposit. Currently, this event only applies to bank transfers made in Peru.
