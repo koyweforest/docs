@@ -933,6 +933,61 @@
         }
       }
     },
+    "/paymentReceipt": {
+      "post": {
+        "tags": ["PaymentReceipt"],
+        "summary": "Attaches a payment receipt to an order.",
+        "description": "This service allows you to attach the receipt of the transfer made to the order. It is important that the receipt contains at least the amount, the date and time, and the destination account. If the receipt is not valid, the order will be rejected.",
+        "operationId": "paymentReceipt",
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/paymentReceipt_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/paymentReceipt_response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_response_404_payment_order"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_response_400_payment_order"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/orders": {
       "get": {
         "tags": ["Orders"],
@@ -2407,6 +2462,27 @@
   },
   "components": {
     "schemas": {
+      "paymentReceipt_body": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "example": "76a6e9bd-364c-428e-9363-d557fec2b715"
+          },
+          "url": {
+            "type": "string",
+            "example": "https://example.com/receipt.png"
+          }
+        }
+      },
+      "paymentReceipt_response": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "boolean"
+          }
+        }
+      },
       "FileUpload": {
         "type": "object",
         "properties": {
@@ -3157,6 +3233,32 @@
           "message": {
             "type": "string",
             "example": "partner not found"
+          }
+        }
+      },
+      "error_response_404_payment_order": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "example": 404
+          },
+          "message": {
+            "type": "string",
+            "example": "Payment order not found: 76a6e9bd-364c-428e-9363-d557fec2b714"
+          }
+        }
+      },
+      "error_response_400_payment_order": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "example": 400
+          },
+          "message": {
+            "type": "string",
+            "example": "\"orderId\" must be a valid GUID"
           }
         }
       },
