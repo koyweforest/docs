@@ -8,15 +8,16 @@ openapi: get /bank-info/{countryCode}
 
 To avoid rejections, you need to take into account the requirements of the destination accounts according to the bank to which you are going to send the payment:
 
-| Bank                     | Validations                                                   |
-|--------------------------|---------------------------------------------------------------|
-| NEQUI                    | Maximum account number size must be 11                        |
-| DAVIVIENDA               | Minimum account number size must be 12                        |
-| BANCOLOMBIA              | Maximum account number size must be 11                        |
-| DAVIPLATA                | The account number must start with 3 and the minimum size must be 10 |
-| BANCO CAJA SOCIAL BCSC SA| Maximum account number size must be 11                        |
-| BANCO DE BOGOTÁ          | Maximum account number size must be 9                         |
-| SCOTIABANK COLPATRIA SA  | Maximum account number size must be 10                        |
+| Bank                      | Validations                                                          |
+| ------------------------- | -------------------------------------------------------------------- |
+| NEQUI                     | Maximum account number size must be 11                               |
+| DAVIVIENDA                | Minimum account number size must be 12                               |
+| BANCOLOMBIA               | Maximum account number size must be 11                               |
+| DAVIPLATA                 | The account number must start with 3 and the minimum size must be 10 |
+| BANCO CAJA SOCIAL BCSC SA | Maximum account number size must be 11                               |
+| BANCO DE BOGOTÁ           | Maximum account number size must be 9                                |
+| SCOTIABANK COLPATRIA SA   | Maximum account number size must be 10                               |
+| UALA                      | Account number must be 15 numeric digits                             |
 
 > **Warning:** The bankAccountNumber: Bank Account Number field must contain only numbers and be different from 0.
 
