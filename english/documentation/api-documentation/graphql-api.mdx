@@ -571,6 +571,27 @@ mutation UpdateAccount($input: InputUpdateAccountDto!) {
 }
 ```
 
+#### Get Account By Filter
+
+Returns the registered information of the user.
+
+```graphql
+query GetAccountByFilter($input: InputAccountFilterDto!) {
+  getAccountByFilter(input: $input) {
+    document {
+      documentNumber
+      documentType
+      country
+    }
+  }
+}
+"variables" :
+  "input": {
+    "documentNumber": "123456789",
+    "documentType": "DNI",
+    "country": "CHL"
+  }
+```
 </Accordion>
 
 

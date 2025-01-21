@@ -276,6 +276,69 @@
             "AuthorizationToken": []
           }
         ]
+      },
+      "get": {
+        "tags": ["Accounts"],
+        "summary": "Get account data",
+        "description": "Returns the registered information of the user.",
+        "operationId": "accountEmail",
+        "parameters": [
+          {
+            "name": "documentNumber",
+            "in": "query",
+            "description": "Document number associated with the currency of choice.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "documentType",
+            "in": "query",
+            "description": "Document type associated with the currency of choice.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "county",
+            "in": "query",
+            "description": "Country associated with the currency of choice.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ResultAccount"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "AuthorizationToken": []
+          }
+        ]
       }
     },
     "/currency-tokens": {

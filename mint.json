@@ -104,7 +104,8 @@
                 "english/documentation/api-documentation/restful-api/Accounts/retrieve-account-data-movements-balance",
                 "english/documentation/api-documentation/restful-api/Accounts/check-if-the-account-can-operate",
                 "english/documentation/api-documentation/restful-api/Accounts/creates-account",
-                "english/documentation/api-documentation/restful-api/Accounts/updates-account"
+                "english/documentation/api-documentation/restful-api/Accounts/updates-account",
+                "english/documentation/api-documentation/restful-api/Accounts/get-account"
               ]
             },
             {
@@ -238,7 +239,8 @@
                 "english/documentation/api-documentation/restful-api/Accounts/retrieve-account-data-movements-balance",
                 "english/documentation/api-documentation/restful-api/Accounts/check-if-the-account-can-operate",
                 "english/documentation/api-documentation/restful-api/Accounts/creates-account",
-                "english/documentation/api-documentation/restful-api/Accounts/updates-account"
+                "english/documentation/api-documentation/restful-api/Accounts/updates-account",
+                "english/documentation/api-documentation/restful-api/Accounts/get-account"
               ]
             },
             {
