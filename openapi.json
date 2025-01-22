@@ -280,8 +280,8 @@
       "get": {
         "tags": ["Accounts"],
         "summary": "Get account data",
-        "description": "Returns the registered information of the user.",
-        "operationId": "accountEmail",
+        "description": "Returns the registered information of the user by filtering with document number, document type, and country. This endpoint provides an alternative way to retrieve account information when the email is not known.",
+        "operationId": "getAccountByDocumentInfo",
         "parameters": [
           {
             "name": "documentNumber",
@@ -329,6 +329,33 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/inline_response_400"
+                },
+                "examples": {
+                  "documentNumber invalid": {
+                    "value": {
+                      "message": "Invalid document number format"
+                    }
+                  },
+                  "documentType invalid": {
+                    "value": {
+                      "message": "\"documentType\" must be one of [RUT, DNI, RFC, CE]"
+                    }
+                  },
+                  "country invalid": {
+                    "value": {
+                      "message": "\"country\" must be one of [MEX, CHL, COL, PER]"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Account not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404_1"
                 }
               }
             }
