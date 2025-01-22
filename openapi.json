@@ -302,7 +302,7 @@
             }
           },
           {
-            "name": "county",
+            "name": "country",
             "in": "query",
             "description": "Country associated with the currency of choice.",
             "required": true,

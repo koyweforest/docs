@@ -573,25 +573,42 @@ mutation UpdateAccount($input: InputUpdateAccountDto!) {
 
 #### Get Account By Filter
 
-Returns the registered information of the user.
+Returns the registered document information of a user based on their identification details.
+
+**Authentication Required**: Include Bearer Token in headers:
+```
+Authorization: Bearer [token]
+```
+
+**Required Fields**:
+- `documentNumber`: The identification number of the user
+- `documentType`: The type of identification document (e.g., DNI, RUT, CPF)
+- `country`: The ISO 3166-1 alpha-3 country code (e.g., CHL, PER, COL)
 
 ```graphql
 query GetAccountByFilter($input: InputAccountFilterDto!) {
   getAccountByFilter(input: $input) {
     document {
-      documentNumber
-      documentType
-      country
+      documentNumber    # Unique identifier of the user's document
+      documentType      # Type of identification document
+      country          # ISO 3166-1 alpha-3 country code
     }
   }
 }
 "variables" :
+{
   "input": {
     "documentNumber": "123456789",
     "documentType": "DNI",
     "country": "CHL"
   }
+}
 ```
+
+**Possible Errors**:
+- 401: Unauthorized - Missing or invalid authentication token
+- 404: Not Found - No account matches the provided filters
+- 400: Bad Request - Invalid input parameters
 </Accordion>
 
 
