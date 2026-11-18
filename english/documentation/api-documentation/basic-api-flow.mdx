@@ -178,10 +178,10 @@ Confirming the order is enough. If the `quoteId` is still valid, the only additi
   --header 'Content-Type: application/json' \
   --header 'Authorization: Bearer superJWT' \
   --data-raw '{
-      "quoteId": "64c9a26af1fada33f2e9e5d7",
-      "destinationAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "quoteId": "000000000000000000000008",
+      "destinationAddress": "0x0000000000000000000000000000000000000000",
       "metadata": "Sending some USDC to Vitalik",
-      "documentNumber": "111243235"
+      "documentNumber": "111111111"
   }'
 ```
 
@@ -193,12 +193,12 @@ The API will return an `orderId`, the payment details (a url to redirect your us
     "createOrder": {
       "amountIn": 822000,
       "amountOut": 1000,
-      "documentNumber": "111243235",
+      "documentNumber": "111111111",
       "email": "email@domain.com",
       "metadata": "Sending some USDC to Vitalik",
-      "orderId": "27d1a1c0-ff5e-4d5a-8893-a3ac2bb121e7",
+      "orderId": "00000000-0000-0000-0000-000000000004",
       "providedAction": "https://url.to/some-path", // This should be a URL to a payment method or the callback you provided
-      "providedAddress": "Koywe SpA\nCta Cte 6824645\n76.215.256-2\nBanco Santander\ntef@koywe.com", // where to transfer the money, in case of wire
+      "providedAddress": "Example Company SpA\nCta Cte 0000000\n11.111.111-1\nExample Bank\npayments@example.com", // where to transfer the money, in case of wire
       "symbolIn": "CLP",
       "symbolOut": "USDC"
     }
