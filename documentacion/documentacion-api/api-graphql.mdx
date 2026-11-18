@@ -23,7 +23,7 @@ curl --request POST \
     --header 'content-type: application/json' \
     --header 'Authorization: Bearer JWTTOKEN' \
     --url 'https://api-sandbox.koywe.com/graphql' \
-    --data '{"query":"mutation authenticate($input: AuthInput!) {\n  authenticate(input: $input) {\n    token\n  }\n}","variables":{"input":{"clientId":"63631a561f41f8fd18f8c3e0","secret":"supersecretstringFTW"}}}'
+    --data '{"query":"mutation authenticate($input: AuthInput!) {\n  authenticate(input: $input) {\n    token\n  }\n}","variables":{"input":{"clientId":"000000000000000000000001","secret":"supersecretstringFTW"}}}'
 ```
 
 En los ejemplos siguientes sólo pondremos el objeto JSON del request.
@@ -45,7 +45,7 @@ mutation Authenticate($input: AuthInput!) {
 "variables" :
 {
   "input": {
-    "clientId": "63631a561f41f8fd18f8c3e0",
+    "clientId": "000000000000000000000001",
     "secret": "secretpassword",
     "email": "email@domain.com" # optional
   }
@@ -92,7 +92,7 @@ mutation validateCode($input: ValidateCodeInput!) {
 "variables" :
 {
   "input": {
-    "clientId": "40401a5615d9d8fd18f8a0b4",
+    "clientId": "000000000000000000000002",
     "code": "940577",
     "email": "example@domain.com"
   }
@@ -272,7 +272,7 @@ query getQuote($quoteId: String!) {
 }
 "variables":
 {
-  "quoteId": "63c59396a38c6506a620162f" #Created when calling mutation quote
+  "quoteId": "000000000000000000000003" #Created when calling mutation quote
 }
 ```
 
@@ -605,13 +605,13 @@ mutation createOrder($input: OrderInput!) {
 "variables":
 {
   "input": {
-    "quoteId": "63e154dbc47d9176668a9af6",
+    "quoteId": "000000000000000000000004",
     "amountIn": 1.100.000,
     "amountOut": 1,
     "email": "example@domain.com", #for API calls
     "documentNumber": null,
-    "paymentMethodId": "632d7fe6237ded3a748112cf",  # This value corresponds to the _id value returned after calling GetPaymentProviderList
-    "destinationAddress": "0x40f9bf922c23c43acdad71Ab4425280C0ffBD697", # Will return error if address is invalid
+    "paymentMethodId": "000000000000000000000005",  # This value corresponds to the _id value returned after calling GetPaymentProviderList
+    "destinationAddress": "0x0000000000000000000000000000000000000000", # Will return error if address is invalid
     "symbolIn": "CLP",
     "symbolOut": "ETH",
     "metadata": null,
@@ -692,7 +692,7 @@ query getOrder($input: GetOrderInput!) {
 "variables":
 {
   "input": {
-    "orderId": "02a5f0c7-b9bf-48e0-8b5d-190d2e2f7fc1" #Created when calling mutation Order
+    "orderId": "00000000-0000-0000-0000-000000000001" #Created when calling mutation Order
   }
 }
 ```
@@ -955,8 +955,8 @@ Agrega el txHash a una orden de off ramp. Valida que el hash sea válido para la
   "variables":
   {
     "input": {
-      "txHash": "0xcef85d0123ea3d2a3c4bdfaa6d13019c1b3d2aa6943e6ba853644d443ab83ad7",
-      "orderId": "ec2af111-acdc-43bb-a0f3-eb1ed1800bbc"
+      "txHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "orderId": "00000000-0000-0000-0000-000000000002"
     }
   }
 ```
@@ -980,7 +980,7 @@ Inicia una solicitud de reembolso para una orden off-ramp debido a errores en lo
   "variables":
   {
     "input": {
-      "orderId": "ec2af111-acdc-43bb-a0f3-eb1ed1800bbc"
+      "orderId": "00000000-0000-0000-0000-000000000002"
     }
   }
 
@@ -1003,7 +1003,7 @@ Inicia una solicitud de reembolso para una orden off-ramp debido a errores en lo
       "offRampRefund": {
         "code": "REFUND_000",
         "data": {
-          "orderId": "ec2af111-acdc-43bb-a0f3-eb1ed1800bbc"
+          "orderId": "00000000-0000-0000-0000-000000000002"
         },
         "message": "ok",
         "timestamp": "2024-06-27T22:34:04.685Z"
@@ -1033,8 +1033,8 @@ mutation UpdateOrderWithdrawalDetails($input: UpdateBankInTransactionInput!) {
 "variables":
 {
   "input": {
-    "orderId": "8bc5b15e-7d9a-4748-b343-cc7d01d20e5f", 
-    "destinationAddress": "665a3d05320291a30b6befef" // New bank account id without errors
+    "orderId": "00000000-0000-0000-0000-000000000003", 
+    "destinationAddress": "000000000000000000000006" // New bank account id without errors
   }
 }
 ```
@@ -1142,7 +1142,7 @@ mutation deleteBankAccount($input: DeleteBankAccountInput!) {
 "variables":
 {
   "input": {
-    "_id": "63bd75901ea16ea6e23109b5", #Bank account identifier
+    "_id": "000000000000000000000007", #Bank account identifier
     "countryCode": "CHL",
     "currencySymbol": "CLP"
   }

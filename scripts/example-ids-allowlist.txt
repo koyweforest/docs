@@ -1,0 +1,4 @@
+# Extended regexes. Lines in docs matching any of these are not checked.
+# Keep this list short and limited to third-party URLs.
+loom\.com/embed/
+files\.gitbook\.io/

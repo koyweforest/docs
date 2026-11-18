@@ -914,7 +914,7 @@
                 "examples": {
                   "Client_not_found": {
                     "value": {
-                      "message": "Client not found for ID: 63631a561f41f8fd18f8c3e1"
+                      "message": "Client not found for ID: 000000000000000000000010"
                     }
                   }
                 }
@@ -1206,29 +1206,29 @@
                 "examples": {
                   "Purchase": {
                     "value": {
-                      "orderId": "3ae57c43-6fae-4b0c-b0d5-2c35759e76d9",
-                      "quoteId": "63e154dbc47d9176668a9af6",
+                      "orderId": "00000000-0000-0000-0000-000000000006",
+                      "quoteId": "000000000000000000000004",
                       "amountIn": 1313696,
                       "amountOut": 1,
                       "symbolIn": "CLP",
                       "symbolOut": "ETH",
-                      "paymentMethodId": "63473a5f743da0f55fa04c8f",
+                      "paymentMethodId": "000000000000000000000011",
                       "providedAction": "url.example.com",
-                      "email": "kenneth@koywe.com",
-                      "documentNumber": "158289164"
+                      "email": "user@example.com",
+                      "documentNumber": "111111111"
                     }
                   },
                   "Sell": {
                     "value": {
-                      "orderId": "3ae57c43-6fae-4b0c-b0d5-2c35759e76d9",
-                      "quoteId": "63e154dbc47d9176668a9af6",
+                      "orderId": "00000000-0000-0000-0000-000000000006",
+                      "quoteId": "000000000000000000000004",
                       "amountIn": 1,
                       "amountOut": 1313696,
                       "symbolIn": "ETH",
                       "symbolOut": "CLP",
                       "providedAction": "url.example.com",
-                      "email": "kenneth@koywe.com",
-                      "documentNumber": "158289164"
+                      "email": "user@example.com",
+                      "documentNumber": "111111111"
                     }
                   }
                 }
@@ -1435,13 +1435,13 @@
                 "examples": {
                   "Reprocess": {
                     "value": {
-                      "_id": "66eb25f75752142702c3ca5e",
+                      "_id": "000000000000000000000012",
                       "bankCode": "90646",
                       "name": "STP",
-                      "account": "66b114eea67737d9811432b8",
+                      "account": "000000000000000000000013",
                       "currencySymbol": "MXN",
                       "countryCode": "MEX",
-                      "accountNumber": "646180374711307483"
+                      "accountNumber": "000000000000000000"
                     }
                   }
                 }
@@ -2557,7 +2557,7 @@
         "properties": {
           "orderId": {
             "type": "string",
-            "example": "76a6e9bd-364c-428e-9363-d557fec2b715"
+            "example": "00000000-0000-0000-0000-000000000007"
           },
           "url": {
             "type": "string",
@@ -2651,7 +2651,7 @@
         "properties": {
           "_id": {
             "type": "string",
-            "example": "6294cd18d2b5f912da43e678"
+            "example": "000000000000000000000014"
           },
           "name": {
             "type": "string",
@@ -2686,7 +2686,7 @@
         "properties": {
           "_id": {
             "type": "string",
-            "example": "6303d71295ee10bace884ac4"
+            "example": "000000000000000000000015"
           },
           "name": {
             "type": "string",
@@ -2718,7 +2718,7 @@
         "properties": {
           "_id": {
             "type": "string",
-            "example": "632d7fe6237ded3a748112cf"
+            "example": "000000000000000000000005"
           },
           "name": {
             "type": "string",
@@ -2738,7 +2738,7 @@
           },
           "details": {
             "type": "string",
-            "example": "Koywe SpA\nCta Cte 6824645\n76.215.256-2\nBanco Santander\ntef@koywe.com"
+            "example": "Example Company SpA\nCta Cte 0000000\n11.111.111-1\nExample Bank\npayments@example.com"
           }
         }
       },
@@ -2747,7 +2747,7 @@
         "properties": {
           "token": {
             "type": "string",
-            "example": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5pY29sYXNAa295d2UuY29tIiwibWV0YUFjY291bnQiOiI2Mzg4ZDVjNzA2YmFkOWIxNjE1MWYzNmEiLCJjbGllbnRBdXRoIjpmYWxzZSwiaWF0IjoxNjc0NTAzMzE2LCJleHAiOjE2NzQ1NDY1MTZ9.C1aL9-FSL-VF8t9wce--4M6ZB_d1IHihpDuOYCmUcIT_-M3Fvp2Zds1HSI9WKPjvCj4zLhCBIX9Z8MExhOPinLsjWJO_SC96YFzo7HjZRZgRKgRNMjPaz5w2NSRnRKYqRbaH_ZLIcdoMu1hD7y1wQhsSh1TXQ9MuWfXZvto-484geJ5FWjkmaV5QpNIP-1B5OVL_skZ46Kin4uX3CMpRjeFA3x0__RLZIOqVFy_1XCnzrew_UjamXWoUWonP_4xoPmcSTz23OEvPPxW2syFkvakDskIovOyCU2WzlLs0nMhY6UnKQzpGhN9DclXdVG89xyJOB9ri2GKAW8pIIbguioTgqhykpaaSxRoDFtIvsGD8ptDMoF4xp1aZG2Tq_23MFVrF8EbTzHTx0DB4Gt2hWY5W5nabEU9gts0PqIbuEWVhD4KryrOQv5vmbfr2GuXRx_194zAD2ixSfxyiWnhAN_FMvzmj2wwe-GWWLaKH35yqHfwNRJIkYqEX5TL5T0KFR5izWbGJoyR6EXn6MU1-SrO1by22HmLlKF7Fs-2zXSYTT31a5KnWenA2UPMWbLUbsP_xY3ESWP3YY2k7QRkqIP-Rl90RYHi5_z2"
+            "example": "YOUR_AUTH_TOKEN"
           }
         }
       },
@@ -2756,7 +2756,7 @@
         "properties": {
           "token": {
             "type": "string",
-            "example": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5pY29sYXNAa295d2UuY29tIiwibWV0YUFjY291bnQiOiI2Mzg4ZDVjNzA2YmFkOWIxNjE1MWYzNmEiLCJjbGllbnRBdXRoIjpmYWxzZSwiaWF0IjoxNjc0NTAzMzE2LCJleHAiOjE2NzQ1NDY1MTZ9.C1aL9-FSL-VF8t9wce--4M6ZB_d1IHihpDuOYCmUcIT_-M3Fvp2Zds1HSI9WKPjvCj4zLhCBIX9Z8MExhOPinLsjWJO_SC96YFzo7HjZRZgRKgRNMjPaz5w2NSRnRKYqRbaH_ZLIcdoMu1hD7y1wQhsSh1TXQ9MuWfXZvto-484geJ5FWjkmaV5QpNIP-1B5OVL_skZ46Kin4uX3CMpRjeFA3x0__RLZIOqVFy_1XCnzrew_UjamXWoUWonP_4xoPmcSTz23OEvPPxW2syFkvakDskIovOyCU2WzlLs0nMhY6UnKQzpGhN9DclXdVG89xyJOB9ri2GKAW8pIIbguioTgqhykpaaSxRoDFtIvsGD8ptDMoF4xp1aZG2Tq_23MFVrF8EbTzHTx0DB4Gt2hWY5W5nabEU9gts0PqIbuEWVhD4KryrOQv5vmbfr2GuXRx_194zAD2ixSfxyiWnhAN_FMvzmj2wwe-GWWLaKH35yqHfwNRJIkYqEX5TL5T0KFR5izWbGJoyR6EXn6MU1-SrO1by22HmLlKF7Fs-2zXSYTT31a5KnWenA2UPMWbLUbsP_xY3ESWP3YY2k7QRkqIP-Rl90RYHi5_z2"
+            "example": "YOUR_AUTH_TOKEN"
           },
           "isIdentify": {
             "type": "boolean",
@@ -2781,7 +2781,7 @@
         "properties": {
           "_id": {
             "type": "string",
-            "example": "63c80872b85f35f37e567064"
+            "example": "000000000000000000000016"
           }
         }
       },
@@ -2828,7 +2828,7 @@
         "properties": {
           "orderId": {
             "type": "string",
-            "example": "b88f4ed0-10a2-412f-be3e-b5e47abe9b50"
+            "example": "00000000-0000-0000-0000-000000000008"
           },
           "quoteId": {
             "type": "string"
@@ -2855,7 +2855,7 @@
           },
           "email": {
             "type": "string",
-            "example": "example@gmail.com"
+            "example": "user@example.com"
           },
           "exchangeRate": {
             "type": "number",
@@ -2883,7 +2883,7 @@
           },
           "bankAccountId": {
             "type": "string",
-            "example": "6294d815d2b5f912da43e699"
+            "example": "000000000000000000000017"
           },
           "metaData": {
             "type": "string"
@@ -2921,11 +2921,11 @@
           },
           "destinationAddress": {
             "type": "string",
-            "example": "0x40f9bf922c23c43acede50Ab4425280C0ffBD697"
+            "example": "0x0000000000000000000000000000000000000000"
           },
           "paymentMethodId": {
             "type": "string",
-            "example": "6294d815d2b5f912da43e699"
+            "example": "000000000000000000000017"
           },
           "logoIn": {
             "type": "string",
@@ -2957,7 +2957,7 @@
               },
               "destinationAddress": {
                 "type": "string",
-                "example": "0x40f9bf922c23c43acede50Ab4425280C0ffBD697"
+                "example": "0x0000000000000000000000000000000000000000"
               },
               "transactionReceipt": {
                 "type": "string",
@@ -3034,7 +3034,7 @@
             "properties": {
               "orderId": {
                 "type": "string",
-                "example": "b3b6d577-1be4-4845-9d5b-b43fdef1920a"
+                "example": "00000000-0000-0000-0000-000000000009"
               }
             }
           }
@@ -3049,7 +3049,7 @@
               "description": "order Ids",
               "type": "string"
             },
-            "example": ["b88f4ed0-10a2-412f-be3e-b5e47abe9b50"]
+            "example": ["00000000-0000-0000-0000-000000000008"]
           },
           "quoteId": {
             "type": "string"
@@ -3084,11 +3084,11 @@
           },
           "destinationAddress": {
             "type": "string",
-            "example": "0x40f9bf922c23c43acede50Ab4425280C0ffBD697"
+            "example": "0x0000000000000000000000000000000000000000"
           },
           "email": {
             "type": "string",
-            "example": "example@gmail.com"
+            "example": "user@example.com"
           },
           "exchangeRate": {
             "type": "number",
@@ -3173,7 +3173,7 @@
         "properties": {
           "quoteId": {
             "type": "string",
-            "example": "63da8100c6d0af192f9f9e8c"
+            "example": "000000000000000000000018"
           },
           "amountIn": {
             "type": "number",
@@ -3193,7 +3193,7 @@
           },
           "paymentMethodId": {
             "type": "string",
-            "example": "632d7fe6237ded3a748112cf"
+            "example": "000000000000000000000005"
           },
           "exchangeRate": {
             "type": "number",
@@ -3226,7 +3226,7 @@
         "properties": {
           "_id": {
             "type": "string",
-            "example": "63dd5fd9cccad469ee2408f7"
+            "example": "000000000000000000000019"
           },
           "bankCode": {
             "type": "string",
@@ -3335,7 +3335,7 @@
           },
           "message": {
             "type": "string",
-            "example": "Payment order not found: 76a6e9bd-364c-428e-9363-d557fec2b714"
+            "example": "Payment order not found: 00000000-0000-0000-0000-000000000010"
           }
         }
       },
@@ -3413,7 +3413,7 @@
         "properties": {
           "quoteId": {
             "type": "string",
-            "example": "63dd19bcf23fcbec3bfee51b",
+            "example": "000000000000000000000020",
             "description": "[Related Documentation](https://docs.koywe.com/english/documentation/api-documentation/restful-api/Quote%20Queries/Creates-a-purchase-or-sell-quote)"
           },
 
@@ -3426,7 +3426,7 @@
           },
           "destinationAddress": {
             "type": "string",
-            "example": "0x40f9bf922c23c43acdad71Ab4425280C0ffBD697",
+            "example": "0x0000000000000000000000000000000000000000",
             "description": "This is a required attribute when creating an order. Its content varies depending on the type of order: for an 'off-ramp' order, `destinationAddress` should contain the identifier of the bank account (BankAccount); for an 'on-ramp' order, it should be the destination address for the cryptocurrencies. This attribute is crucial in ensuring that funds are sent to the correct place."
           },
           "metadata": {
@@ -3449,7 +3449,7 @@
         "properties": {
           "destinationAddress": {
             "type": "string",
-            "example": "0x40f9bf922c23c43acdad71Ab4425280C0ffBD697",
+            "example": "0x0000000000000000000000000000000000000000",
             "description": "it should be the destination address for the cryptocurrencies. This attribute is crucial in ensuring that funds are sent to the correct place."
           }
         }
@@ -3460,7 +3460,7 @@
         "properties": {
           "destinationAddress": {
             "type": "string",
-            "example": "63e154dbc47d9176668a9af6",
+            "example": "000000000000000000000004",
             "description": "It should be the new bank account of the user account that owns the order to be able to make the fiat currency deposit."
           }
         }
@@ -3470,7 +3470,7 @@
         "properties": {
           "clientId": {
             "type": "string",
-            "example": "eff455bda8da192d6ae0019c"
+            "example": "000000000000000000000021"
           },
           "symbolIn": {
             "type": "string",
@@ -3490,7 +3490,7 @@
           },
           "paymentMethodId": {
             "type": "string",
-            "example": "632d7fe6237ded3a748112cf",
+            "example": "000000000000000000000005",
             "description": "This is a crucial attribute when creating 'on-ramp' orders. It acts as an identifier for the payment method that will be used to receive funds. Its purpose is to ensure alignment between the system and the client regarding the transaction mechanism, paving the way for efficient transaction processing and tracking. For 'off-ramp' orders, providing this attribute is not required."
           },
           "executable": {
@@ -3589,7 +3589,7 @@
         "properties": {
           "_id": {
             "type": "string",
-            "example": "6283b7f8c7ab3a52fd8a51fc"
+            "example": "000000000000000000000022"
           },
           "name": {
             "type": "string",
@@ -3615,7 +3615,7 @@
         "properties": {
           "_id": {
             "type": "string",
-            "example": "6294cd18d2b5f912da43e678"
+            "example": "000000000000000000000014"
           },
           "name": {
             "type": "string",
@@ -3855,7 +3855,7 @@
           "orderId": {
             "type": "string",
             "format": "uuid",
-            "example": "d219960c-6244-41ea-9db1-0655fa724c6f"
+            "example": "00000000-0000-0000-0000-000000000011"
           },
           "transactionStatus": {
             "type": "string",
@@ -3910,7 +3910,7 @@
               "_id": {
                 "type": "string",
                 "format": "uuid",
-                "example": "64a6c723b67c262341bc705d"
+                "example": "000000000000000000000023"
               }
             }
           },
@@ -3921,11 +3921,11 @@
           "invoiceLink": {
             "type": "string",
             "format": "uri",
-            "example": "https://invoice.koywe.com/api/invoices/pdf/d219960c-6244-41ea-9db1-0655fa724c6f"
+            "example": "https://invoice.koywe.com/api/invoices/pdf/00000000-0000-0000-0000-000000000011"
           },
           "txhash": {
             "type": "string",
-            "example": "0xbe97c2ef9838f429701ab58134ea22215a9a612b723b3f83c54635c224083500"
+            "example": "0x0000000000000000000000000000000000000000000000000000000000000000"
           }
         }
       },
@@ -3935,12 +3935,12 @@
           "_id": {
             "type": "string",
             "format": "uuid",
-            "example": "64a6c677ca3d967f1760eb9a"
+            "example": "000000000000000000000024"
           },
           "accountId": {
             "type": "string",
             "format": "uuid",
-            "example": "64a6c358683529b844a3f03d"
+            "example": "000000000000000000000025"
           },
           "currencySymbol": {
             "type": "string",
@@ -3957,7 +3957,7 @@
           },
           "description": {
             "type": "string",
-            "example": "balance: alvaroescalonacastillo@gmail.com"
+            "example": "balance: user@example.com"
           },
           "retries": {
             "type": "integer",
@@ -4118,7 +4118,7 @@
         "properties": {
           "url": {
             "type": "string",
-            "example": "https://webhook.site/d00d833c-ea45-4df2-91d2"
+            "example": "https://webhook.site/00000000-0000-0000-0000-000000000012"
           },
           "secret": {
             "type": "string",
@@ -4142,11 +4142,11 @@
         "properties": {
           "_id": {
             "type": "string",
-            "example": "65e8c66d64ab5eeea1c2eda0"
+            "example": "000000000000000000000026"
           },
           "url": {
             "type": "string",
-            "example": "https://webhook.site/d00d833c-ea45-4df2-91d2-b583178493bf"
+            "example": "https://webhook.site/00000000-0000-0000-0000-000000000012"
           },
           "secret": {
             "type": "string",
@@ -4160,7 +4160,7 @@
         "properties": {
           "url": {
             "type": "string",
-            "example": "https://webhook.site/d00d833c-ea45-4df2-91d2"
+            "example": "https://webhook.site/00000000-0000-0000-0000-000000000012"
           },
           "secret": {
             "type": "string",
@@ -4192,11 +4192,11 @@
         "properties": {
           "_id": {
             "type": "string",
-            "example": "65e8c66d64ab5eeea1c2eda0"
+            "example": "000000000000000000000026"
           },
           "url": {
             "type": "string",
-            "example": "https://webhook.site/d00d833c-ea45-4df2-91d2-b583178493bf"
+            "example": "https://webhook.site/00000000-0000-0000-0000-000000000012"
           },
           "secret": {
             "type": "string",
